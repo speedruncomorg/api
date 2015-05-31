@@ -112,7 +112,8 @@ This will retrieve a single game, identified by its ID.
 ### GET /v1/games/{id}/categories
 
 This will retrieve *all* categories of a given game. This includes only **full-game** categories, not
-those used for individual-level runs.
+those used for individual-level runs. To get the categories for levels, fetch the level and embed
+the categories like so: ``GET /v1/levels/{levelid}?embed=categories``.
 
 ##### Example Requests
 
