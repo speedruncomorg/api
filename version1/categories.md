@@ -22,12 +22,12 @@ Represented as JSON, a category looks like this:
   "rules": "Yada Yada Yada",
   "players": 1,
   "miscellaneous": false,
-  links: [{
-    rel: "self",
-    uri: "/v1/categories/1"
+  "links": [{
+    "rel": "self",
+    "uri": "/v1/categories/1"
   }, {
-    rel: "game",
-    uri: "/v1/games/19"
+    "rel": "game",
+    "uri": "/v1/games/19"
   }]
 }
 ```

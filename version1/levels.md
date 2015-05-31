@@ -19,15 +19,15 @@ Represented as JSON, a level looks like this:
   "name": "Slip Slide Icecapades",
   "weblink: "/twinsanity/Slip_Slide_Icecapades",
   "rules": "Yada Yada Yada",
-  links: [{
-    rel: "self",
-    uri: "/v1/levels/420"
+  "links": [{
+    "rel": "self",
+    "uri": "/v1/levels/420"
   }, {
-    rel: "game",
-    uri: "/v1/games/122"
+    "rel": "game",
+    "uri": "/v1/games/122"
   }, {
-    rel: "runs",
-    uri: "/v1/runs?game=122&level=420"
+    "rel": "runs",
+    "uri": "/v1/runs?game=122&level=420"
   }]
 }
 ```
