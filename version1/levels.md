@@ -32,6 +32,12 @@ Represented as JSON, a level looks like this:
 }
 ```
 
+### Embeds
+
+The following associated resources can be embedded:
+
+* ``categories`` - the per-level [categories](categories.md) for the requested level
+
 ### GET /v1/levels/{id}
 
 This will retrieve a single level, identified by its ID.
@@ -45,6 +51,6 @@ This will retrieve a single level, identified by its ID.
 
 ```json
 {
-  "data": { *level* }
+  "data": <level>
 }
 ```
