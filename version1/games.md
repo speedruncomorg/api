@@ -1,12 +1,10 @@
 # Version 1 - Games
 
-* [Basics](#basics)
-* [Games](#games)
-  * [Structure](#structure)
-  * [GET /games](#structure)
-  * [GET /games/{id}](#structure)
-
-## Games
+* [Structure](#structure)
+* [GET /v1/games](#get-v1games)
+* [GET /v1/games/{id}](#get-v1gamesid)
+* [GET /v1/games/{id}/categories](#get-v1gamesidcategories)
+* [GET /v1/games/{id}/levels](#get-v1gamesidlevels)
 
 Games are the things [users](#users) do speedruns in. Games are associated with regions (US, Europe,
 ...), platforms (consoles, handhelds, ...), categories, levels and custom variables

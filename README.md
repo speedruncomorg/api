@@ -21,4 +21,4 @@ current API with new information, but we will not change existing fields).
 
 ## Versions
 
-* [Version 1](https://github.com/speedruncom/api/blob/master/version1/README.md)
+* [Version 1](https://github.com/speedruncom/api/tree/master/version1)
