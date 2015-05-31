@@ -17,7 +17,7 @@ Represented as JSON, a level looks like this:
 {
   "id": 420,
   "name": "Slip Slide Icecapades",
-  "weblink: "/twinsanity/Slip_Slide_Icecapades",
+  "weblink": "/twinsanity/Slip_Slide_Icecapades",
   "rules": "Yada Yada Yada",
   "links": [{
     "rel": "self",
