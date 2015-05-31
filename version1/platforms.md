@@ -1,4 +1,4 @@
-# Version 1 - Platforms
+# Platforms
 
 * [Structure](#structure)
 * [GET /v1/platforms](#get-v1platforms)

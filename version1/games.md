@@ -1,4 +1,4 @@
-# Version 1 - Games
+# Games
 
 * [Structure](#structure)
 * [GET /v1/games](#get-v1games)
