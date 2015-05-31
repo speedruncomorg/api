@@ -15,7 +15,9 @@ This version is available at **http://www.speedrun.com/api/v1**.
 
 This version offers access to the following resources:
 
-* [Games](games.md), including their levels, categories and custom variables
+* [Categories](categories.md)
+* [Games](games.md)
+* [Levels](levels.md)
 * [Platforms](platforms.md)
 * [Regions](regions.md)
 * [Runs](runs.md)
