@@ -38,6 +38,6 @@ This will retrieve a single platform, identified by its ID.
 
 ```json
 {
-  "data": { *platform* }
+  "data": <platform>
 }
 ```

@@ -45,6 +45,6 @@ This will retrieve a single category, identified by its ID.
 
 ```json
 {
-  "data": { *category* }
+  "data": <category>
 }
 ```

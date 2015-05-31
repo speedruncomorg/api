@@ -39,6 +39,6 @@ This will retrieve a single region, identified by its ID.
 
 ```json
 {
-  "data": { *region* }
+  "data": <region>
 }
 ```

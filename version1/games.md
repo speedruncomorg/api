@@ -83,10 +83,10 @@ This will return a list of N games, by default N=20. You can filter the result b
 ```json
 {
   "data": [
-    { *game* },
-    { *game* },
-    { *game* },
-    { *game* },
+    <game>,
+    <game>,
+    <game>,
+    <game>,
     ...
   ]
 }
@@ -105,7 +105,7 @@ This will retrieve a single game, identified by its ID.
 
 ```json
 {
-  "data": { *game* }
+  "data": <game>
 }
 ```
 
@@ -124,10 +124,10 @@ those used for individual-level runs.
 ```json
 {
   "data": [
-    { *category* },
-    { *category* },
-    { *category* },
-    { *category* },
+    <category>,
+    <category>,
+    <category>,
+    <category>,
     ...
   ]
 }
@@ -147,10 +147,10 @@ This will retrieve *all* levels of a given game.
 ```json
 {
   "data": [
-    { *level* },
-    { *level* },
-    { *level* },
-    { *level* },
+    <level>,
+    <level>,
+    <level>,
+    <level>,
     ...
   ]
 }
