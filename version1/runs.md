@@ -8,7 +8,7 @@
 
 Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a game,
 adhering to that game's ruleset. Invalid attempts (use of cheats) or obsolete runs (the ones
-superseeded by a better time by the same player(s) in the same ruleset) still count as runs and are
+superseded by a better time by the same player(s) in the same ruleset) still count as runs and are
 available via API.
 
 If you need the **leaderboards** (non-obsolete, valid runs sorted by time), this is not the droid
@@ -43,8 +43,8 @@ Represented as JSON, a single run looks like this:
     "primary_t": 1882,
     "realtime": "PT31M22S",
     "realtime_t": 1882,
-    "realtime_wloads": "PT41M26S",
-    "realtime_wloads_t": 2486,
+    "realtime_noloads": "PT41M26S",
+    "realtime_noloads_t": 2486,
     "ingame": null,
     "ingame_t": 0
   },
@@ -93,22 +93,24 @@ There are quite a few things that need a couple words of explanation.
   Use the ``links`` to find the user profiles or guest profiles of the runners. Note that guests
   are **not** available via the [users resource](users.md), but have their own [guests resource](guests.md).
 
-* ``date`` is when the run happened. For runs submitted in the early days of speedrun.com, this field
-  is unfortunately ``null``. ``submitted`` is the date and time when the run was added on speedrun.com
-  and can also be ``null`` for old runs.
+* ``date`` is when the run happened. Not all runs have a known date, so unfortunately this sometimes
+  is ``null``. ``submitted`` is the date and time when the run was added on speedrun.com and can
+  also be ``null`` for old runs.
 
 * ``times`` is a structure that contains a lot of information and a lot of redundant stuff.
 
   * ``primary`` is the time that is relevant for the leaderboard. Different games have different
     rules as to what eventually counts, and this is the time represented by ``primary``.
   * ``realtime`` is the real-world time of the run.
-  * ``realtime_wloads`` is the real-world time of the run, *including* the loading times. Not all
-    games have a distinction between realtime and realtime w/ loads.
+  * ``realtime_noloads`` is the real-world time of the run, *excluding* the loading times. Not all
+    games have a distinction between realtime and realtime w/o loads.
   * ``ingame`` is the time as measured by the game itself.
 
   Each of those four times is represented twice in the ``times`` structure. Once as a ISO 8601 duration
   and once as the number of seconds plus milliseconds (as a float). Use whatever is the easiest in
   your environment and try to avoid implementing custom date/time parsing.
+
+  The primary time is always set, each of the three others can be empty depending on the game.
 
 * ``system/region`` can be null, especially for PC games.
 
