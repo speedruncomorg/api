@@ -1,7 +1,7 @@
 # Profile
 
 * [Structure](#structure)
-* [GET /v1/profile](#get-v1profile)
+* [GET /profile](#get-profile)
 
 The profile is the user resource of the currently [authenticated](../authentication.md) user. This
 is useful to see what user a given API key belongs to.
@@ -13,7 +13,7 @@ is useful to see what user a given API key belongs to.
 The profile is identical to the structure of [users](users.md), except that the ``self`` link points
 to the profile and there is an additional ``user`` link that points to the user resource.
 
-### GET /v1/profile
+### GET /profile
 
 This will retrieve the current user.
 

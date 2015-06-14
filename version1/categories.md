@@ -2,8 +2,8 @@
 
 * [Structure](#structure)
 * [Embeds](#embeds)
-* [GET /v1/categories/{id}](#get-v1categoriesid)
-* [GET /v1/categories/{id}/variables](#get-v1categoriesidvariables)
+* [GET /categories/{id}](#get-categoriesid)
+* [GET /categories/{id}/variables](#get-categoriesidvariables)
 
 Categories are the different rulesets for speedruns. Categories are either ``per-game`` or ``per-level``
 (if the game uses individual levels), both can be accessed via this resource.
@@ -58,7 +58,7 @@ You can [embed](embedding.md) the following resources into a category:
 * ``variables`` will embed the applicable variables for this category. See below for another way
   to get these and what applicable means.
 
-### GET /v1/categories/{id}
+### GET /categories/{id}
 
 This will retrieve a single category, identified by its ID.
 
@@ -75,7 +75,7 @@ This will retrieve a single category, identified by its ID.
 }
 ```
 
-### GET /v1/categories/{id}/variables
+### GET /categories/{id}/variables
 
 This will retrieve all [variables](variables.md) that are *applicable* to the given category.
 

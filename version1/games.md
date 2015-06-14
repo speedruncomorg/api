@@ -2,12 +2,12 @@
 
 * [Structure](#structure)
 * [Embeds](#embeds)
-* [GET /v1/games](#get-v1games)
-* [GET /v1/games/{id}](#get-v1gamesid)
-* [GET /v1/games/{id}/categories](#get-v1gamesidcategories)
-* [GET /v1/games/{id}/levels](#get-v1gamesidlevels)
-* [GET /v1/games/{id}/variables](#get-v1gamesidvariables)
-* [GET /v1/games/{id}/children](#get-v1gamesidchildren)
+* [GET /games](#get-games)
+* [GET /games/{id}](#get-gamesid)
+* [GET /games/{id}/categories](#get-gamesidcategories)
+* [GET /games/{id}/levels](#get-gamesidlevels)
+* [GET /games/{id}/variables](#get-gamesidvariables)
+* [GET /games/{id}/children](#get-gamesidchildren)
 
 Games are the things [users](users.md) do speedruns in. Games are associated with [regions](regions.md)
 (US, Europe, ...), [platforms](platforms.md) (consoles, handhelds, ...), [categories](categories.md),
@@ -90,7 +90,7 @@ You can [embed](embedding.md) the following resources into a game:
 * ``regions`` will embed all assigned regions.
 * ``variables`` will embed *all* defined variables for the game.
 
-### GET /v1/games
+### GET /games
 
 This will return a list of all games. You can filter the result by a few things:
 
@@ -129,7 +129,7 @@ elements should be something an API client should notice.
 }
 ```
 
-### GET /v1/games/{id}
+### GET /games/{id}
 
 This will retrieve a single game, identified by its ID.
 
@@ -146,7 +146,7 @@ This will retrieve a single game, identified by its ID.
 }
 ```
 
-### GET /v1/games/{id}/categories
+### GET /games/{id}/categories
 
 This will retrieve *all* [categories](categories.md) of a given game. If you need only those
 applicable to certain [levels](levels.md), look there.
@@ -170,7 +170,7 @@ applicable to certain [levels](levels.md), look there.
 }
 ```
 
-### GET /v1/games/{id}/levels
+### GET /games/{id}/levels
 
 This will retrieve *all* [levels](levels.md) of a given game.
 
@@ -193,7 +193,7 @@ This will retrieve *all* [levels](levels.md) of a given game.
 }
 ```
 
-### GET /v1/games/{id}/variables
+### GET /games/{id}/variables
 
 This will retrieve *all* [variables](variables.md) of a given game. If you need only those applicable
 to certain [categories](categories.md) or [levels](levels.md), look there.
@@ -217,7 +217,7 @@ to certain [categories](categories.md) or [levels](levels.md), look there.
 }
 ```
 
-### GET /v1/games/{id}/children
+### GET /games/{id}/children
 
 This will retrieve all child games of a given game. If a game has children, we actually call it
 "series", but as mentioned above, they behave as games and are treated as games.

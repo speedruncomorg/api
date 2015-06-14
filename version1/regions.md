@@ -1,8 +1,8 @@
 # Regions
 
 * [Structure](#structure)
-* [GET /v1/regions](#get-v1regions)
-* [GET /v1/regions/{id}](#get-v1regionsid)
+* [GET /regions](#get-regions)
+* [GET /regions/{id}](#get-regionsid)
 
 Regions represent the different distribution zones in that [games](games.md) are published, for
 example the US, Europe or Japan.
@@ -28,11 +28,11 @@ Represented as JSON, a region looks like this:
 }
 ```
 
-### GET /v1/regions
+### GET /regions
 
 This will return *all* regions order by name.
 
-### GET /v1/regions/{id}
+### GET /regions/{id}
 
 This will retrieve a single region, identified by its ID.
 

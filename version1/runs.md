@@ -2,8 +2,8 @@
 
 * [Structure](#structure)
 * [Embeds](#embeds)
-* [GET /v1/runs](#get-v1runs)
-* [GET /v1/runs/{id}](#get-v1runsid)
+* [GET /runs](#get-runs)
+* [GET /runs/{id}](#get-runsid)
 
 Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a
 [game](games.md), adhering to that game's ruleset. Invalid attempts (use of cheats) or obsolete
@@ -132,7 +132,7 @@ You can [embed](embedding.md) the following resources into a run:
 
 * ``game`` will embed the full game resource.
 
-### GET /v1/runs
+### GET /runs
 
 This will return a list of all runs. You can filter the result by a few things:
 
@@ -177,7 +177,7 @@ something an API client should notice.
 }
 ```
 
-### GET /v1/runs/{id}
+### GET /runs/{id}
 
 This will retrieve a single run, identified by its ID.
 

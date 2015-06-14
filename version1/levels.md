@@ -2,9 +2,9 @@
 
 * [Structure](#structure)
 * [Embeds](#embeds)
-* [GET /v1/levels/{id}](#get-v1levelsid)
-* [GET /v1/levels/{id}/categories](#get-v1levelsidcategories)
-* [GET /v1/levels/{id}/variables](#get-v1levelsidvariables)
+* [GET /levels/{id}](#get-levelsid)
+* [GET /levels/{id}/categories](#get-levelsidcategories)
+* [GET /levels/{id}/variables](#get-levelsidvariables)
 
 Levels are the stages/worlds/maps within a game. Not all [games](games.md) have levels.
 
@@ -49,7 +49,7 @@ You can [embed](embedding.md) the following resources into a level:
   level.
 * ``variables`` will embed the [variables](variables.md) applicable for the requested level.
 
-### GET /v1/levels/{id}
+### GET /levels/{id}
 
 This will retrieve a single level, identified by its ID.
 
@@ -66,7 +66,7 @@ This will retrieve a single level, identified by its ID.
 }
 ```
 
-### GET /v1/levels/{id}/categories
+### GET /levels/{id}/categories
 
 This will retrieve the *applicable* [categories](categories.md) for the given level.
 
@@ -89,7 +89,7 @@ This will retrieve the *applicable* [categories](categories.md) for the given le
 }
 ```
 
-### GET /v1/levels/{id}/variables
+### GET /levels/{id}/variables
 
 This will retrieve the *applicable* [variables](variables.md) for the given level.
 

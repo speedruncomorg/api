@@ -1,7 +1,7 @@
 # Guests
 
 * [Structure](#structure)
-* [GET /v1/guests/{name}](#get-v1guestsname)
+* [GET /guests/{name}](#get-guestsname)
 
 Sometimes, speedrun.com has runs done by players that have no account on the site yet. These runners
 are called "guests" in the API. Except for a name, there is nothing we know about them.
@@ -23,7 +23,7 @@ Represented as JSON, a single guest looks like this:
 }
 ```
 
-### GET /v1/guests/{name}
+### GET /guests/{name}
 
 This will retrieve a guest, identified by their name. The name is case-insensitive.
 

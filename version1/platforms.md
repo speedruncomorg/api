@@ -1,8 +1,8 @@
 # Platforms
 
 * [Structure](#structure)
-* [GET /v1/platforms](#get-v1platforms)
-* [GET /v1/platforms/{id}](#get-v1platformsid)
+* [GET /platforms](#get-platforms)
+* [GET /platforms/{id}](#get-platformsid)
 
 Platforms are hardware devices that run [games](games.md), for example PC, NES, PS2 etc.
 
@@ -28,11 +28,11 @@ Represented as JSON, a platform looks like this:
 }
 ```
 
-### GET /v1/platforms
+### GET /platforms
 
 This will return *all* platforms order by name.
 
-### GET /v1/platforms/{id}
+### GET /platforms/{id}
 
 This will retrieve a single platform, identified by its ID.
 
