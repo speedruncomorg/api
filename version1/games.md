@@ -1,6 +1,7 @@
 # Games
 
 * [Structure](#structure)
+* [Embeds](#embeds)
 * [GET /v1/games](#get-v1games)
 * [GET /v1/games/{id}](#get-v1gamesid)
 * [GET /v1/games/{id}/categories](#get-v1gamesidcategories)

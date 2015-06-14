@@ -1,6 +1,7 @@
 # Levels
 
 * [Structure](#structure)
+* [Embeds](#embeds)
 * [GET /v1/levels/{id}](#get-v1levelsid)
 * [GET /v1/levels/{id}/categories](#get-v1levelsidcategories)
 * [GET /v1/levels/{id}/variables](#get-v1levelsidvariables)

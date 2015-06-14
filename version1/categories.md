@@ -1,6 +1,7 @@
 # Categories
 
 * [Structure](#structure)
+* [Embeds](#embeds)
 * [GET /v1/categories/{id}](#get-v1categoriesid)
 * [GET /v1/categories/{id}/variables](#get-v1categoriesidvariables)
 

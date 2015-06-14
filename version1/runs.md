@@ -1,6 +1,7 @@
 # Runs
 
 * [Structure](#structure)
+* [Embeds](#embeds)
 * [GET /v1/runs](#get-v1runs)
 * [GET /v1/runs/{id}](#get-v1runsid)
 
