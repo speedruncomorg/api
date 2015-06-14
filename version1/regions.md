@@ -4,8 +4,8 @@
 * [GET /v1/regions](#get-v1regions)
 * [GET /v1/regions/{id}](#get-v1regionsid)
 
-Regions represent the different distribution zones in that games are published, for example the US,
-Europe or Japan.
+Regions represent the different distribution zones in that [games](games.md) are published, for
+example the US, Europe or Japan.
 
 ### Structure
 
@@ -17,7 +17,13 @@ Represented as JSON, a region looks like this:
   "name": "USA / NTSC",
   "links": [{
     "rel": "self",
-    "uri": "/v1/regions/1"
+    "uri": "http://www.speedrun.com/api/v1/regions/1"
+  }, {
+    "rel": "games",
+    "uri": "http://www.speedrun.com/api/v1/games?region=1"
+  }, {
+    "rel": "runs",
+    "uri": "http://www.speedrun.com/api/v1/runs?region=1"
   }]
 }
 ```

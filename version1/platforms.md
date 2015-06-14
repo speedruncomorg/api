@@ -17,7 +17,13 @@ Represented as JSON, a platform looks like this:
   "released": 2002,
   "links": [{
     "rel": "self",
-    "uri": "/v1/platforms/1"
+    "uri": "http://www.speedrun.com/api/v1/platforms/1"
+  }, {
+    "rel": "games",
+    "uri": "http://www.speedrun.com/api/v1/games?platform=1"
+  }, {
+    "rel": "runs",
+    "uri": "http://www.speedrun.com/api/v1/runs?platform=1"
   }]
 }
 ```

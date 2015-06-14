@@ -1,15 +1,13 @@
 # Runs
 
 * [Structure](#structure)
-* [GET /v1/games](#get-v1games)
-* [GET /v1/games/{id}](#get-v1gamesid)
-* [GET /v1/games/{id}/categories](#get-v1gamesidcategories)
-* [GET /v1/games/{id}/levels](#get-v1gamesidlevels)
+* [GET /v1/runs](#get-v1runs)
+* [GET /v1/runs/{id}](#get-v1runsid)
 
-Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a game,
-adhering to that game's ruleset. Invalid attempts (use of cheats) or obsolete runs (the ones
-superseded by a better time by the same player(s) in the same ruleset) still count as runs and are
-available via API.
+Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a
+[game](games.md), adhering to that game's ruleset. Invalid attempts (use of cheats) or obsolete
+runs (the ones superseded by a better time by the same player(s) in the same ruleset) still count as
+runs and are available via API.
 
 If you need the **leaderboards** (non-obsolete, valid runs sorted by time), this is not the droid
 you're looking for. Until we had time to properly migrate the leaderboards to this API, use the
@@ -22,11 +20,11 @@ Represented as JSON, a single run looks like this:
 ```json
 {
   "id": 3128,
-  "weblink": "/run/3128",
+  "weblink": "http://www.speedrun.com/run/3128",
   "game": 253,
   "level": null,
   "category": 527,
-  "video": null,
+  "video": "http://youtube.com/videoidhere",
   "comment": "Lost 35 seconds on bridge swap, plus a bunch of time elsewhere",
   "status": {
     "status": "verified",
@@ -53,28 +51,33 @@ Represented as JSON, a single run looks like this:
     "emulated": false,
     "region": null
   },
-  "values": [],
+  "values": {
+    "1497": 4099
+  },
   "links": [{
     "rel": "self",
-    "uri": "/v1/runs/3128"
+    "uri": "http://www.speedrun.com/api/v1/runs/3128"
   }, {
     "rel": "game",
-    "uri": "/v1/games/253"
+    "uri": "http://www.speedrun.com/api/v1/games/253"
   }, {
     "rel": "category",
-    "uri": "/v1/categories/527"
+    "uri": "http://www.speedrun.com/api/v1/categories/527"
+  }, {
+    "rel": "level",
+    "uri": "http://www.speedrun.com/api/v1/levels/9610"
   }, {
     "rel": "platform",
-    "uri": "/v1/platforms/31"
+    "uri": "http://www.speedrun.com/api/v1/platforms/31"
   }, {
     "rel": "player",
-    "uri": "/v1/users/1316"
+    "uri": "http://www.speedrun.com/api/v1/users/1316"
   }, {
     "rel": "player",
-    "uri": "/v1/guests/Betsruner"
+    "uri": "http://www.speedrun.com/api/v1/guests/Betsruner"
   }, {
     "rel": "examiner",
-    "uri": "/v1/users/62"
+    "uri": "http://www.speedrun.com/api/v1/users/62"
   }]
 }
 ```
@@ -112,7 +115,79 @@ There are quite a few things that need a couple words of explanation.
 
   The primary time is always set, each of the three others can be empty depending on the game.
 
-* ``system/region`` can be null, especially for PC games.
+* ``system.region`` can be null, especially for PC games.
 
-* ``values`` is a map containing the custom values for a game (like the speed in Mario Kart, which
-  can be 50/100/150cc).
+* ``values`` is a mapping from [variables](variables.md) to values (the key is the variable ID, the
+  value is the valueID). The map represents the custom values for a game (like the speed in Mario Kart,
+  which can be 50/100/150cc).
+
+* Not all runs have a ``video``. For those, the field is ``null``. Sames goes for the ``comment``.
+  Also, the video can be pretty much anything that's acceptable to the examiner of a run, so don't
+  rely on this being a YouTube link.
+
+### Embeds
+
+You can [embed](embedding.md) the following resources into a run:
+
+* ``game`` will embed the full game resource.
+
+### GET /v1/runs
+
+This will return a list of all runs. You can filter the result by a few things:
+
+Query Parameter  | Type   | Description
+---------------- | ------ | ------------------------------------------------------------------
+``user``         | int    | user ID; when given, only returns runs played by that user
+``guest``        | string | when given, only returns runs done by that guest
+``examiner``     | int    | user ID; when given, only returns runs examined by that user
+``game``         | int    | game ID; when given, restricts to that game
+``level``        | int    | level ID; when given, restricts to that level
+``category``     | int    | category ID; when given, restricts to that category
+``platform``     | int    | platform ID; when given, restricts to that platform
+``region``       | int    | region ID; when given, restricts to that region
+``emulated``     | bool   | when ``1``, ``yes`` or ``true``, only games run on emulator will
+                 |        | be returned
+``status``       | string | filters by run status; ``new``, ``verified`` and ``rejected`` are
+                 |        | possible values for this parameter
+
+Note that giving invalid values for any ID parameter will result in an HTTP 404 error instead of an
+empty list. This is on purpose, because asking to filter by non-existing elements should be
+something an API client should notice.
+
+##### Example Requests
+
+* [**GET /api/v1/runs**](http://www.speedrun.com/api/v1/runs) gets all runs
+* [**GET /api/v1/runs?guest=Alex**](http://www.speedrun.com/api/v1/runs?guest=Alex) searches for
+  all runs done by someone named "Alex" that has no speedrun.com account.
+* [**GET /api/v1/runs?emulated=yes&examiner=1**](http://www.speedrun.com/api/v1/runs?emulated=yes&examiner=1)
+  searches for all runs done via emulator that have been examined by Pac.
+
+##### Example Response
+
+```json
+{
+  "data": [
+    <run>,
+    <run>,
+    <run>,
+    <run>,
+    ...
+  ]
+}
+```
+
+### GET /v1/runs/{id}
+
+This will retrieve a single run, identified by its ID.
+
+##### Example Requests
+
+* [**GET /api/v1/runs/2**](http://www.speedrun.com/api/v1/runs/2) retrieves m00nchile's GTA VC run.
+
+##### Example Response
+
+```json
+{
+  "data": <run>
+}
+```
