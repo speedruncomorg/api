@@ -43,7 +43,7 @@ The offset starts at 0 and can be set independently of the ``max`` value.
 * ``GET /users?offset=20&max=5`` - users 21 to 25
 
 Instead of manually constructing these parameters, it is recommended that API clients use the
-available links that the API offers. This makes API clients more reobust in case we change the
+available links that the API offers. This makes API clients more robust in case we change the
 pagination in a future API version.
 
 The API does not provide the total number of elements for each collection, so API clients must fetch
