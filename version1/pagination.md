@@ -12,15 +12,15 @@ previous and next pages.
 {
   "data": [<user>, <user>, <user>],
   "pagination": {
-    offset: 20,
-    max: 30,
-    size: 30,
-    links: [{
-      rel: "next",
-      uri: "http://speedrun.gg/api/v1/users?max=30&offset=50"
+    "offset": 20,
+    "max": 30,
+    "size": 30,
+    "links": [{
+      "rel": "next",
+      "uri": "http://speedrun.gg/api/v1/users?max=30&offset=50"
     }, {
-      rel: "prev",
-      uri: "http://speedrun.gg/api/v1/users?max=30"
+      "rel": "prev",
+      "uri": "http://speedrun.gg/api/v1/users?max=30"
     }]
   }
 }
