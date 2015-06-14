@@ -97,6 +97,7 @@ To get *all* variables defined for a game, see the [games](games.md) documentati
     <variable>,
     <variable>,
     <variable>,
+    ...
   ]
 }
 ```
