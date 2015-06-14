@@ -1,7 +1,7 @@
 # Pagination
 
 Collections like runs, games or users do not return all elements at once, but are limited to a
-certain number per request. By default, you get **20 elements** per request, but you can inscrease
+certain number per request. By default, you get **20 elements** per request, but you can increase
 this limit **up to 200**.
 
 Collections will not only have a ``data`` element, but also a ``pagination`` element in their JSON
