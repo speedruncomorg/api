@@ -6,10 +6,13 @@ This version is available at **http://www.speedrun.com/api/v1**.
 
 ## Basics
 
-* All dates and times are ISO 8601 encoded. Durations (like run times) use both ISO 8601 as well as
-  the number of seconds and milliseconds (use whatever is convenient for you).
+* All dates and times are [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) encoded. Durations
+  (like run times) use both ISO 8601 as well as the number of seconds and milliseconds (use whatever
+  is convenient for you).
 * In most responses, the JSON structure contains a ``data`` key as its root element. This ``data``
   element is omitted from the sample JSONs on this page.
+* By default, all collections are limited to 20 elements. Check the [pagination](pagination.md)
+  documentation for more information.
 
 ## Resources
 
