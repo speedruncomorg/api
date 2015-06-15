@@ -11,7 +11,7 @@ of time).
 To reduce the amount of requests you make, consider:
 
 * [embedding](version1/embedding.md) resources or
-* increase the amount of elements per page in a collection from its default (20) to the max allowed
-  value (200).
+* increase the amount of [elements per page](version1/pagination.md) in a collection to the maximum
+  allowed value (200).
 
 When you reached your request limit, the API will respond with the HTTP status code ``420``.
