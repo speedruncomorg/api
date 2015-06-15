@@ -16,6 +16,8 @@ depending on our needs. In those cases, API clients need to authenticate by usin
 (each user has one and if you want to do stuff on behalf of other users, they need to give their
 API key to your app). See [authentication](authentication.md) for more information.
 
+All requests to the API are subject to [rate limits](throttling.md).
+
 The API is versioned, the version is reflected in the URL you use. The API root,
 http://www.speedrun.com/api will redirect you to the current version. We promise to do our best to
 never break a once published version of our API (sometimes we extend the current API with new
