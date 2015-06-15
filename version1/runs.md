@@ -6,12 +6,12 @@
 * [GET /runs/{id}](#get-runsid)
 
 Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a
-[game](games.md), adhering to that game's ruleset. Invalid attempts (use of cheats) or obsolete
+[game](games.md), adhering to that game's ruleset. Invalid attempts (use of cheats etc) or obsolete
 runs (the ones superseded by a better time by the same player(s) in the same ruleset) still count as
 runs and are available via API.
 
 If you need the **leaderboards** (non-obsolete, valid runs sorted by time), this is not the droid
-you're looking for. Until we had time to properly migrate the leaderboards to this API, use the
+you're looking for. Until we've had time to properly migrate the leaderboards to this API, use the
 legacy API available at http://www.speedrun.com/api_records.php.
 
 ### Structure

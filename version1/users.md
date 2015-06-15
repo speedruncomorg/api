@@ -68,7 +68,7 @@ There are quite a few things that need a couple words of explanation.
 * The ``name-style`` determines how the username is shown on the website and can be one of two things:
 
   * When ``style`` is ``solid``, there is one ``color``.
-  * When ``style`` is ``gradient``, there are two colors that form alinear gradient. The two colors
+  * When ``style`` is ``gradient``, there are two colors that form a linear gradient. The two colors
     are named ``color-from`` and ``color-to``.
 
   Each color consists of two values. The ``light`` one is to be used on light backgrounds, the

@@ -30,5 +30,5 @@ This version offers access to the following resources:
 * [variables](variables.md)
 
 **Important:** To get a leaderboard of sorts, you need to use the legacy API available at
-http://www.speedrun.com/api_records.php, until we had time to refactor and implement the leaderboard
+http://www.speedrun.com/api_records.php, until we've had time to refactor and implement the leaderboard
 as part of this API.

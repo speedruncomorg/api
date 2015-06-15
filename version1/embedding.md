@@ -1,7 +1,7 @@
 # Embedding
 
 Most resources are related to others in some form. A [run](runs.md) is related to the
-[category](categories.md) it is done it, as well as the [users](users.md) that have executed it.
+[category](categories.md) it is done in, as well as the [users](users.md) that have executed it.
 
 As resources are available as separate entities in the API, fetching a run including the information
 about its game and users involves making multiple requests (one for getting the run, then parsing it

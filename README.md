@@ -2,7 +2,7 @@
 
 ### :construction: The API is not yet public. :construction:
 
-We offer a simple, JSON-ased REST API to access most of our data about games, runs and players. The
+We offer a simple, JSON-based REST API to access most of our data about games, runs and players. The
 API is meant to be a good compromise between pure REST and real-world.
 
 If you want to use the API, you should be familiar with how HTTP and JSON work. Documenting those
