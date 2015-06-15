@@ -23,7 +23,7 @@ down to the interesting things):
     "id": 420,
     "name": "Some Game",
     "regions": [1,2],
-    "links": [
+    "links": [{
       "rel": "categories",
       "uri": "http://www.speedrun.com/api/v1/games/420/categories"
     }]
@@ -48,7 +48,7 @@ categories just as if you requested them separately:
     "id": 420,
     "name": "Some Game",
     "regions": [1,2],
-    "links": [
+    "links": [{
       "rel": "categories",
       "uri": "http://www.speedrun.com/api/v1/games/420/categories"
     }],
@@ -79,7 +79,7 @@ Requesting ``GET /games/420?embed=categories,regions`` therefore gives us:
         <region2>,
       ]
     },
-    "links": [
+    "links": [{
       "rel": "categories",
       "uri": "http://www.speedrun.com/api/v1/games/420/categories"
     }],
