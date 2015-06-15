@@ -79,11 +79,11 @@ There are quite a few things that need a couple words of explanation.
 
 * ``signup`` is ``null`` for old user accounts.
 
-* ``location`` contains the country and possibly region where the user lives. The ``country`` is
-  always set, ``region`` (more specific than the country) is not available for all countries and
-  therefore not always set. Each of the two contain a ``code`` (which, for the country is the
-  ISO Alpha-2 code, and for the region is something custom) and the names (as with users, not all
-  countries/regions have a japanese name).
+* If ``location`` is set (some users live in limbo and have no location), it contains the country
+  and possibly region where the user lives. The ``country`` is always set, ``region`` (more specific
+  than the country) is not available for all countries and therefore not always set. Each of the two
+  contain a ``code`` (which, for the country is the ISO Alpha-2 code, and for the region is
+  something custom) and the names (as with users, not all countries/regions have a japanese name).
 
 ### GET /users
 
