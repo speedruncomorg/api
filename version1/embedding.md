@@ -123,7 +123,7 @@ from above, we now do ``GET /games/420?embed=categories.variables,regions`` and 
         <region2>,
       ]
     },
-    "links": [
+    "links": [{
       "rel": "categories",
       "uri": "http://www.speedrun.com/api/v1/games/420/categories"
     }],
