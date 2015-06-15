@@ -91,8 +91,7 @@ This will return a list of users. You can filter the result using these query st
 
 Query Parameter  | Type   | Description
 ---------------- | ------ | ------------------------------------------------------------------
-``name``         | string | only returns users whose name/URL contains the given value; the
-                 |        | comparision is case-insensitive
+``name``         | string | only returns users whose name/URL contains the given value; the comparision is case-insensitive
 
 ##### Example Requests
 

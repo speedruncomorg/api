@@ -100,8 +100,7 @@ Query Parameter  | Type   | Description
 ``released``     | int    | when given, restricts to games released in that year
 ``platform``     | int    | platform ID; when given, restricts to that platform
 ``region``       | int    | region ID; when given, restricts to that region
-``moderator``    | int    | moderator ID; when given, only games moderated by that user will
-                 |        | be returned
+``moderator``    | int    | moderator ID; when given, only games moderated by that user will be returned
 
 Note that giving invalid values for ``platform``, ``region`` or ``moderator`` will result in an
 HTTP 404 error instead of an empty list. This is on purpose, because asking to filter by non-existing

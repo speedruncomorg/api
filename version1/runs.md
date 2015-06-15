@@ -146,10 +146,8 @@ Query Parameter  | Type   | Description
 ``category``     | int    | category ID; when given, restricts to that category
 ``platform``     | int    | platform ID; when given, restricts to that platform
 ``region``       | int    | region ID; when given, restricts to that region
-``emulated``     | bool   | when ``1``, ``yes`` or ``true``, only games run on emulator will
-                 |        | be returned
-``status``       | string | filters by run status; ``new``, ``verified`` and ``rejected`` are
-                 |        | possible values for this parameter
+``emulated``     | bool   | when ``1``, ``yes`` or ``true``, only games run on emulator will be returned
+``status``       | string | filters by run status; ``new``, ``verified`` and ``rejected`` are possible values for this parameter
 
 Note that giving invalid values for any ID parameter will result in an HTTP 404 error instead of an
 empty list. This is on purpose, because asking to filter by non-existing elements should be
