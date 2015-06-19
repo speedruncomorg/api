@@ -89,9 +89,12 @@ There are quite a few things that need a couple words of explanation.
 
 This will return a list of users. You can filter the result using these query string parameters:
 
-Query Parameter  | Type   | Description
----------------- | ------ | ------------------------------------------------------------------
-``name``         | string | only returns users whose name/URL contains the given value; the comparision is case-insensitive
+Query Parameter   | Type   | Description
+----------------- | ------ | ------------------------------------------------------------------
+``name``          | string | only returns users whose name/URL contains the given value; the comparision is case-insensitive
+``twitch``        | string | searches for Twitch usernames
+``hitbox``        | string | searches for Hitbox usernames
+``speedrunslive`` | string | searches for SpeedRunsLive usernames
 
 ##### Example Requests
 
