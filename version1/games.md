@@ -186,12 +186,18 @@ This will retrieve a single game, identified by its ID.
 ### GET /games/{id}/categories
 
 This will retrieve *all* [categories](categories.md) of a given game. If you need only those
-applicable to certain [levels](levels.md), look there.
+applicable to certain [levels](levels.md), look there. You can filter the result by a few things:
+
+Query Parameter   | Type   | Description
+----------------- | ------ | -----------------------------------------
+``miscellaneous`` | bool   | when given, filters (out) misc categories
 
 ##### Example Requests
 
 * [**GET /api/v1/games/1280/categories**](http://www.speedrun.com/api/v1/games/1280/categories)
   retrieves the categories of Super Mario Sunshine.
+* [**GET /api/v1/games/1280/categories?miscellaneous=no**](http://www.speedrun.com/api/v1/games/1280/categories?miscellaneous=no)
+  retrieves only the primary categories of Super Mario Sunshine.
 
 ##### Example Response
 

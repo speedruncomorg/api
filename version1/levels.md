@@ -68,12 +68,19 @@ This will retrieve a single level, identified by its ID.
 
 ### GET /levels/{id}/categories
 
-This will retrieve the *applicable* [categories](categories.md) for the given level.
+This will retrieve the *applicable* [categories](categories.md) for the given level. You can filter
+the result by a few things:
+
+Query Parameter   | Type   | Description
+----------------- | ------ | -----------------------------------------
+``miscellaneous`` | bool   | when given, filters (out) misc categories
 
 ##### Example Requests
 
 * [**GET /api/v1/levels/420/categories**](http://www.speedrun.com/api/v1/levels/420/categories)
   retrieves the categories of the "Slip Slide Icecapades" level of Crash Twinsanity.
+* [**GET /api/v1/levels/420/categories?miscellaneous=no**](http://www.speedrun.com/api/v1/levels/420/categories?miscellaneous=no)
+  retrieves only the primary categories of the "Slip Slide Icecapades" level of Crash Twinsanity.
 
 ##### Example Response
 
