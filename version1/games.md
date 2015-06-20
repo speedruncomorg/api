@@ -1,6 +1,7 @@
 # Games
 
 * [Structure](#structure)
+* [Bulk Access](#bulkaccess)
 * [Embeds](#embeds)
 * [GET /games](#get-games)
 * [GET /games/{id}](#get-gamesid)
@@ -83,6 +84,33 @@ Things to note:
 * ``moderators`` is a mapping of user IDs to their roles within the game. Possible roles are
   ``moderator`` and ``super-moderator`` (super moderators can appoint other users as moderators).
 
+### Bulk Access
+
+To make creating a list of all available games easier, games can be requested in a "bulk mode". This
+will
+
+* increase the maximum allowed [elements per page](pagination.md) to 1000,
+* disable [embedding](embedding.md) of related resources and
+* return a smaller representation for each game, described below.
+
+Games fetched in bulk mode look like this:
+
+```json
+{
+  "id": 1280,
+  "names": {
+    "international": "Super Mario Sunshine",
+    "japanese": "\u30b9\u30fc\u30d1\u30fc\u30de\u30ea\u30aa\u30b5\u30f3\u30b7\u30e3\u30a4\u30f3"
+  },
+  "abbreviation": "sms",
+  "weblink": "http://www.speedrun.com/sms"
+}
+```
+
+To enable bulk access, use the query string parameter ``_bulk`` and set it to a true value (1, yes
+or true), e.g. ``GET /games?_bulk=yes&max=1000``. This only works for the games collection, not
+individual games (so ``GET /games/420?_bulk=yes`` will ignore the ``_bulk`` parameter).
+
 ### Embeds
 
 You can [embed](embedding.md) the following resources into a game:
@@ -93,6 +121,8 @@ You can [embed](embedding.md) the following resources into a game:
 * ``platforms`` will embed all assigned platforms.
 * ``regions`` will embed all assigned regions.
 * ``variables`` will embed *all* defined variables for the game.
+
+Embedding is disabled in bulk mode.
 
 ### GET /games
 
@@ -106,6 +136,7 @@ Query Parameter  | Type   | Description
 ``platform``     | int    | platform ID; when given, restricts to that platform
 ``region``       | int    | region ID; when given, restricts to that region
 ``moderator``    | int    | moderator ID; when given, only games moderated by that user will be returned
+``_bulk``        | bool   | enable [bulk access](#bulkaccess)
 
 Note that giving invalid values for ``platform``, ``region`` or ``moderator`` will result in an
 HTTP 404 error instead of an empty list. This is on purpose, because asking to filter by non-existing
@@ -114,6 +145,8 @@ elements should be something an API client should notice.
 ##### Example Requests
 
 * [**GET /api/v1/games**](http://www.speedrun.com/api/v1/games) gets all games
+* [**GET /api/v1/games?_bulk=yes&max=1000**](http://www.speedrun.com/api/v1/games) gets all games
+  with their smaller JSON representations
 * [**GET /api/v1/games?names=mario**](http://www.speedrun.com/api/v1/games?name=mario) searches for
   Mario games
 * [**GET /api/v1/games?region=4&released=1999**](http://www.speedrun.com/api/v1/games?region=4&released=1999)
