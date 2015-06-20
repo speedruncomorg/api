@@ -145,8 +145,8 @@ elements should be something an API client should notice.
 ##### Example Requests
 
 * [**GET /api/v1/games**](http://www.speedrun.com/api/v1/games) gets all games
-* [**GET /api/v1/games?_bulk=yes&max=1000**](http://www.speedrun.com/api/v1/games) gets all games
-  with their smaller JSON representations
+* [**GET /api/v1/games?_bulk=yes&max=1000**](http://www.speedrun.com/api/v1/games?_bulk=yes&max=1000)
+  gets all games with their smaller JSON representations
 * [**GET /api/v1/games?names=mario**](http://www.speedrun.com/api/v1/games?name=mario) searches for
   Mario games
 * [**GET /api/v1/games?region=4&released=1999**](http://www.speedrun.com/api/v1/games?region=4&released=1999)
