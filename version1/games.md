@@ -25,7 +25,7 @@ Represented as JSON, a game looks like this:
 
 ```json
 {
-  "id": 1280,
+  "id": "1kgr75w4",
   "names": {
     "international": "Super Mario Sunshine",
     "japanese": "\u30b9\u30fc\u30d1\u30fc\u30de\u30ea\u30aa\u30b5\u30f3\u30b7\u30e3\u30a4\u30f3"
@@ -38,40 +38,41 @@ Represented as JSON, a game looks like this:
     "require-verification": true,
     "require-video": false
   },
-  "platforms": [4, 33],
-  "regions": [1, 2, 3, 5],
+  "platforms": ["039or978", "hdzate15"],
+  "regions": ["hdz48alk", "hdz1hdwo", "9uhjgcgg"],
   "moderators": {
-    "123": "moderator",
-    "456": "super-moderator"
+    "wzx7q875": "moderator",
+    "zzb12med": "super-moderator"
   },
   "created": "2014-12-07T12:50:20Z",
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/games/1280"
+    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?game=1280"
+    "uri": "http://www.speedrun.com/api/v1/runs?game=1kgr75w4"
   }, {
     "rel": "levels",
-    "uri": "http://www.speedrun.com/api/v1/games/1280/levels"
+    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/levels"
   }, {
     "rel": "categories",
-    "uri": "http://www.speedrun.com/api/v1/games/1280/categories"
+    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/categories"
   }, {
     "rel": "variables",
-    "uri": "http://www.speedrun.com/api/v1/games/1280/variables"
+    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/variables"
   }, {
     "rel": "parent",
-    "uri": "http://www.speedrun.com/api/v1/games/30"
+    "uri": "http://www.speedrun.com/api/v1/games/lkcbez17"
   }, {
     "rel": "children",
-    "uri": "http://www.speedrun.com/api/v1/games/1280/children"
+    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/children"
   }]
 }
 ```
 
 Things to note:
 
+* ``id`` values can vary in length.
 * ``created`` can be ``null`` for games that have been added in the early days of speedrun.com.
 * ``weblink`` is the link to get to this game's page intended for humans, ``links`` are meant for
   the API client.
@@ -97,7 +98,7 @@ Games fetched in bulk mode look like this:
 
 ```json
 {
-  "id": 1280,
+  "id": "1kgr75w4",
   "names": {
     "international": "Super Mario Sunshine",
     "japanese": "\u30b9\u30fc\u30d1\u30fc\u30de\u30ea\u30aa\u30b5\u30f3\u30b7\u30e3\u30a4\u30f3"
@@ -109,7 +110,7 @@ Games fetched in bulk mode look like this:
 
 To enable bulk access, use the query string parameter ``_bulk`` and set it to a true value (1, yes
 or true), e.g. ``GET /games?_bulk=yes&max=1000``. This only works for the games collection, not
-individual games (so ``GET /games/420?_bulk=yes`` will ignore the ``_bulk`` parameter).
+individual games (so ``GET /games/1kgr75w4?_bulk=yes`` will ignore the ``_bulk`` parameter).
 
 ### Embeds
 
@@ -133,9 +134,9 @@ Query Parameter  | Type   | Description
 ``name``         | string | when given, performs a fuzzy search across game names and abbreviations
 ``abbreviation`` | string | when given, performs an exact-match search for this abbreviation
 ``released``     | int    | when given, restricts to games released in that year
-``platform``     | int    | platform ID; when given, restricts to that platform
-``region``       | int    | region ID; when given, restricts to that region
-``moderator``    | int    | moderator ID; when given, only games moderated by that user will be returned
+``platform``     | string | platform ID; when given, restricts to that platform
+``region``       | string | region ID; when given, restricts to that region
+``moderator``    | string | moderator ID; when given, only games moderated by that user will be returned
 ``_bulk``        | bool   | enable [bulk access](#bulkaccess)
 
 Note that giving invalid values for ``platform``, ``region`` or ``moderator`` will result in an
@@ -149,8 +150,8 @@ elements should be something an API client should notice.
   gets all games with their smaller JSON representations
 * [**GET /api/v1/games?names=mario**](http://www.speedrun.com/api/v1/games?name=mario) searches for
   Mario games
-* [**GET /api/v1/games?region=4&released=1999**](http://www.speedrun.com/api/v1/games?region=4&released=1999)
-  searches for all games on the iQue (region 4) that have been released in 1999.
+* [**GET /api/v1/games?region=mol4z19n&released=1999**](http://www.speedrun.com/api/v1/games?region=mol4z19n&released=1999)
+  searches for all games on the iQue (region ``mol4z19n``) that have been released in 1999.
 
 ##### Example Response
 
@@ -172,8 +173,8 @@ This will retrieve a single game, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/games/1280**](http://www.speedrun.com/api/v1/games/1280) retrieves Super Mario
-  Sunshine.
+* [**GET /api/v1/games/v1pxjz68**](http://www.speedrun.com/api/v1/games/v1pxjz68) retrieves Super
+  Mario Sunshine.
 
 ##### Example Response
 
@@ -194,9 +195,9 @@ Query Parameter   | Type   | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/games/1280/categories**](http://www.speedrun.com/api/v1/games/1280/categories)
+* [**GET /api/v1/games/v1pxjz68/categories**](http://www.speedrun.com/api/v1/games/v1pxjz68/categories)
   retrieves the categories of Super Mario Sunshine.
-* [**GET /api/v1/games/1280/categories?miscellaneous=no**](http://www.speedrun.com/api/v1/games/1280/categories?miscellaneous=no)
+* [**GET /api/v1/games/v1pxjz68/categories?miscellaneous=no**](http://www.speedrun.com/api/v1/games/v1pxjz68/categories?miscellaneous=no)
   retrieves only the primary categories of Super Mario Sunshine.
 
 ##### Example Response
@@ -219,7 +220,7 @@ This will retrieve *all* [levels](levels.md) of a given game.
 
 ##### Example Requests
 
-* [**GET /api/v1/games/1280/levels**](http://www.speedrun.com/api/v1/games/1280/levels) retrieves
+* [**GET /api/v1/games/v1pxjz68/levels**](http://www.speedrun.com/api/v1/games/v1pxjz68/levels) retrieves
   the levels of Super Mario Sunshine.
 
 ##### Example Response
@@ -243,8 +244,8 @@ to certain [categories](categories.md) or [levels](levels.md), look there.
 
 ##### Example Requests
 
-* [**GET /api/v1/games/454/variables**](http://www.speedrun.com/api/v1/games/454/variables) retrieves
-  all variables defined for Mario Kart 8.
+* [**GET /api/v1/games/kyd4pxde/variables**](http://www.speedrun.com/api/v1/games/kyd4pxde/variables)
+  retrieves all variables defined for Mario Kart 8.
 
 ##### Example Response
 
@@ -267,8 +268,8 @@ This will retrieve all child games of a given game. If a game has children, we a
 
 ##### Example Requests
 
-* [**GET /api/v1/games/51/children**](http://www.speedrun.com/api/v1/games/51/children) retrieves
-  all Mario Kart games.
+* [**GET /api/v1/games/n268w96p/children**](http://www.speedrun.com/api/v1/games/n268w96p/children)
+  retrieves all Mario Kart games.
 
 ##### Example Response
 

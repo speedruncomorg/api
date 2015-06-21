@@ -18,7 +18,7 @@ Represented as JSON, a category looks like this:
 
 ```json
 {
-  "id": 1,
+  "id": "jkh473tf",
   "name": "Any%",
   "type": "per-game",
   "rules": "Yada Yada Yada",
@@ -29,20 +29,21 @@ Represented as JSON, a category looks like this:
   "miscellaneous": false,
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/categories/1"
+    "uri": "http://www.speedrun.com/api/v1/categories/jkh473tf"
   }, {
     "rel": "game",
-    "uri": "http://www.speedrun.com/api/v1/games/19"
+    "uri": "http://www.speedrun.com/api/v1/games/i2grf78a"
   }, {
     "rel": "variables",
-    "uri": "http://www.speedrun.com/api/v1/games/19/variables"
+    "uri": "http://www.speedrun.com/api/v1/games/i2grf78a/variables"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?category=1"
+    "uri": "http://www.speedrun.com/api/v1/runs?category=jkh473tf"
   }]
 }
 ```
 
+* ``id`` values can vary in length.
 * As mentioned earlier, ``type`` can be ``per-game`` or ``per-level``.
 * ``rules`` is a freeform text with some basic, undocumented speedrun.com markup.
 * ``players`` is the number of participants for runs in this category. At the moment, there are
@@ -64,8 +65,8 @@ This will retrieve a single category, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/categories/1**](http://www.speedrun.com/api/v1/categories/1) retrieves Any% of
-  GTA Vice City.
+* [**GET /api/v1/categories/nxd1rk8q**](http://www.speedrun.com/api/v1/categories/nxd1rk8q) retrieves
+  Any% of GTA Vice City.
 
 ##### Example Response
 
@@ -86,7 +87,7 @@ To get *all* variables defined for a game, see the [games](games.md) documentati
 
 ##### Example Requests
 
-* [**GET /api/v1/categories/1273/variables**](http://www.speedrun.com/api/v1/categories/1273/variables)
+* [**GET /api/v1/categories/xd1m7rd8/variables**](http://www.speedrun.com/api/v1/categories/xd1m7rd8/variables)
   retrieves the variables for Mario Kart 8's "32 Tracks" category.
 
 ##### Example Response

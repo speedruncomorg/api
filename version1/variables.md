@@ -22,7 +22,7 @@ Represented as JSON, a single variable looks like this:
 
 ```json
 {
-  "id": 1273,
+  "id": "wzx7q875",
   "name": "cc",
   "category": null,
   "scope": {
@@ -33,17 +33,17 @@ Represented as JSON, a single variable looks like this:
   "obsoletes": false,
   "values": {
     "choices": {
-      "3469": "150cc",
-      "3468": "200cc"
+      "zdbx1h88": "150cc",
+      "k1omees9": "200cc"
     },
-    "default": 3469
+    "default": "zdbx1h88"
   },
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/variables/1273"
+    "uri": "http://www.speedrun.com/api/v1/variables/wzx7q875"
   }, {
     "rel": "game",
-    "uri": "http://www.speedrun.com/api/v1/games/454"
+    "uri": "http://www.speedrun.com/api/v1/games/zate4l10"
   }]
 }
 ```
@@ -82,7 +82,7 @@ This will retrieve a single variable, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/variables/1273**](http://www.speedrun.com/api/v1/variables/1273) retrieves the
+* [**GET /api/v1/variables/ylpm6vlg**](http://www.speedrun.com/api/v1/variables/ylpm6vlg) retrieves the
   speed variable for Mario Kart 8.
 
 ##### Example Response

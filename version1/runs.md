@@ -20,21 +20,26 @@ Represented as JSON, a single run looks like this:
 
 ```json
 {
-  "id": 3128,
-  "weblink": "http://www.speedrun.com/run/3128",
-  "game": 253,
+  "id": "90y6pm7e",
+  "weblink": "http://www.speedrun.com/run/2",
+  "game": "29d30dlp",
   "level": null,
-  "category": 527,
+  "category": "nxd1rk8q",
   "video": "http://youtube.com/videoidhere",
   "comment": "Lost 35 seconds on bridge swap, plus a bunch of time elsewhere",
   "status": {
     "status": "verified",
-    "examiner": 62
+    "examiner": "61xymxr9"
   },
-  "players": [
-    1316,
-    "Betsruner"
-  ],
+  "players": [{
+    "rel": "user",
+    "id": "61xymxr9",
+    "uri": "http://www.speedrun.com/api/v1/users/61xymxr9"
+  }, {
+    "rel": "guest",
+    "id": "Betsruner",
+    "uri": "http://www.speedrun.com/api/v1/guests/Betsruner"
+  }],
   "date": "2014-06-01",
   "submitted": null,
   "times": {
@@ -48,37 +53,31 @@ Represented as JSON, a single run looks like this:
     "ingame_t": 0
   },
   "system": {
-    "platform": 31,
+    "platform": "rdjq4vwe",
     "emulated": false,
     "region": null
   },
   "values": {
-    "1497": 4099
+    "wvn9wp51": "ezj43ozx"
   },
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/runs/3128"
+    "uri": "http://www.speedrun.com/api/v1/runs/90y6pm7e"
   }, {
     "rel": "game",
-    "uri": "http://www.speedrun.com/api/v1/games/253"
+    "uri": "http://www.speedrun.com/api/v1/games/29d30dlp"
   }, {
     "rel": "category",
-    "uri": "http://www.speedrun.com/api/v1/categories/527"
+    "uri": "http://www.speedrun.com/api/v1/categories/nxd1rk8q"
   }, {
     "rel": "level",
-    "uri": "http://www.speedrun.com/api/v1/levels/9610"
+    "uri": "http://www.speedrun.com/api/v1/levels/hhzd4bym"
   }, {
     "rel": "platform",
-    "uri": "http://www.speedrun.com/api/v1/platforms/31"
-  }, {
-    "rel": "player",
-    "uri": "http://www.speedrun.com/api/v1/users/1316"
-  }, {
-    "rel": "player",
-    "uri": "http://www.speedrun.com/api/v1/guests/Betsruner"
+    "uri": "http://www.speedrun.com/api/v1/platforms/rdjq4vwe"
   }, {
     "rel": "examiner",
-    "uri": "http://www.speedrun.com/api/v1/users/62"
+    "uri": "http://www.speedrun.com/api/v1/users/61xymxr9"
   }]
 }
 ```
@@ -91,11 +90,9 @@ There are quite a few things that need a couple words of explanation.
   additionally have a ``reason`` string field within their status, containing the reason message by
   the examiner.
 * ``players`` is the list of players that participated in the run. Each player can either be a
-  registered user (in that case, the player is an int value, containing the user ID) or a guest of
-  whom we only have a name, but no user account (in that case, it's a string).
-
-  Use the ``links`` to find the user profiles or guest profiles of the runners. Note that guests
-  are **not** available via the [users resource](users.md), but have their own [guests resource](guests.md).
+  registered user (in that case, the ``rel`` value is ``user`` and there is an ``id`` present) or a
+  guest of whom we only have a name, but no user account (in that case, ``rel`` is ``guest`` and
+  the ``name`` is present). In both cases, a ``uri`` is present that links to the player resource.
 
 * ``date`` is when the run happened. Not all runs have a known date, so unfortunately this sometimes
   is ``null``. ``submitted`` is the date and time when the run was added on speedrun.com and can
@@ -138,14 +135,14 @@ This will return a list of all runs. You can filter the result by a few things:
 
 Query Parameter  | Type   | Description
 ---------------- | ------ | ------------------------------------------------------------------
-``user``         | int    | user ID; when given, only returns runs played by that user
+``user``         | string | user ID; when given, only returns runs played by that user
 ``guest``        | string | when given, only returns runs done by that guest
-``examiner``     | int    | user ID; when given, only returns runs examined by that user
-``game``         | int    | game ID; when given, restricts to that game
-``level``        | int    | level ID; when given, restricts to that level
-``category``     | int    | category ID; when given, restricts to that category
-``platform``     | int    | platform ID; when given, restricts to that platform
-``region``       | int    | region ID; when given, restricts to that region
+``examiner``     | string | user ID; when given, only returns runs examined by that user
+``game``         | string | game ID; when given, restricts to that game
+``level``        | string | level ID; when given, restricts to that level
+``category``     | string | category ID; when given, restricts to that category
+``platform``     | string | platform ID; when given, restricts to that platform
+``region``       | string | region ID; when given, restricts to that region
 ``emulated``     | bool   | when ``1``, ``yes`` or ``true``, only games run on emulator will be returned
 ``status``       | string | filters by run status; ``new``, ``verified`` and ``rejected`` are possible values for this parameter
 
@@ -158,7 +155,7 @@ something an API client should notice.
 * [**GET /api/v1/runs**](http://www.speedrun.com/api/v1/runs) gets all runs
 * [**GET /api/v1/runs?guest=Alex**](http://www.speedrun.com/api/v1/runs?guest=Alex) searches for
   all runs done by someone named "Alex" that has no speedrun.com account.
-* [**GET /api/v1/runs?emulated=yes&examiner=1**](http://www.speedrun.com/api/v1/runs?emulated=yes&examiner=1)
+* [**GET /api/v1/runs?emulated=yes&examiner=wzx7q875**](http://www.speedrun.com/api/v1/runs?emulated=yes&examiner=wzx7q875)
   searches for all runs done via emulator that have been examined by Pac.
 
 ##### Example Response
@@ -181,7 +178,8 @@ This will retrieve a single run, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/runs/2**](http://www.speedrun.com/api/v1/runs/2) retrieves m00nchile's GTA VC run.
+* [**GET /api/v1/runs/90y6pm7e**](http://www.speedrun.com/api/v1/runs/90y6pm7e) retrieves m00nchile's
+  GTA VC run.
 
 ##### Example Response
 

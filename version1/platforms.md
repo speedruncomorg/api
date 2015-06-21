@@ -12,18 +12,18 @@ Represented as JSON, a platform looks like this:
 
 ```json
 {
-  "id": 1,
+  "id": "rdjq4vwe",
   "name": "Nintendo Entertainment System",
   "released": 2002,
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/platforms/1"
+    "uri": "http://www.speedrun.com/api/v1/platforms/rdjq4vwe"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?platform=1"
+    "uri": "http://www.speedrun.com/api/v1/games?platform=rdjq4vwe"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?platform=1"
+    "uri": "http://www.speedrun.com/api/v1/runs?platform=rdjq4vwe"
   }]
 }
 ```
@@ -38,7 +38,8 @@ This will retrieve a single platform, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/platforms/1**](http://www.speedrun.com/api/v1/platforms/1) retrieves the NES.
+* [**GET /api/v1/platforms/rdjq4vwe**](http://www.speedrun.com/api/v1/platforms/rdjq4vwe) retrieves
+  the NES.
 
 ##### Example Response
 

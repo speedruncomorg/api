@@ -13,17 +13,17 @@ Represented as JSON, a region looks like this:
 
 ```json
 {
-  "id": 1,
+  "id": "pr184lqn",
   "name": "USA / NTSC",
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/regions/1"
+    "uri": "http://www.speedrun.com/api/v1/regions/pr184lqn"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?region=1"
+    "uri": "http://www.speedrun.com/api/v1/games?region=pr184lqn"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?region=1"
+    "uri": "http://www.speedrun.com/api/v1/runs?region=pr184lqn"
   }]
 }
 ```
@@ -38,8 +38,8 @@ This will retrieve a single region, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/regions/1**](http://www.speedrun.com/api/v1/regions/1) retrieves the "USA/NTSC"
-  region.
+* [**GET /api/v1/regions/pr184lqn**](http://www.speedrun.com/api/v1/regions/pr184lqn) retrieves the
+  "USA/NTSC" region.
 
 ##### Example Response
 

@@ -14,18 +14,18 @@ are available for it.
 
 ## Example
 
-We want to find out all about a certain game. ``GET /games/420`` will return the following (trimmed
-down to the interesting things):
+We want to find out all about a certain game. ``GET /games/a812hsbd`` will return the following
+(trimmed down to the interesting things):
 
 ```json
 {
   "data": {
-    "id": 420,
+    "id": "a812hsbd",
     "name": "Some Game",
-    "regions": [1,2],
+    "regions": ["ahd7hdze", "991ahhd5"],
     "links": [{
       "rel": "categories",
-      "uri": "http://www.speedrun.com/api/v1/games/420/categories"
+      "uri": "http://www.speedrun.com/api/v1/games/a812hsbd/categories"
     }]
   }
 }
@@ -33,9 +33,9 @@ down to the interesting things):
 
 Now, we would need to perform at least these additional requests:
 
-* ``GET /regions/1``
-* ``GET /regions/2``
-* ``GET /games/420/categories``
+* ``GET /regions/ahd7hdze``
+* ``GET /regions/991ahhd5``
+* ``GET /games/a812hsbd/categories``
 
 Instead, we can embed these resources directly.
 
@@ -45,12 +45,12 @@ categories just as if you requested them separately:
 ```json
 {
   "data": {
-    "id": 420,
+    "id": "a812hsbd",
     "name": "Some Game",
-    "regions": [1,2],
+    "regions": ["ahd7hdze", "991ahhd5"],
     "links": [{
       "rel": "categories",
-      "uri": "http://www.speedrun.com/api/v1/games/420/categories"
+      "uri": "http://www.speedrun.com/api/v1/games/a812hsbd/categories"
     }],
     "categories": {
       "data": [
@@ -66,12 +66,12 @@ categories just as if you requested them separately:
 
 The same works for embedding the regions, but in this case, because we already have a ``regions``
 element in the output, this element will be re-used to now contain the full region resources.
-Requesting ``GET /games/420?embed=categories,regions`` therefore gives us:
+Requesting ``GET /games/a812hsbd?embed=categories,regions`` therefore gives us:
 
 ```json
 {
   "data": {
-    "id": 420,
+    "id": "a812hsbd",
     "name": "Some Game",
     "regions": {
       "data": [
@@ -81,7 +81,7 @@ Requesting ``GET /games/420?embed=categories,regions`` therefore gives us:
     },
     "links": [{
       "rel": "categories",
-      "uri": "http://www.speedrun.com/api/v1/games/420/categories"
+      "uri": "http://www.speedrun.com/api/v1/games/a812hsbd/categories"
     }],
     "categories": {
       "data": [
@@ -110,12 +110,12 @@ Embeds can be nested to deeper relations. For example, we can embed all categori
 each category we embed the applicable [variables](variables.md) as well.
 
 To nest embeds, use a dot notation like so: ``?embed=categories.variables``. Extending our sample
-from above, we now do ``GET /games/420?embed=categories.variables,regions`` and get this beauty:
+from above, we now do ``GET /games/a812hsbd?embed=categories.variables,regions`` and get this beauty:
 
 ```json
 {
   "data": {
-    "id": 420,
+    "id": "a812hsbd",
     "name": "Some Game",
     "regions": {
       "data": [
@@ -125,12 +125,12 @@ from above, we now do ``GET /games/420?embed=categories.variables,regions`` and 
     },
     "links": [{
       "rel": "categories",
-      "uri": "http://www.speedrun.com/api/v1/games/420/categories"
+      "uri": "http://www.speedrun.com/api/v1/games/a812hsbd/categories"
     }],
     "categories": {
       "data": [
         {
-          "id": 123,
+          "id": "8ahd71hd",
           "name": "category 1",
           "variables": {
             "data": [

@@ -17,7 +17,7 @@ Represented as JSON, a single user looks like this:
 
 ```json
 {
-  "id": 1274,
+  "id": "kjpdr4jq",
   "weblink": "http://www.speedrun.com/user/chewdiggy",
   "names": {
     "international": "chewdiggy",
@@ -50,13 +50,13 @@ Represented as JSON, a single user looks like this:
   },
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/users/1274"
+    "uri": "http://www.speedrun.com/api/v1/users/kjpdr4jq"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?user=1274"
+    "uri": "http://www.speedrun.com/api/v1/runs?user=kjpdr4jq"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?moderator=1274"
+    "uri": "http://www.speedrun.com/api/v1/games?moderator=kjpdr4jq"
   }]
 }
 ```
@@ -122,8 +122,8 @@ This will retrieve a single user, identified by their ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/users/1**](http://www.speedrun.com/api/v1/users/1) retrieves Pac's public user
-  information.
+* [**GET /api/v1/users/wzx7q875**](http://www.speedrun.com/api/v1/users/wzx7q875) retrieves Pac's
+  public user information.
 
 ##### Example Response
 

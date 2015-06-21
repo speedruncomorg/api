@@ -18,25 +18,25 @@ Represented as JSON, a level looks like this:
 
 ```json
 {
-  "id": 420,
+  "id": "ha71kldd",
   "name": "Slip Slide Icecapades",
   "weblink": "http://www.speedrun.com/twinsanity/Slip_Slide_Icecapades",
   "rules": "Yada Yada Yada",
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/levels/420"
+    "uri": "http://www.speedrun.com/api/v1/levels/ha71kldd"
   }, {
     "rel": "game",
-    "uri": "http://www.speedrun.com/api/v1/games/122"
+    "uri": "http://www.speedrun.com/api/v1/games/sjkdzets"
   }, {
     "rel": "categories",
-    "uri": "http://www.speedrun.com/api/v1/levels/420/categories"
+    "uri": "http://www.speedrun.com/api/v1/levels/ha71kldd/categories"
   }, {
     "rel": "variables",
-    "uri": "http://www.speedrun.com/api/v1/levels/420/variables"
+    "uri": "http://www.speedrun.com/api/v1/levels/ha71kldd/variables"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?level=420"
+    "uri": "http://www.speedrun.com/api/v1/runs?level=ha71kldd"
   }]
 }
 ```
@@ -55,8 +55,8 @@ This will retrieve a single level, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/levels/420**](http://www.speedrun.com/api/v1/levels/420) retrieves "Slip Slide
-  Icecapades" of Crash Twinsanity.
+* [**GET /api/v1/levels/329vpn9v**](http://www.speedrun.com/api/v1/levels/329vpn9v) retrieves "Slip
+  Slide Icecapades" of Crash Twinsanity.
 
 ##### Example Response
 
@@ -77,9 +77,9 @@ Query Parameter   | Type   | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/levels/420/categories**](http://www.speedrun.com/api/v1/levels/420/categories)
+* [**GET /api/v1/levels/329vpn9v/categories**](http://www.speedrun.com/api/v1/levels/329vpn9v/categories)
   retrieves the categories of the "Slip Slide Icecapades" level of Crash Twinsanity.
-* [**GET /api/v1/levels/420/categories?miscellaneous=no**](http://www.speedrun.com/api/v1/levels/420/categories?miscellaneous=no)
+* [**GET /api/v1/levels/329vpn9v/categories?miscellaneous=no**](http://www.speedrun.com/api/v1/levels/329vpn9v/categories?miscellaneous=no)
   retrieves only the primary categories of the "Slip Slide Icecapades" level of Crash Twinsanity.
 
 ##### Example Response
@@ -102,7 +102,7 @@ This will retrieve the *applicable* [variables](variables.md) for the given leve
 
 ##### Example Requests
 
-* [**GET /api/v1/levels/9610/variables**](http://www.speedrun.com/api/v1/levels/9610/variables)
+* [**GET /api/v1/levels/495ggmwp/variables**](http://www.speedrun.com/api/v1/levels/495ggmwp/variables)
   retrieves the variables applicable for the "Shrub Forest" level in Pokemon Rumble World.
 
 ##### Example Response
