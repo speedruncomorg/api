@@ -29,4 +29,5 @@ information, but we will not change existing fields).
 
 ## Implementations
 
+*The following implementations are not part of the official API. For any bugs etc. please contact their respective creators.*
 * [SpeedrunComSharp](https://github.com/LiveSplit/SpeedrunComSharp) - A .NET Library that can be used to interact with the speedrun.com API.
