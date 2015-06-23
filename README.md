@@ -26,3 +26,7 @@ information, but we will not change existing fields).
 ## Versions
 
 * [Version 1](https://github.com/speedruncom/api/tree/master/version1)
+
+## Implementations
+
+* [SpeedrunComSharp](https://github.com/LiveSplit/SpeedrunComSharp) - A .NET Library that can be used to interact with the speedrun.com API.
