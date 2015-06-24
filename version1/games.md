@@ -36,7 +36,10 @@ Represented as JSON, a game looks like this:
   "ruleset": {
     "show-milliseconds": false,
     "require-verification": true,
-    "require-video": false
+    "require-video": false,
+    "run-times": ["realtime", "realtime_noloads"],
+    "default-time": "realtime",
+    "emulators-allowed": false
   },
   "platforms": ["039or978", "hdzate15"],
   "regions": ["hdz48alk", "hdz1hdwo", "9uhjgcgg"],
@@ -45,6 +48,20 @@ Represented as JSON, a game looks like this:
     "zzb12med": "super-moderator"
   },
   "created": "2014-12-07T12:50:20Z",
+  "assets": {
+    "logo": "http://www.speedrun.com/themes/mk64/logo.png",
+    "cover-tiny": "http://www.speedrun.com/themes/mk64/cover-32.png",
+    "cover-small": "http://www.speedrun.com/themes/mk64/cover-64.png",
+    "cover-medium": "http://www.speedrun.com/themes/mk64/cover-128.png",
+    "cover-large": "http://www.speedrun.com/themes/mk64/cover-256.png",
+    "icon": "http://www.speedrun.com/themes/mario_kart/favicon.png",
+    "trophy-1st": "http://www.speedrun.com/images/icons/goldtrophy.png",
+    "trophy-2nd": "http://www.speedrun.com/images/icons/silvertrophy.png",
+    "trophy-3rd": "http://www.speedrun.com/images/icons/bronzetrophy.png",
+    "trophy-4th": null,
+    "background": "http://www.speedrun.com/themes/mk64/background.png",
+    "foreground": null
+  },
   "links": [{
     "rel": "self",
     "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4"
@@ -80,10 +97,19 @@ Things to note:
   use the provided ``weblink``. We might change the URL scheme on the frontend at any time without
   prior notice!
 * The japanese title can be ``null``.
+* ``ruleset.run-times`` is a list of times that can/should be given for any run of that game and
+  can be contain any combination of ``realtime``, ``realtime_noloads`` and ``ingame``. The
+  corresponding ``default-time`` determines which is the primary one.
 * ``platforms`` is a list of platform IDs the game can be played on. This list can be empty.
 * ``regions`` is a list of region IDs the game is available in. This list can be empty.
 * ``moderators`` is a mapping of user IDs to their roles within the game. Possible roles are
   ``moderator`` and ``super-moderator`` (super moderators can appoint other users as moderators).
+* ``assets`` are links to images that are used for that game on speedrun.com. Except for
+  ``background``, ``foreground`` and ``trophy-4th``, all links are always given, even if they
+  point to empty placeholder images.
+
+  Note that there are a few games that have time-dependent styles, which are not reflected in the
+  API. For those games, only the regular images are returned.
 
 ### Bulk Access
 
