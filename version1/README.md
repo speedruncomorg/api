@@ -27,7 +27,7 @@ This version offers access to the following resources:
 * [Regions](regions.md)
 * [Runs](runs.md)
 * [Users](users.md)
-* [variables](variables.md)
+* [Variables](variables.md)
 
 **Important:** To get a leaderboard of sorts, you need to use the legacy API available at
 http://www.speedrun.com/api_records.php, until we've had time to refactor and implement the leaderboard
