@@ -30,7 +30,15 @@ Represented as JSON, a platform looks like this:
 
 ### GET /platforms
 
-This will return *all* platforms order by name.
+This will return *all* platforms.
+
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by           | Description
+------------------ | ------------------------------------------------------------------
+``name`` (default) | sorts alphanumerically by the platform name
+``released``       | sorts by the year the platform was released
 
 ### GET /platforms/{id}
 

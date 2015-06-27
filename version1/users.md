@@ -114,6 +114,16 @@ Query Parameter   | Type   | Description
 ``hitbox``        | string | searches for Hitbox usernames
 ``speedrunslive`` | string | searches for SpeedRunsLive usernames
 
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by               | Description
+---------------------- | ------------------------------------------------------------------
+``name.int`` (default) | sorts alphanumerically by the international name
+``name.jap``           | sorts alphanumerically by the japanese name
+``signup``             | sorts by the signup date
+``role``               | sorts by the user role
+
 ##### Example Requests
 
 * [**GET /api/v1/users**](http://www.speedrun.com/api/v1/users) gets all users

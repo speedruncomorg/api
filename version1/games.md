@@ -211,9 +211,22 @@ Note that giving invalid values for ``platform``, ``region`` or ``moderator`` wi
 HTTP 404 error instead of an empty list. This is on purpose, because asking to filter by non-existing
 elements should be something an API client should notice.
 
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by         | Description
+---------------- | ------------------------------------------------------------------
+``name.int``     | sorts alphanumerically by the international name
+``name.jap``     | sorts alphanumerically by the japanese name
+``abbreviation`` | sorts alphanumerically by the abbreviation
+``released``     | sorts by the year the game was released in
+``created``      | sorts by the date when the game was added on speedrun.com
+
 ##### Example Requests
 
 * [**GET /api/v1/games**](http://www.speedrun.com/api/v1/games) gets all games
+* [**GET /api/v1/games?orderby=created&direction=desc**](http://www.speedrun.com/api/v1/games?orderby=created&direction=desc)
+  gets all games, newest first.
 * [**GET /api/v1/games?_bulk=yes&max=1000**](http://www.speedrun.com/api/v1/games?_bulk=yes&max=1000)
   gets all games with their smaller JSON representations
 * [**GET /api/v1/games?names=mario**](http://www.speedrun.com/api/v1/games?name=mario) searches for
@@ -261,6 +274,15 @@ Query Parameter   | Type   | Description
 ----------------- | ------ | -----------------------------------------
 ``miscellaneous`` | bool   | when given, filters (out) misc categories
 
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by          | Description
+----------------- | ------------------------------------------------------------------
+``name``          | sorts alphanumerically by the category name
+``miscellaneous`` | sorts by miscellaneous flag
+``pos`` (default) | uses the order as defined by the game moderator
+
 ##### Example Requests
 
 * [**GET /api/v1/games/v1pxjz68/categories**](http://www.speedrun.com/api/v1/games/v1pxjz68/categories)
@@ -286,6 +308,14 @@ Query Parameter   | Type   | Description
 
 This will retrieve *all* [levels](levels.md) of a given game.
 
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by          | Description
+----------------- | ------------------------------------------------------------------
+``name``          | sorts alphanumerically by the level name
+``pos`` (default) | uses the order as defined by the game moderator
+
 ##### Example Requests
 
 * [**GET /api/v1/games/v1pxjz68/levels**](http://www.speedrun.com/api/v1/games/v1pxjz68/levels) retrieves
@@ -310,6 +340,16 @@ This will retrieve *all* [levels](levels.md) of a given game.
 This will retrieve *all* [variables](variables.md) of a given game. If you need only those applicable
 to certain [categories](categories.md) or [levels](levels.md), look there.
 
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by          | Description
+----------------- | ------------------------------------------------------------------
+``name``          | sorts alphanumerically by the variable name
+``mandatory``     | sorts by mandatory flag
+``user-defined``  | sorts by user-defined flag
+``pos`` (default) | uses the order as defined by the game moderator
+
 ##### Example Requests
 
 * [**GET /api/v1/games/kyd4pxde/variables**](http://www.speedrun.com/api/v1/games/kyd4pxde/variables)
@@ -333,6 +373,8 @@ to certain [categories](categories.md) or [levels](levels.md), look there.
 
 This will retrieve all child games of a given game. If a game has children, we actually call it
 "series", but as mentioned above, they behave as games and are treated as games.
+
+The same sorting options as with ``GET /games`` apply to this resource as well.
 
 ##### Example Requests
 

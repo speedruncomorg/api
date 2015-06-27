@@ -91,10 +91,22 @@ This will retrieve all [variables](variables.md) that are *applicable* to the gi
 
 To get *all* variables defined for a game, see the [games](games.md) documentation.
 
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by          | Description
+----------------- | ------------------------------------------------------------------
+``name``          | sorts alphanumerically by the variable name
+``mandatory``     | sorts by mandatory flag
+``user-defined``  | sorts by user-defined flag
+``pos`` (default) | uses the order as defined by the game moderator
+
 ##### Example Requests
 
 * [**GET /api/v1/categories/xd1m7rd8/variables**](http://www.speedrun.com/api/v1/categories/xd1m7rd8/variables)
   retrieves the variables for Mario Kart 8's "32 Tracks" category.
+* [**GET /api/v1/categories/xd1m7rd8/variables?orderby=mandatory&direction=desc**](http://www.speedrun.com/api/v1/categories/xd1m7rd8/variables?orderby=mandatory&direction=desc)
+  retrieves the the same variables as above, but puts mandatory variables before optional ones.
 
 ##### Example Response
 

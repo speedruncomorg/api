@@ -187,9 +187,29 @@ Note that giving invalid values for any ID parameter will result in an HTTP 404 
 empty list. This is on purpose, because asking to filter by non-existing elements should be
 something an API client should notice.
 
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by            | Description
+------------------- | ------------------------------------------------------------------
+``game`` (default)  | sorts by the game the run was done in
+``category``        | sorts by the category the run was done in
+``level``           | sorts by the level the run was done in
+``platform``        | sorts by the console used for the run
+``region``          | sorts by the console region the run was done in
+``emulated``        | sorts by whether or not a run is done via emulator
+``date``            | sorts by the date the run happened on
+``submitted``       | sorts by the date when the run was submitted to speedrun.com
+``status``          | sorts by verification status
+``verify-date``     | sorts by the date the run was verified on
+
 ##### Example Requests
 
 * [**GET /api/v1/runs**](http://www.speedrun.com/api/v1/runs) gets all runs
+* [**GET /api/v1/runs?status=verified&orderby=verify-date&direction=desc**](http://www.speedrun.com/api/v1/runs?status=verified&orderby=verify-date&direction=desc)
+  gets all newly verified runs
+* [**GET /api/v1/runs?status=new&orderby=submitted&direction=desc**](http://www.speedrun.com/api/v1/runs?status=new&orderby=submitted&direction=desc)
+  gets the newest runs (based on the submit date, not the run date)
 * [**GET /api/v1/runs?guest=Alex**](http://www.speedrun.com/api/v1/runs?guest=Alex) searches for
   all runs done by someone named "Alex" that has no speedrun.com account.
 * [**GET /api/v1/runs?emulated=yes&examiner=wzx7q875**](http://www.speedrun.com/api/v1/runs?emulated=yes&examiner=wzx7q875)

@@ -75,6 +75,15 @@ Query Parameter   | Type   | Description
 ----------------- | ------ | -----------------------------------------
 ``miscellaneous`` | bool   | when given, filters (out) misc categories
 
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by          | Description
+----------------- | ------------------------------------------------------------------
+``name``          | sorts alphanumerically by the category name
+``miscellaneous`` | sorts by miscellaneous flag
+``pos`` (default) | uses the order as defined by the game moderator
+
 ##### Example Requests
 
 * [**GET /api/v1/levels/329vpn9v/categories**](http://www.speedrun.com/api/v1/levels/329vpn9v/categories)
@@ -99,6 +108,16 @@ Query Parameter   | Type   | Description
 ### GET /levels/{id}/variables
 
 This will retrieve the *applicable* [variables](variables.md) for the given level.
+
+You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
+direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
+
+order by          | Description
+----------------- | ------------------------------------------------------------------
+``name``          | sorts alphanumerically by the variable name
+``mandatory``     | sorts by mandatory flag
+``user-defined``  | sorts by user-defined flag
+``pos`` (default) | uses the order as defined by the game moderator
 
 ##### Example Requests
 
