@@ -163,10 +163,10 @@ Here are a few more examples of embedding in action:
 * [**GET /api/v1/runs?game=4d709l17?embed=category**](http://www.speedrun.com/api/v1/runs?game=4d709l17)
   retrieves all The Wind Waker runs and for each run, it includes the category the run was done in.
 
-* [**GET /api/v1/games/4d709l17?embed=category.variables,levels.variables**](http://www.speedrun.com/api/v1/games/4d709l17?embed=category.variables,levels.variables)
+* [**GET /api/v1/games/4d709l17?embed=categories.variables,levels.variables**](http://www.speedrun.com/api/v1/games/4d709l17?embed=categories.variables,levels.variables)
   retrieves The Wind Waker and embeds the categories (and for each category, it embeds the variables
   for that category) as well as the levels (again, for each level it also embeds the variables for it).
 
-* [**GET /api/v1/games/4d709l17?embed=category.game**](http://www.speedrun.com/api/v1/games/4d709l17?embed=category.game)
+* [**GET /api/v1/games/4d709l17?embed=categories.game**](http://www.speedrun.com/api/v1/games/4d709l17?embed=categories.game)
   is a silly example. It retrieves TWW and embeds its categories. For each category, it then again
   embeds the belonging game, which is TWW again.
