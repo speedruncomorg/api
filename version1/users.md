@@ -18,11 +18,11 @@ Represented as JSON, a single user looks like this:
 ```json
 {
   "id": "kjpdr4jq",
-  "weblink": "http://www.speedrun.com/user/chewdiggy",
   "names": {
     "international": "chewdiggy",
     "japanese": null
   },
+  "weblink": "http://www.speedrun.com/user/chewdiggy",
   "name-style": {
     "style": "solid",
     "color": {
@@ -47,6 +47,21 @@ Represented as JSON, a single user looks like this:
         "japanese": "\u30a4\u30f3\u30b0\u30e9\u30f3\u30c9"
       }
     }
+  },
+  "twitch": {
+    "uri": "http://www.twitch.tv/username"
+  },
+  "hitbox": {
+    "uri": "http://www.hitbox.tv/username"
+  },
+  "youtube": {
+    "uri": "http://www.youtube.com/oih2grfwezf782zroufiw"
+  },
+  "twitter": {
+    "uri": "http://www.twitter.com/username"
+  },
+  "speedrunslive": {
+    "uri": "http://www.speedrunslive.com/profiles/#!/username"
   },
   "links": [{
     "rel": "self",
@@ -84,6 +99,9 @@ There are quite a few things that need a couple words of explanation.
   than the country) is not available for all countries and therefore not always set. Each of the two
   contain a ``code`` (which, for the country is the ISO Alpha-2 code, and for the region is
   something custom) and the names (as with users, not all countries/regions have a japanese name).
+
+* Any of the ``twitch``, ``hitbox``, ``youtube``, ``twitter`` and ``speedrunslive`` links can be
+  ``null``.
 
 ### GET /users
 

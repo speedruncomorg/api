@@ -49,17 +49,57 @@ Represented as JSON, a game looks like this:
   },
   "created": "2014-12-07T12:50:20Z",
   "assets": {
-    "logo": "http://www.speedrun.com/themes/mk64/logo.png",
-    "cover-tiny": "http://www.speedrun.com/themes/mk64/cover-32.png",
-    "cover-small": "http://www.speedrun.com/themes/mk64/cover-64.png",
-    "cover-medium": "http://www.speedrun.com/themes/mk64/cover-128.png",
-    "cover-large": "http://www.speedrun.com/themes/mk64/cover-256.png",
-    "icon": "http://www.speedrun.com/themes/mario_kart/favicon.png",
-    "trophy-1st": "http://www.speedrun.com/images/icons/goldtrophy.png",
-    "trophy-2nd": "http://www.speedrun.com/images/icons/silvertrophy.png",
-    "trophy-3rd": "http://www.speedrun.com/images/icons/bronzetrophy.png",
+    "logo": {
+      "uri": "http://www.speedrun.com/themes/mk64/logo.png",
+      "width": 180,
+      "height": 34
+    },
+    "cover-tiny": {
+      "uri": "http://www.speedrun.com/themes/mk64/cover-32.png",
+      "width": 32,
+      "height": 45
+    },
+    "cover-small": {
+      "uri": "http://www.speedrun.com/themes/mk64/cover-64.png",
+      "width": 64,
+      "height": 90
+    },
+    "cover-medium": {
+      "uri": "http://www.speedrun.com/themes/mk64/cover-128.png",
+      "width": 128,
+      "height": 180
+    },
+    "cover-large": {
+      "uri": "http://www.speedrun.com/themes/mk64/cover-256.png",
+      "width": 256,
+      "height": 360
+    },
+    "icon": {
+      "uri": "http://www.speedrun.com/themes/mario_kart/favicon.png",
+      "width": 44,
+      "height": 44
+    },
+    "trophy-1st": {
+      "uri": "http://www.speedrun.com/images/icons/goldtrophy.png",
+      "width": 16,
+      "height": 16
+    },
+    "trophy-2nd": {
+      "uri": "http://www.speedrun.com/images/icons/silvertrophy.png",
+      "width": 16,
+      "height": 16
+    },
+    "trophy-3rd": {
+      "uri": "http://www.speedrun.com/images/icons/bronzetrophy.png",
+      "width": 16,
+      "height": 16
+    },
     "trophy-4th": null,
-    "background": "http://www.speedrun.com/themes/mk64/background.png",
+    "background": {
+      "uri": "http://www.speedrun.com/themes/mk64/background.png",
+      "width": 151,
+      "height": 195
+    },
     "foreground": null
   },
   "links": [{
@@ -110,6 +150,8 @@ Things to note:
 
   Note that there are a few games that have time-dependent styles, which are not reflected in the
   API. For those games, only the regular images are returned.
+
+  ``width`` and ``height`` are pixel values.
 
 ### Bulk Access
 

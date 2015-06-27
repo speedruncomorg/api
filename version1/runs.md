@@ -21,15 +21,23 @@ Represented as JSON, a single run looks like this:
 ```json
 {
   "id": "90y6pm7e",
-  "weblink": "http://www.speedrun.com/run/2",
+  "weblink": "http://www.speedrun.com/run/90y6pm7e",
   "game": "29d30dlp",
   "level": null,
   "category": "nxd1rk8q",
-  "video": "http://youtube.com/videoidhere",
-  "comment": "Lost 35 seconds on bridge swap, plus a bunch of time elsewhere",
+  "videos": {
+    "text": "Part 1: http://youtube.com/videoidhere -- HYPE!!",
+    "links": [{
+      "uri": "http://youtube.com/videoidhere"
+    }, {
+      "uri": "http://youtube.com/anothervideo"
+    }]
+  },
+  "comment": "Lost 35 seconds on bridge swap, plus a bunch of time elsewhere. Part 2 is http://youtube.com/anothervideo",
   "status": {
     "status": "verified",
-    "examiner": "61xymxr9"
+    "examiner": "61xymxr9",
+    "verify-date": "2015-05-23T16:12:32Z"
   },
   "players": [{
     "rel": "user",
@@ -56,6 +64,10 @@ Represented as JSON, a single run looks like this:
     "platform": "rdjq4vwe",
     "emulated": false,
     "region": null
+  },
+  "splits": {
+    "rel": "splits.io",
+    "uri": "https://splits.io/api/v3/runs/55b"
   },
   "values": {
     "wvn9wp51": "ezj43ozx"
@@ -88,7 +100,9 @@ There are quite a few things that need a couple words of explanation.
   made the status decision. The status can be ``new`` (not yet reviewed), ``verified`` or
   ``rejected``. If the status is ``new``, the field ``examiner`` is not present. ``rejected`` runs
   additionally have a ``reason`` string field within their status, containing the reason message by
-  the examiner.
+  the examiner. ``verified`` runs have a ``verify-date`` field that contains the date when the run
+  was verified. This date can be ``null`` for runs that have been verified in the Old Days.
+
 * ``players`` is the list of players that participated in the run. Each player can either be a
   registered user (in that case, the ``rel`` value is ``user`` and there is an ``id`` present) or a
   guest of whom we only have a name, but no user account (in that case, ``rel`` is ``guest`` and
@@ -119,15 +133,38 @@ There are quite a few things that need a couple words of explanation.
   value is the valueID). The map represents the custom values for a game (like the speed in Mario Kart,
   which can be 50/100/150cc).
 
-* Not all runs have a ``video``. For those, the field is ``null``. Sames goes for the ``comment``.
-  Also, the video can be pretty much anything that's acceptable to the examiner of a run, so don't
-  rely on this being a YouTube link.
+* ``videos`` contains information about all video links that have been provided for the run. This
+  includes the primary video (most runs only have one video, some have none at all) and all videos
+  mentioned in the ``comments``.
+
+  If the primary video link contains nothing resembling a link or contains more text than just a
+  link, the full text is available as ``videos.text``. Otherwise, ``videos.text`` is not set.
+
+  If there are no videos and no video fallback text at all, ``videos`` is ``null``.
+
+  Links to the following sites are recognized as video links: twitch.tv, youtube.com, youtu.be,
+  hitbox.tv, vimeo.com and nicovideo.jp.
+
+* ``splits`` contains information about the detailed timing of the run. This field can either be
+  ``null`` or a link to the splits. Currently, we support [splits.io](https://www.splits.io), but
+  in the future, the link might point to other sites as well, so either blindly follow the link or
+  pay attention to the ``rel`` field.
 
 ### Embeds
 
 You can [embed](embedding.md) the following resources into a run:
 
 * ``game`` will embed the full game resource.
+* ``category`` will embed the category in which the run was done.
+* ``level`` will embed the level in which the run was done. This can be empty if it's a full-game
+  run.
+* ``players`` will replace the ``players`` field with the full [user](users.md)/[guest](guests.md)
+  resources of the participating players. Each of those players will have the ``rel`` field just as
+  if there was no embedding at all, so you can easily distinguish between users and guests (without
+  resorting to logic like "if there's an ID, it must be a user").
+* ``region`` will embed the full region resource. This can be empty if no region was set for the run.
+* ``platform`` will embed the full platform resource. This can be empty if no platform was set for
+  the run.
 
 ### GET /runs
 
