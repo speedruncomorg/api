@@ -214,13 +214,13 @@ elements should be something an API client should notice.
 You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
 direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
 
-order by         | Description
----------------- | ------------------------------------------------------------------
-``name.int``     | sorts alphanumerically by the international name
-``name.jap``     | sorts alphanumerically by the japanese name
-``abbreviation`` | sorts alphanumerically by the abbreviation
-``released``     | sorts by the year the game was released in
-``created``      | sorts by the date when the game was added on speedrun.com
+order by               | Description
+---------------------- | ------------------------------------------------------------------
+``name.int`` (default) | sorts alphanumerically by the international name
+``name.jap``           | sorts alphanumerically by the japanese name
+``abbreviation``       | sorts alphanumerically by the abbreviation
+``released``           | sorts by the year the game was released in
+``created``            | sorts by the date when the game was added on speedrun.com
 
 ##### Example Requests
 
