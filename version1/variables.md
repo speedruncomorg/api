@@ -62,11 +62,11 @@ There are quite a few things that need a couple words of explanation.
   * When ``type`` is ``single-level``, the variable is for one specific level only. In this case,
     ``scope`` contains a ``level`` element, containing the ID of that level.
 
-* When ``mandatory`` is ``true``, newly submitted runs must include a value for this variable.
+* When ``mandatory`` is ``true``, newly submitted runs must include a value for this variable. This can be ``null``.
 
 * When ``user-defined`` is ``true``, the user can give a custom value when submitting the run. This
   custom value is stored just like predefined ones, so there is no different handling needed for
-  these.
+  these. This can be ``null``.
 
 * When ``obsoletes`` is ``true``, the variable is taken into consideration when collecting runs for
   the leaderboard.
