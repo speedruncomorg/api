@@ -124,9 +124,6 @@ Represented as JSON, a game looks like this:
     "rel": "variables",
     "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/variables"
   }, {
-    "rel": "parent",
-    "uri": "http://www.speedrun.com/api/v1/games/lkcbez17"
-  }, {
     "rel": "romhacks",
     "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/romhacks"
   }]
