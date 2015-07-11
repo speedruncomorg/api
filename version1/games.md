@@ -16,7 +16,7 @@ Games are the things [users](users.md) do speedruns in. Games are associated wit
 games).
 
 Each game belongs to a [series](series.md), even though many games technically are not part of
-"their own" series and are therefore categroized in the "Other" series.
+"their own" series and are therefore categorized in the "Other" series.
 
 Games can have romhacks, which also have runs. Because romhacks and games are so similar, they both
 appear as games within the API, just having a ``romhack`` field with either ``true`` or ``false``.
