@@ -26,6 +26,7 @@ This version offers access to the following resources:
 * [Profile](profile.md)
 * [Regions](regions.md)
 * [Runs](runs.md)
+* [Series](series.md)
 * [Users](users.md)
 * [Variables](variables.md)
 

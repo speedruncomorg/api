@@ -8,16 +8,18 @@
 * [GET /games/{id}/categories](#get-gamesidcategories)
 * [GET /games/{id}/levels](#get-gamesidlevels)
 * [GET /games/{id}/variables](#get-gamesidvariables)
-* [GET /games/{id}/children](#get-gamesidchildren)
+* [GET /games/{id}/romhacks](#get-gamesidromhacks)
 
 Games are the things [users](users.md) do speedruns in. Games are associated with [regions](regions.md)
 (US, Europe, ...), [platforms](platforms.md) (consoles, handhelds, ...), [categories](categories.md),
 [levels](levels.md) and [custom variables](variables.md) (like speed=50/100/150cc in Mario Kart
 games).
 
-Games are organized in a series->game hierarchy. Some games have "parent games", like Super Mario
-Sunshine has "Super Mario Series" as its parent. Series can have runs, too, that's why you will get
-series just like regular games via the API. Besides this distinction, series and games are the same.
+Each game belongs to a [series](series.md), even though many games technically are not part of
+"their own" series and are therefore categroized in the "Other" series.
+
+Games can have romhacks, which also have runs. Because romhacks and games are so similar, they both
+appear as games within the API, just having a ``romhack`` field with either ``true`` or ``false``.
 
 ### Structure
 
@@ -41,6 +43,7 @@ Represented as JSON, a game looks like this:
     "default-time": "realtime",
     "emulators-allowed": false
   },
+  "romhack": false,
   "platforms": ["039or978", "hdzate15"],
   "regions": ["hdz48alk", "hdz1hdwo", "9uhjgcgg"],
   "moderators": {
@@ -106,6 +109,9 @@ Represented as JSON, a game looks like this:
     "rel": "self",
     "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4"
   }, {
+    "rel": "series",
+    "uri": "http://www.speedrun.com/api/v1/series/rv7emz49"
+  }, {
     "rel": "runs",
     "uri": "http://www.speedrun.com/api/v1/runs?game=1kgr75w4"
   }, {
@@ -121,8 +127,8 @@ Represented as JSON, a game looks like this:
     "rel": "parent",
     "uri": "http://www.speedrun.com/api/v1/games/lkcbez17"
   }, {
-    "rel": "children",
-    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/children"
+    "rel": "romhacks",
+    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/romhacks"
   }]
 }
 ```
@@ -191,7 +197,7 @@ You can [embed](embedding.md) the following resources into a game:
 * ``regions`` will embed all assigned regions.
 * ``variables`` will embed *all* defined variables for the game.
 
-Embedding is disabled in bulk mode.
+Again, remember: embedding is disabled in bulk mode.
 
 ### GET /games
 
@@ -205,6 +211,7 @@ Query Parameter  | Type   | Description
 ``platform``     | string | platform ID; when given, restricts to that platform
 ``region``       | string | region ID; when given, restricts to that region
 ``moderator``    | string | moderator ID; when given, only games moderated by that user will be returned
+``romhack``      | bool   | whether or not to include romhacks (if this parameter is not set, romhacks are included; if it is set to a true value, *only* romhacks will be returned, otherwise only non-romhacks are returned)
 ``_bulk``        | bool   | enable [bulk access](#bulkaccess)
 
 Note that giving invalid values for ``platform``, ``region`` or ``moderator`` will result in an
@@ -229,7 +236,7 @@ order by               | Description
   gets all games, newest first.
 * [**GET /api/v1/games?_bulk=yes&max=1000**](http://www.speedrun.com/api/v1/games?_bulk=yes&max=1000)
   gets all games with their smaller JSON representations
-* [**GET /api/v1/games?names=mario**](http://www.speedrun.com/api/v1/games?name=mario) searches for
+* [**GET /api/v1/games?name=mario**](http://www.speedrun.com/api/v1/games?name=mario) searches for
   Mario games
 * [**GET /api/v1/games?region=mol4z19n&released=1999**](http://www.speedrun.com/api/v1/games?region=mol4z19n&released=1999)
   searches for all games on the iQue (region ``mol4z19n``) that have been released in 1999.
@@ -369,17 +376,18 @@ order by          | Description
 }
 ```
 
-### GET /games/{id}/children
+### GET /games/{id}/romhacks
 
-This will retrieve all child games of a given game. If a game has children, we actually call it
-"series", but as mentioned above, they behave as games and are treated as games.
+This will retrieve all romhacks of a given game. Except for belonging to a game instead of a series,
+romhacks are identical to games.
 
-The same sorting options as with ``GET /games`` apply to this resource as well.
+The same filtering/sorting options as with ``GET /games`` apply to this resource as well, except for
+the ``romhack`` parameter, which doesn't make sense here.
 
 ##### Example Requests
 
-* [**GET /api/v1/games/n268w96p/children**](http://www.speedrun.com/api/v1/games/n268w96p/children)
-  retrieves all Mario Kart games.
+* [**GET /api/v1/games/pd0wq31e/romhacks**](http://www.speedrun.com/api/v1/games/pd0wq31e/romhacks)
+  retrieves all Super Mario World romhacks.
 
 ##### Example Response
 
