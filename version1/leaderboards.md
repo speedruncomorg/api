@@ -101,11 +101,11 @@ value ID as the value (for example, ``?var-m5ly6jn4=p12z471x``).
 
 ##### Example Requests
 
-* [**GET /leaderboards/xldev513/category/rklg3rdn**](http://www.speedrun.com/leaderboards/xldev513/category/rklg3rdn)
+* [**GET /api/v1/leaderboards/xldev513/category/rklg3rdn**](http://www.speedrun.com/api/v1/leaderboards/xldev513/category/rklg3rdn)
   get the "All Campaigns" leaderboard for Age of Empires II.
-* [**GET /leaderboards/n4d7jzd7/category/w20p7jkn?timing=realtime**](http://www.speedrun.com/leaderboards/n4d7jzd7/category/w20p7jkn?timing=realtime)
+* [**GET /api/v1/leaderboards/n4d7jzd7/category/w20p7jkn?timing=realtime**](http://www.speedrun.com/api/v1/leaderboards/n4d7jzd7/category/w20p7jkn?timing=realtime)
   get the "Any%" leaderboard for Skyrim, with runs sorted by realtime.
-* [**GET /leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv**](http://www.speedrun.com/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv)
+* [**GET /api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv**](http://www.speedrun.com/api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv)
   get the "Any%" leaderboard for GTA Vice City Chaos%, filtered by Version (1.02) and Difficulty (Easy).
 
 ##### Example Response
