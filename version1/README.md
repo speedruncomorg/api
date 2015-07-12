@@ -21,6 +21,7 @@ This version offers access to the following resources:
 * [Categories](categories.md)
 * [Games](games.md)
 * [Guests](guests.md)
+* [Leaderboards](leaderboards.md)
 * [Levels](levels.md)
 * [Platforms](platforms.md)
 * [Profile](profile.md)

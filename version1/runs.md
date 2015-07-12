@@ -10,10 +10,6 @@ Runs are the meat of our business at speedrun.com. A run is a finished attempt t
 runs (the ones superseded by a better time by the same player(s) in the same ruleset) still count as
 runs and are available via API.
 
-If you need the **leaderboards** (non-obsolete, valid runs sorted by time), this is not the droid
-you're looking for. Until we've had time to properly migrate the leaderboards to this API, use the
-legacy API available at http://www.speedrun.com/api_records.php.
-
 ### Structure
 
 Represented as JSON, a single run looks like this:
