@@ -165,7 +165,9 @@ order by               | Description
 
 ### GET /series/{id}
 
-This will retrieve a single series, identified by its ID.
+This will retrieve a single series, identified by its ID. Instead of the series' ID, you can also
+specify the series' abbreviation. When an abbreviation was found, the API will respond with a redirect
+the the ID-based URL (so ``/api/v1/series/aoe`` will be redirected to ``/api/v1/series/yr4gy141``).
 
 ##### Example Requests
 
@@ -182,9 +184,9 @@ This will retrieve a single series, identified by its ID.
 
 ### GET /series/{id}/games
 
-This will retrieve all games (excluding romhacks) of a given series. You can filter the result by the
-same attributes as you can filter the [complete game list](games.md#get-games), except that you
-cannot use the ``romhack`` parameter[1].
+This will retrieve all games (excluding romhacks) of a given series (the ID can be either the actual
+series ID or its abbreviation). You can filter the result by the same attributes as you can filter
+the [complete game list](games.md#get-games), except that you cannot use the ``romhack`` parameter[1].
 
 You can also use the sorting options as for the complete game list.
 

@@ -254,12 +254,17 @@ order by               | Description
 
 ### GET /games/{id}
 
-This will retrieve a single game, identified by its ID.
+This will retrieve a single game, identified by its ID. Instead of the game's ID, you can also
+specify the game's abbreviation. When an abbreviation was found, the API will respond with a redirect
+the the ID-based URL (so ``/api/v1/games/aoe1`` will be redirected to ``/api/v1/games/nj1nowdp``).
+
+Note that abbreviations can change, so API clients should rely on the ID if possible.
 
 ##### Example Requests
 
 * [**GET /api/v1/games/v1pxjz68**](http://www.speedrun.com/api/v1/games/v1pxjz68) retrieves Super
   Mario Sunshine.
+* [**GET /api/v1/games/sms**](http://www.speedrun.com/api/v1/games/sms) redirects to the URL above.
 
 ##### Example Response
 
@@ -271,8 +276,9 @@ This will retrieve a single game, identified by its ID.
 
 ### GET /games/{id}/categories
 
-This will retrieve *all* [categories](categories.md) of a given game. If you need only those
-applicable to certain [levels](levels.md), look there. You can filter the result by a few things:
+This will retrieve *all* [categories](categories.md) of a given game (the ``id`` can be either the
+game ID or its abbreviation). If you need only those applicable to certain [levels](levels.md), look
+there. You can filter the result by a few things:
 
 Query Parameter   | Type   | Description
 ----------------- | ------ | -----------------------------------------
@@ -310,7 +316,8 @@ order by          | Description
 
 ### GET /games/{id}/levels
 
-This will retrieve *all* [levels](levels.md) of a given game.
+This will retrieve *all* [levels](levels.md) of a given game (the ``id`` can be either the
+game ID or its abbreviation).
 
 You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
 direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
@@ -341,8 +348,9 @@ order by          | Description
 
 ### GET /games/{id}/variables
 
-This will retrieve *all* [variables](variables.md) of a given game. If you need only those applicable
-to certain [categories](categories.md) or [levels](levels.md), look there.
+This will retrieve *all* [variables](variables.md) of a given game (the ``id`` can be either the
+game ID or its abbreviation). If you need only those applicable to certain [categories](categories.md)
+or [levels](levels.md), look there.
 
 You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
 direction can be either ``asc`` or ``desc``, the possible values for ``orderby`` are listed below.
@@ -375,8 +383,8 @@ order by          | Description
 
 ### GET /games/{id}/romhacks
 
-This will retrieve all romhacks of a given game. Except for belonging to a game instead of a series,
-romhacks are identical to games.
+This will retrieve all romhacks of a given game (the ``id`` can be either the game ID or its
+abbreviation). Except for belonging to a game instead of a series, romhacks are identical to games.
 
 The same filtering/sorting options as with ``GET /games`` apply to this resource as well, except for
 the ``romhack`` parameter, which doesn't make sense here.
