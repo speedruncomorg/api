@@ -25,16 +25,16 @@ Represented as JSON, a leaderboard looks like this:
   "timing": "ingame",
   "values": [ ],
   "runs": [{
-    "rank": 1,
+    "place": 1,
     "run": <run>
   }, {
-    "rank": 2,
+    "place": 2,
     "run": <run>
   }, {
-    "rank": 2,
+    "place": 2,
     "run": <run>
   }, {
-    "rank": 4,
+    "place": 4,
     "run": <run>
   }],
   "links": [{
@@ -59,7 +59,7 @@ There are quite a few things that need a couple words of explanation.
 * ``emulators`` is a nullable boolean, ``video-only`` is a never null boolean.
 * ``timing`` can be one of ``realtime``, ``realtime_noloads`` or ``ingame``.
 * ``values`` is a mapping between variable ID and value ID.
-* Remember that is is possible for multiple runs to be on the same rank.
+* Remember that it is possible for multiple runs to be on the same place.
 * Depending on the chosen filters, more links can appear in the ``links`` section.
 
 ### Embeds
