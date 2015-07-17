@@ -183,11 +183,11 @@ The returned structure is a flat list of ranked runs, similar to the [leaderboar
 ```json
 {
   "data": [{
-    place: 7,
-    run: <run>
+    "place": 7,
+    "run": <run>
   }, {
-    place: 2,
-    run: <run>
+    "place": 2,
+    "run": <run>
   }, ...]
 }
 ```
@@ -199,15 +199,15 @@ in a structure like this:
 ```json
 {
   "data": [{
-    place: 7,
-    run: <run>,
-    game: <game>,
-    category: <category>
+    "place": 7,
+    "run": <run>,
+    "game": <game>,
+    "category": <category>
   }, {
-    place: 2,
-    run: <run>,
-    game: <game>,
-    category: <category>
+    "place": 2,
+    "run": <run>,
+    "game": <game>,
+    "category": <category>
   }, ...]
 }
 ```
@@ -225,15 +225,15 @@ in a structure like this:
 ```json
 {
   "data": [{
-    place: 38,
-    run: <run>,
-    game: <game>,
-    category: <category>
+    "place": 38,
+    "run": <run>,
+    "game": <game>,
+    "category": <category>
   }, {
-    place: 1,
-    run: <run>,
-    game: <game>,
-    category: <category>
+    "place": 1,
+    "run": <run>,
+    "game": <game>,
+    "category": <category>
   }, ...]
 }
 ```
