@@ -89,6 +89,7 @@ This will return a *full-game* leaderboard. There are numerous filtering options
 
 Query Parameter  | Type   | Description
 ---------------- | ------ | ------------------------------------------------------------------
+``top``          | int    | only return the top N *places* (this can result in more than N runs!)
 ``platform``     | string | platform ID; when given, only returns runs done on that particular platform
 ``region``       | string | region ID; when given, only returns runs done in that particular region
 ``emulators``    | bool   | when not given, real devices and emulators are shown. When set to a true value, only emulators are shown, else only real devices are shown
@@ -107,6 +108,8 @@ value ID as the value (for example, ``?var-m5ly6jn4=p12z471x``).
   get the "Any%" leaderboard for Skyrim, with runs sorted by realtime.
 * [**GET /api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv**](http://www.speedrun.com/api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv)
   get the "Any%" leaderboard for GTA Vice City Chaos%, filtered by Version (1.02) and Difficulty (Easy).
+* [**GET /api/v1/leaderboards/o1y9wo6q/category/7dgrrxk4?top=1&embed=players**](http://www.speedrun.com/api/v1/leaderboards/o1y9wo6q/category/7dgrrxk4?top=1&embed=players)
+  gets the current World Record for 70 Stars in Super Mario 64.
 
 ##### Example Response
 
