@@ -97,7 +97,7 @@ Query Parameter  | Type   | Description
 ``timing``       | string | controls the sorting; can be one of ``realtime``, ``realtime_noloads`` or ``ingame``
 ``var-___``      | string | additional custom variable values (see below)
 
-TO filter by custom variables, name the query string parameter ``var-[variable ID here]`` and use the
+To filter by custom variables, name the query string parameter ``var-[variable ID here]`` and use the
 value ID as the value (for example, ``?var-m5ly6jn4=p12z471x``).
 
 ##### Example Requests
