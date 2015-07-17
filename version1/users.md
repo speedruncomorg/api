@@ -3,6 +3,7 @@
 * [Structure](#structure)
 * [GET /users](#get-users)
 * [GET /users/{id}](#get-usersid)
+* [GET /users/{id}/personal-bests](#get-usersidpersonal-bests)
 
 Users are the individuals who have registered an account on speedrun.com. Users submit (their)
 [runs](runs.md) and moderate [games](games.md), besides other things that are not covered by this
@@ -72,6 +73,9 @@ Represented as JSON, a single user looks like this:
   }, {
     "rel": "games",
     "uri": "http://www.speedrun.com/api/v1/games?moderator=kjpdr4jq"
+  }, {
+    "rel": "personal-bests",
+    "uri": "http://www.speedrun.com/api/v1/users/kjpdr4jq/personal-bests"
   }]
 }
 ```
@@ -158,5 +162,78 @@ This will retrieve a single user, identified by their ID.
 ```json
 {
   "data": <user>
+}
+```
+
+### GET /users/{id}/personal-bests
+
+This will retrieve a list of runs, representing the Personal Bests of the given user. This will not
+include obsolete runs. If you want those as well, filter the [global run list](runs.md) by user, for
+example ``GET /runs?user=...``.
+
+You can filter the result using these query string parameters:
+
+Query Parameter   | Type   | Description
+----------------- | ------ | ------------------------------------------------------------------
+``series``        | string | when given, restricts the result to games and romhacks in that series
+``game``          | string | when given, restricts the result to that game and its romhacks
+
+The returned structure is a flat list of ranked runs, similar to the [leaderboards](leaderboards.md):
+
+```json
+{
+  "data": [{
+    place: 7,
+    run: <run>
+  }, {
+    place: 2,
+    run: <run>
+  }, ...]
+}
+```
+
+All embeds that are available for runs are available here as well (``game``, ``category`` etc.). Note
+that they are not embedded in the run, but placed beside it. ``?embed=game,category`` results therefore
+in a structure like this:
+
+```json
+{
+  "data": [{
+    place: 7,
+    run: <run>,
+    game: <game>,
+    category: <category>
+  }, {
+    place: 2,
+    run: <run>,
+    game: <game>,
+    category: <category>
+  }, ...]
+}
+```
+
+##### Example Requests
+
+* [**GET /api/v1/users/wzx7q875/personal-bests**](http://www.speedrun.com/api/v1/users/wzx7q875/personal-bests)
+  retrieves Pac's Personal Bests.
+* [**GET /api/v1/users/wzx7q875/personal-bests?embed=game,category**](http://www.speedrun.com/api/v1/users/wzx7q875/personal-bests?embed=game,category)
+  makes Pac's PBs much more useful to actually work with by embedding the game and category for each
+  run.
+
+##### Example Response
+
+```json
+{
+  "data": [{
+    place: 38,
+    run: <run>,
+    game: <game>,
+    category: <category>
+  }, {
+    place: 1,
+    run: <run>,
+    game: <game>,
+    category: <category>
+  }, ...]
 }
 ```
