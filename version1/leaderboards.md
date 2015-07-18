@@ -15,6 +15,7 @@ Represented as JSON, a leaderboard looks like this:
 
 ```json
 {
+  "weblink": "http://www.speedrun.com/.hackInfection#Any",
   "game": "k6qrzm1g",
   "category": "jdr3y0d6",
   "level": null,
