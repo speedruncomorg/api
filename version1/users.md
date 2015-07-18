@@ -175,6 +175,7 @@ You can filter the result using these query string parameters:
 
 Query Parameter   | Type   | Description
 ----------------- | ------ | ------------------------------------------------------------------
+``top``           | int    | when given, only PBs with a place equal or better than this value (e.g. ``top=1`` returns all World Records of the given user)
 ``series``        | string | when given, restricts the result to games and romhacks in that series
 ``game``          | string | when given, restricts the result to that game and its romhacks
 
