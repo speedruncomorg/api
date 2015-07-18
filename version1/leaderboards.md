@@ -86,7 +86,11 @@ experiment a bit to see how embedding works for leaderboards.
 
 ### GET /leaderboards/{game}/category/{category}
 
-This will return a *full-game* leaderboard. There are numerous filtering options:
+This will return a *full-game* leaderboard. The game and category can be either IDs (e.g. ``xldev513``)
+or the respective abbreviations (e.g., ``/leaderboards/smw/category/Any1`` will work as expected and
+redirect to the ID-based URLs).
+
+There are numerous filtering options:
 
 Query Parameter  | Type   | Description
 ---------------- | ------ | ------------------------------------------------------------------
@@ -123,7 +127,9 @@ value ID as the value (for example, ``?var-m5ly6jn4=p12z471x``).
 ### GET /leaderboards/{game}/level/{level}/{category}
 
 This will return a *individual-level* leaderboard. The same filtering options as with full-game
-leaderboards apply.
+leaderboards apply. The game, category and level can be either IDs (e.g. ``xldev513``)
+or the respective abbreviations (e.g., ``/leaderboards/smw/level/Yoshis_Island_1/Small`` will work
+as expected and redirect to the ID-based URLs).
 
 ##### Example Requests
 

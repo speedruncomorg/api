@@ -150,7 +150,9 @@ order by               | Description
 
 ### GET /users/{id}
 
-This will retrieve a single user, identified by their ID.
+This will retrieve a single user, identified by their ID. Instead of the ID, the username can be
+used as well (but this is only recommended for quick lookups, as usernames can change over time), so
+``GET /users/Pac`` is possible and will redirect to ``/users/wzx7q875``.
 
 ##### Example Requests
 
@@ -171,13 +173,15 @@ This will retrieve a list of runs, representing the Personal Bests of the given 
 include obsolete runs. If you want those as well, filter the [global run list](runs.md) by user, for
 example ``GET /runs?user=...``.
 
+Instead of the ID, the username can be used as well (for example, ``/users/Pac/personal-bests``).
+
 You can filter the result using these query string parameters:
 
 Query Parameter   | Type   | Description
 ----------------- | ------ | ------------------------------------------------------------------
 ``top``           | int    | when given, only PBs with a place equal or better than this value (e.g. ``top=1`` returns all World Records of the given user)
-``series``        | string | when given, restricts the result to games and romhacks in that series
-``game``          | string | when given, restricts the result to that game and its romhacks
+``series``        | string | when given, restricts the result to games and romhacks in that series; can be either a series ID or abbreviation
+``game``          | string | when given, restricts the result to that game and its romhacks; can be either a game ID or abbreviation
 
 The returned structure is a flat list of ranked runs, similar to the [leaderboards](leaderboards.md):
 
