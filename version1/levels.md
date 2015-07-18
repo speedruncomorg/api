@@ -5,6 +5,7 @@
 * [GET /levels/{id}](#get-levelsid)
 * [GET /levels/{id}/categories](#get-levelsidcategories)
 * [GET /levels/{id}/variables](#get-levelsidvariables)
+* [GET /levels/{id}/records](#get-levelsidrecords)
 
 Levels are the stages/worlds/maps within a game. Not all [games](games.md) have levels.
 
@@ -133,6 +134,39 @@ order by          | Description
     <variable>,
     <variable>,
     <variable>,
+    ...
+  ]
+}
+```
+
+### GET /levels/{id}/records
+
+This will retrieve the records (first three places) of the given level for all available categories.
+
+The following options are available in the query string:
+
+Query Parameter  | Type   | Description
+---------------- | ------ | ------------------------------------------------------------------
+``top``          | int    | only return the top N *places* (this can result in more than N runs!); this is set to 3 by default
+``skip-empty``   | bool   | when set to a true value, empty leaderboards will not show up in the result
+
+This resource is [paginated](pagination.md).
+
+The regular [leaderboard embeds](leaderboards.md#embeds) are available here as well.
+
+##### Example Requests
+
+* [**GET /api/v1/levels/rdnyx79m/records**](http://www.speedrun.com/api/v1/levels/rdnyx79m/records)
+  retrieves the leaderboards for Super Mario World's "Yoshi's Island 3" level in all categories.
+
+##### Example Response
+
+```json
+{
+  "data": [
+    <leaderboard>,
+    <leaderboard>,
+    <leaderboard>,
     ...
   ]
 }

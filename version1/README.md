@@ -46,7 +46,9 @@ Note that you will be redirected, because the API wants you to not use the ephem
 
 This will retrieve the **70 Stars** World Record for Super Mario 64:
 
-[**GET /api/v1/leaderboards/sm64/category/70_Star?top=1**](http://www.speedrun.com/api/v1/leaderboards/sm64/category/70_Star?top=1)
+* [**GET /api/v1/leaderboards/sm64/category/70_Star?top=1**](http://www.speedrun.com/api/v1/leaderboards/sm64/category/70_Star?top=1) or
+* [**GET /api/v1/games/sm64/records?top=1**](http://www.speedrun.com/api/v1/games/sm64/records?top=1) to fetch the records for all
+  categories/levels (70 Star, 120 Star, ...) at once.
 
 Note that you will be redirected, because the API wants you to not use the ephemeral game abbreviations
 (``smw``), but rather their fixed IDs. It is recommended to use IDs whenever possible.

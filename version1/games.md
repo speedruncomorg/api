@@ -9,6 +9,7 @@
 * [GET /games/{id}/levels](#get-gamesidlevels)
 * [GET /games/{id}/variables](#get-gamesidvariables)
 * [GET /games/{id}/romhacks](#get-gamesidromhacks)
+* [GET /games/{id}/records](#get-gamesidrecords)
 
 Games are the things [users](users.md) do speedruns in. Games are associated with [regions](regions.md)
 (US, Europe, ...), [platforms](platforms.md) (consoles, handhelds, ...), [categories](categories.md),
@@ -403,6 +404,40 @@ the ``romhack`` parameter, which doesn't make sense here.
     <game>,
     <game>,
     <game>,
+    ...
+  ]
+}
+```
+
+### GET /games/{id}/records
+
+This will retrieve the records (first three places) for every (category,level) combination of the
+given game. The following options are available in the query string:
+
+Query Parameter   | Type   | Description
+----------------- | ------ | ------------------------------------------------------------------
+``top``           | int    | only return the top N *places* (this can result in more than N runs!); this is set to 3 by default
+``scope``         | string | when set to ``full-game``, only full-game categories will be included; when set to ``levels``, only individual levels are returned; default is ``all``
+``miscellaneous`` | bool   | when set to a false value, miscellaneous categories will not be included
+``skip-empty``    | bool   | when set to a true value, empty leaderboards will not show up in the result
+
+This resource is [paginated](pagination.md).
+
+The regular [leaderboard embeds](leaderboards.md#embeds) are available here as well.
+
+##### Example Requests
+
+* [**GET /api/v1/games/pd0wq31e/records?miscellaneous=no&scope=full-game**](http://www.speedrun.com/api/v1/games/pd0wq31e/records?miscellaneous=no&scope=full-game)
+  retrieves the leaderboards for all non-misc full-game categories in Super Mario World.
+
+##### Example Response
+
+```json
+{
+  "data": [
+    <leaderboard>,
+    <leaderboard>,
+    <leaderboard>,
     ...
   ]
 }

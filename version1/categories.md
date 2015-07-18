@@ -4,6 +4,7 @@
 * [Embeds](#embeds)
 * [GET /categories/{id}](#get-categoriesid)
 * [GET /categories/{id}/variables](#get-categoriesidvariables)
+* [GET /categories/{id}/records](#get-categoriesidrecords)
 
 Categories are the different rulesets for speedruns. Categories are either ``per-game`` or ``per-level``
 (if the game uses individual levels), both can be accessed via this resource.
@@ -116,6 +117,44 @@ order by          | Description
     <variable>,
     <variable>,
     <variable>,
+    ...
+  ]
+}
+```
+
+### GET /categories/{id}/records
+
+This will retrieve the records (first three places) of the given category. If it's a full-game
+category, the result will be a list containing one leaderboard, otherwise the result will contain
+one leaderboard for each level of the game the category belongs to.
+
+The following options are available in the query string:
+
+Query Parameter  | Type   | Description
+---------------- | ------ | ------------------------------------------------------------------
+``top``          | int    | only return the top N *places* (this can result in more than N runs!); this is set to 3 by default
+``skip-empty``   | bool   | when set to a true value, empty leaderboards will not show up in the result
+
+This resource is [paginated](pagination.md).
+
+The regular [leaderboard embeds](leaderboards.md#embeds) are available here as well.
+
+##### Example Requests
+
+* [**GET /api/v1/categories/wkpjpzjk/records**](http://www.speedrun.com/api/v1/categories/wkpjpzjk/records)
+  retrieves the first three places for Super Mario World's Any% category.
+* [**GET /api/v1/categories/wdmzzqx2/records**](http://www.speedrun.com/api/v1/categories/wdmzzqx2/records)
+  retrieves the leaderboards (each containing the first three places) of the "Small" category of
+  Super Mario World for each of the available levels.
+
+##### Example Response
+
+```json
+{
+  "data": [
+    <leaderboard>,
+    <leaderboard>,
+    <leaderboard>,
     ...
   ]
 }
