@@ -30,3 +30,43 @@ This version offers access to the following resources:
 * [Series](series.md)
 * [Users](users.md)
 * [Variables](variables.md)
+
+## Examples
+
+### Get a specific, complete Leaderboard
+
+This will retrieve the **96 Exit** leaderboard for Super Mario World:
+
+[**GET /api/v1/leaderboards/smw/category/96_Exit**](http://www.speedrun.com/api/v1/leaderboards/smw/category/96_Exit)
+
+Note that you will be redirected, because the API wants you to not use the ephemeral game abbreviations
+(``smw``), but rather their fixed IDs. It is recommended to use IDs whenever possible.
+
+### Get the World Record in a given Game
+
+This will retrieve the **70 Stars** World Record for Super Mario 64:
+
+[**GET /api/v1/leaderboards/sm64/category/70_Star?top=1**](http://www.speedrun.com/api/v1/leaderboards/sm64/category/70_Star?top=1)
+
+Note that you will be redirected, because the API wants you to not use the ephemeral game abbreviations
+(``smw``), but rather their fixed IDs. It is recommended to use IDs whenever possible.
+
+### Get Somebody's Personal Bests
+
+This will retrieve all PBs by S.:
+
+[**GET /api/v1/users/S./personal-bests**](http://www.speedrun.com/api/v1/users/S./personal-bests)
+
+Note that you will be redirected, because the API wants you to not use the ephemeral username
+(``S.``), but rather their fixed IDs. It is recommended to use IDs whenever possible.
+
+### Find all Runs done on the iQue
+
+Note that this includes obsolete runs and that you get no ranking information with this resource. If
+you need ranks, request a user's PBs or leaderboards.
+
+[**GET /api/v1/runs?region=mol4z19n**](http://www.speedrun.com/api/v1/runs?region=mol4z19n)
+
+### Find all Games available on the Wii U
+
+[**GET /api/v1/games?platform=8zjw7vo6**](http://www.speedrun.com/api/v1/games?platform=8zjw7vo6)
