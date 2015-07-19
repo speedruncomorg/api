@@ -14,6 +14,11 @@ This version is available at **http://www.speedrun.com/api/v1**.
 * By default, all collections are limited to 20 elements. Check the [pagination](pagination.md)
   documentation for more information.
 
+### JSONP support
+
+You can use the query string parameter ``callback`` everywhere to retrieve the response as JavaScript
+instead of JSON (for example, do ``?callback=foo`` to get the data as a ``foo({....})`` function call).
+
 ## Resources
 
 This version offers access to the following resources:
