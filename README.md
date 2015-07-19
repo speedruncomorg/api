@@ -23,6 +23,10 @@ http://www.speedrun.com/api will redirect you to the current version. We promise
 never break a once published version of our API (sometimes we extend the current API with new
 information, but we will not change existing fields).
 
+If possible, please set a descriptive ``User-Agent`` HTTP header. This makes it easier for us to see
+how the API is being used and optimise it further. A good user agent string includes your project
+name and possibly the version number, like ``my-bot/4.20``.
+
 ## Versions
 
 * [Version 1](https://github.com/speedruncom/api/tree/master/version1)
@@ -30,4 +34,13 @@ information, but we will not change existing fields).
 ## Implementations
 
 *The following implementations are not part of the official API. For any bugs etc. please contact their respective creators.*
+
 * [SpeedrunComSharp](https://github.com/LiveSplit/SpeedrunComSharp) - A .NET Library that can be used to interact with the speedrun.com API.
+
+## Content License
+
+As with the [main website](http://www.speedrun.com), all original content provided through the API
+is licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Images and videos
+are copyright of their respective owners.
+
+If this doesn't work for you, [contact us](http://www.speedrun.com/about) and we can find a solution.
