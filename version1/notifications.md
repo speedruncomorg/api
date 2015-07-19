@@ -18,7 +18,7 @@ Represented as JSON, a single notification looks like this:
   "text": "Lighnat0r likes your post.",
   "item": {
     "rel": "post",
-    "uri": "http://speedrun.gg/post/ptv8h"
+    "uri": "http://www.speedrun.com/post/ptv8h"
   },
   "links": [{
     "rel": "run",
