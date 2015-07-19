@@ -23,6 +23,7 @@ This version offers access to the following resources:
 * [Guests](guests.md)
 * [Leaderboards](leaderboards.md)
 * [Levels](levels.md)
+* [Notifications](notifications.md)
 * [Platforms](platforms.md)
 * [Profile](profile.md)
 * [Regions](regions.md)
