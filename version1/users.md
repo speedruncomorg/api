@@ -113,9 +113,11 @@ This will return a list of users. You can filter the result using these query st
 
 Query Parameter   | Type   | Description
 ----------------- | ------ | ------------------------------------------------------------------
+``lookup``        | string | when gives, searches the value (case-insensitive exact-string match) across user names, URLs and social profiles; all other query string filters are disabled when this is given
 ``name``          | string | only returns users whose name/URL contains the given value; the comparision is case-insensitive
 ``twitch``        | string | searches for Twitch usernames
 ``hitbox``        | string | searches for Hitbox usernames
+``twitter``       | string | searches for Twitter usernames
 ``speedrunslive`` | string | searches for SpeedRunsLive usernames
 
 You can control the sorting by using the query string parameters ``orderby`` and ``direction``. The
@@ -133,6 +135,8 @@ order by               | Description
 * [**GET /api/v1/users**](http://www.speedrun.com/api/v1/users) gets all users
 * [**GET /api/v1/users?name=abc**](http://www.speedrun.com/api/v1/users?name=abc) searches for
   all users whose name or URL contains ``abc``
+* [**GET /api/v1/users?lookup=pac____**](http://www.speedrun.com/api/v1/users?lookup=pac____) finds
+  Pac based on his Twitter account.
 
 ##### Example Response
 
