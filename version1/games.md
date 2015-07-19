@@ -226,6 +226,7 @@ order by               | Description
 ``abbreviation``       | sorts alphanumerically by the abbreviation
 ``released``           | sorts by the year the game was released in
 ``created``            | sorts by the date when the game was added on speedrun.com
+``similarity``         | sorts by string similarity; *only available when searching games by name*; *default when searching by name*
 
 ##### Example Requests
 
@@ -234,8 +235,9 @@ order by               | Description
   gets all games, newest first.
 * [**GET /api/v1/games?_bulk=yes&max=1000**](http://www.speedrun.com/api/v1/games?_bulk=yes&max=1000)
   gets all games with their smaller JSON representations
-* [**GET /api/v1/games?name=mario**](http://www.speedrun.com/api/v1/games?name=mario) searches for
-  Mario games
+* [**GET /api/v1/games?name=Super%20Mario%20Bros**](http://www.speedrun.com/api/v1/games?name=Super%20Mario%20Bros) searches for
+  games with "Super Mario Bros" in their title; because name searches sort by similarity, the first
+  result is "Super Mario Bros." (on the NES).
 * [**GET /api/v1/games?region=mol4z19n&released=1999**](http://www.speedrun.com/api/v1/games?region=mol4z19n&released=1999)
   searches for all games on the iQue (region ``mol4z19n``) that have been released in 1999.
 
