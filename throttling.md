@@ -15,3 +15,6 @@ To reduce the amount of requests you make, consider:
   allowed value (200).
 
 When you reached your request limit, the API will respond with the HTTP status code ``420``.
+
+If you need to make more requests than allowed, [contact us](http://www.speedrun.com/about) and we
+can find a solution.
