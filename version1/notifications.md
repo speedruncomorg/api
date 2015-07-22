@@ -36,9 +36,12 @@ There are quite a few things that need a couple words of explanation.
 * There are four different kinds of items that are linked to a notification: ``post`` (someone liked
   the forum post), ``run``, ``game`` (when a game request was approved/denied) and ``guide``
   (when a guide was updated).
-* If the notification concerns a run, ``links`` contains a link to the run resource.
-* If the notification concerns a game, ``links`` contains a link to the game resource.
+* If the notification concerns a run, ``links`` *can* contain a link to the run resource. In some
+  cases, the game/run has already been removed again, so there's not always a link possible.
+* If the notification concerns a game, ``links`` *can* contain a link to the game resource. In some
+  cases, the game has already been removed again, so there's not always a link possible.
 * The example above shows both links, even though there can be only one of them at any time.
+* When the referenced item is gone/lost, the ``item``'s ``uri`` points to the homepage.
 
 ### GET /notifications
 
