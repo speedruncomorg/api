@@ -185,7 +185,7 @@ Query Parameter   | Type   | Description
 ----------------- | ------ | ------------------------------------------------------------------
 ``top``           | int    | when given, only PBs with a place equal or better than this value (e.g. ``top=1`` returns all World Records of the given user)
 ``series``        | string | when given, restricts the result to games and romhacks in that series; can be either a series ID or abbreviation
-``game``          | string | when given, restricts the result to that game and its romhacks; can be either a game ID or abbreviation
+``game``          | string | when given, restricts the result to that game; can be either a game ID or abbreviation
 
 The returned structure is a flat list of ranked runs, similar to the [leaderboards](leaderboards.md):
 
