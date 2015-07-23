@@ -113,7 +113,7 @@ This will return a list of users. You can filter the result using these query st
 
 Query Parameter   | Type   | Description
 ----------------- | ------ | ------------------------------------------------------------------
-``lookup``        | string | when gives, searches the value (case-insensitive exact-string match) across user names, URLs and social profiles; all other query string filters are disabled when this is given
+``lookup``        | string | when given, searches the value (case-insensitive exact-string match) across user names, URLs and social profiles; all other query string filters are disabled when this is given
 ``name``          | string | only returns users whose name/URL contains the given value; the comparision is case-insensitive
 ``twitch``        | string | searches for Twitch usernames
 ``hitbox``        | string | searches for Hitbox usernames
