@@ -100,7 +100,7 @@ Query Parameter  | Type   | Description
 ``emulators``    | bool   | when not given, real devices and emulators are shown. When set to a true value, only emulators are shown, else only real devices are shown
 ``video-only``   | bool   | ``false`` by default; when set to a true value, only runs with a video will be returned
 ``timing``       | string | controls the sorting; can be one of ``realtime``, ``realtime_noloads`` or ``ingame``
-``date``         | int    | ISO 8601 format; when given, only returns runs done before or on this date
+``date``         | string | [ISO 8601 date string](https://en.wikipedia.org/wiki/ISO_8601#Dates); when given, only returns runs done before or on this date
 ``var-___``      | string | additional custom variable values (see below)
 
 To filter by custom variables, name the query string parameter ``var-[variable ID here]`` and use the
