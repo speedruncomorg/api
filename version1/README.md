@@ -2,8 +2,6 @@
 
 This version is available at **http://www.speedrun.com/api/v1**.
 
-:warning: **Version 1 is not yet stable and can change at any time.** :warning:
-
 ## Basics
 
 * All dates and times are [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) encoded. Durations

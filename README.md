@@ -1,7 +1,5 @@
 # speedrun.com REST API
 
-### :construction: The API is currently in beta. :construction:
-
 We offer a simple, JSON-based REST API to access most of our data about games, runs and players. The
 API is meant to be a good compromise between pure REST and real-world.
 
