@@ -18,6 +18,12 @@ This version is available at **http://www.speedrun.com/api/v1**.
 
 You can use the query string parameter ``callback`` everywhere to retrieve the response as JavaScript
 instead of JSON (for example, do ``?callback=foo`` to get the data as a ``foo({....})`` function call).
+This is especially useful when accessing data on websites, in order to work around the Same Origin
+Policy.
+
+Note the leap of faith you are taking when using JSONP: you effectively allow speedrun.com to inject
+any piece of JavaScript code into your site. Especially since the API is not yet available via TLS.
+We obviously won't inject evil code ourselves, but the Internet can a scary place...
 
 ## Resources
 
