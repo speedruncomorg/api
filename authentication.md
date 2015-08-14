@@ -45,11 +45,11 @@ the user still has to manually copy&paste it.
 
 Redirect the user to [www.speedrun.com/api/auth](http://www.speedrun.com/api/auth).
 
-![Login Screen](https://raw.githubusercontent.com/Lighnat0r/speedruncom/api/images/api-auth-login.png)
+![Login Screen](https://raw.githubusercontent.com/speedruncom/api/master/images/api-auth-login.png)
 
 After authenticating, the user will be presented with instructions on what to do next:
 
-![API Key View](https://raw.githubusercontent.com/Lighnat0r/speedruncom/api/images/api-auth-key.png)
+![API Key View](https://raw.githubusercontent.com/speedruncom/api/master/images/api-auth-key.png)
 
 For an example, take a look at [LiveSplit](http://livesplit.org/) which uses the auth flow with an
 embedded browser to improve user experience.
