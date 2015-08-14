@@ -4,6 +4,7 @@
 * [Embeds](#embeds)
 * [GET /runs](#get-runs)
 * [GET /runs/{id}](#get-runsid)
+* [POST /runs](#post-runs)
 
 Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a
 [game](games.md), adhering to that game's ruleset. Invalid attempts (use of cheats etc) or obsolete
@@ -239,5 +240,106 @@ This will retrieve a single run, identified by its ID.
 ```json
 {
   "data": <run>
+}
+```
+
+### POST /runs
+
+*This method requires [authentication](../authentication.md).*
+
+By POSTing to the runs collection, you can submit a new run to speedrun.com. The same rules as for
+submitting via the website apply, meaning that for example moderators can auto-verify their runs
+immediately.
+
+**Note:** Not all features are yet implemented. Runs for example can only be done by one player, the
+user that is submitting the run.
+
+The request body must be a JSON object describing the run. This should look like this:
+
+```json
+{
+  "run": {
+    "category": "<category ID>",
+    "level": "<level ID>",
+    "date": "YYYY-MM-DD",
+    "region": "<region ID>",
+    "platform": "<platform ID>",
+    "verified": false,
+    "times": {
+      "realtime": 1234.56,
+      "realtime_noloads": 1200.10,
+      "ingame": 1150
+    },
+    "emulated": false,
+    "video": "https://youtube.com/watch?v=mumblefoo",
+    "comment": "Most awesome run ever!",
+    "splitsio": "6vr",
+    "variables": {
+      "<variable ID>": {
+        "type": "user-defined",
+        "value": "my value"
+      },
+      "<variable ID>": {
+        "type": "pre-defined",
+        "value": "<value ID>"
+      }
+    }
+  }
+}
+```
+
+A few things worth noting:
+
+* ``category`` is mandatory, ``level`` only has to be given for individual-level runs.
+* ``date`` is optional and defaults to the current date.
+* ``region`` is optional, just like ``platform``. Some games require proper information on these
+  fields, so always try to provide them.
+* ``verified`` can only be set if the submitting user is a moderator of the game.
+* ``times`` must contain at least one time (of the times that the game allows, obviously). This
+  value is given as the number of seconds as a int/float, optionally (when the games allows it,
+  otherwise the value will be rounded automatically) including milliseconds.
+* ``video`` must be a valid URL using HTTP or HTTPS as its protocol. Note that some games require
+  a video to be included.
+* ``comment`` is optional, but highly encouraged. You can put additional video links in here, if you
+  have multiple Twitch VODs for example.
+* ``splitsio`` is optional. If given, it should be the splits.io ID or a full URL to the splits.
+* ``variables`` contains the variable values for the new run. Some games have mandatory variables.
+  Depending on the variable type, you can give the ID of a pre-defined (i.e. previously submitted
+  by someone) value or submit a new one.
+
+See the [JSON schema](json-schema/run-submit.json) for more details.
+
+##### Example Response
+
+When successful, HTTP status code 201 is returned. The response contains a ``Location`` header
+pointing to the new run, as well as the run as the response body as well.
+
+```json
+{
+  "data": <run>
+}
+```
+
+If something goes wrong, the response will contain a list of problems:
+
+```json
+{
+  "status": 400,
+  "message": "The submitted run does not validate against the schema. See the `errors` attached.",
+  "errors": [
+    "[category] is missing and it is required",
+    "[platform] is missing and it is required",
+    "[times] is missing and it is required"
+  ],
+  "links": [
+    {
+      "rel": "support",
+      "uri": "irc://speedrunslive.com#speedrun.com"
+    },
+    {
+      "rel": "report-issues",
+      "uri": "https://github.com/speedruncom/api/issues"
+    }
+  ]
 }
 ```

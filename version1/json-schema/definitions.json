@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "resource-id": {
+    "type": "string",
+    "pattern": "^[a-z0-9]+$",
+    "maxLength": 50
+  }
+}

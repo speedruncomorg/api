@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+  "properties": {
+    "category": {
+      "$ref": "definitions.json#/resource-id",
+      "required": true
+    },
+    "level": {
+      "$ref": "definitions.json#/resource-id",
+      "required": false
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "required": false
+    },
+    "region": {
+      "$ref": "definitions.json#/resource-id",
+      "required": false
+    },
+    "platform": {
+      "$ref": "definitions.json#/resource-id",
+      "required": true
+    },
+    "verified": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    "times": {
+      "type": "object",
+      "properties": {
+        "realtime": {
+          "type": "number",
+          "required": false
+        },
+        "realtime_noloads": {
+          "type": "number",
+          "required": false
+        },
+        "ingame": {
+          "type": "number",
+          "required": false
+        }
+      },
+      "required": true
+    },
+    "emulated": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    "video": {
+      "type": "string",
+      "required": false,
+      "maxLength": 255
+    },
+    "comment": {
+      "type": "string",
+      "required": false,
+      "maxLength": 2000
+    },
+    "splitsio": {
+      "type": "string",
+      "required": false,
+      "maxLength": 50
+    },
+    "variables": {
+      "type": "object",
+      "required": false,
+      "properties": {},
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["pre-defined", "user-defined"],
+            "required": true
+          },
+          "value": {
+            "type": "string",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}
