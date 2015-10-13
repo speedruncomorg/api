@@ -167,7 +167,7 @@ order by               | Description
 
 This will retrieve a single series, identified by its ID. Instead of the series' ID, you can also
 specify the series' abbreviation. When an abbreviation was found, the API will respond with a redirect
-the the ID-based URL (so ``/api/v1/series/aoe`` will be redirected to ``/api/v1/series/yr4gy141``).
+to the ID-based URL (so ``/api/v1/series/aoe`` will be redirected to ``/api/v1/series/yr4gy141``).
 
 ##### Example Requests
 
