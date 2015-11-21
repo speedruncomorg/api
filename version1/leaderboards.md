@@ -24,7 +24,7 @@ Represented as JSON, a leaderboard looks like this:
   "emulators": null,
   "video-only": false,
   "timing": "ingame",
-  "values": [ ],
+  "values": { },
   "runs": [{
     "place": 1,
     "run": <run>
