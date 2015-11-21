@@ -42,7 +42,7 @@ Represented as JSON, a single run looks like this:
     "uri": "http://www.speedrun.com/api/v1/users/61xymxr9"
   }, {
     "rel": "guest",
-    "id": "Betsruner",
+    "name": "Betsruner",
     "uri": "http://www.speedrun.com/api/v1/guests/Betsruner"
   }],
   "date": "2014-06-01",
