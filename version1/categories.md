@@ -21,7 +21,7 @@ Represented as JSON, a category looks like this:
 {
   "id": "jkh473tf",
   "name": "Any%",
-  "weblink": "http://www.speedrun.com/tww#Anypc",
+  "weblink": "https://www.speedrun.com/tww#Anypc",
   "type": "per-game",
   "rules": "Yada Yada Yada",
   "players": {
@@ -31,16 +31,16 @@ Represented as JSON, a category looks like this:
   "miscellaneous": false,
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/categories/jkh473tf"
+    "uri": "https://www.speedrun.com/api/v1/categories/jkh473tf"
   }, {
     "rel": "game",
-    "uri": "http://www.speedrun.com/api/v1/games/i2grf78a"
+    "uri": "https://www.speedrun.com/api/v1/games/i2grf78a"
   }, {
     "rel": "variables",
-    "uri": "http://www.speedrun.com/api/v1/games/i2grf78a/variables"
+    "uri": "https://www.speedrun.com/api/v1/games/i2grf78a/variables"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?category=jkh473tf"
+    "uri": "https://www.speedrun.com/api/v1/runs?category=jkh473tf"
   }]
 }
 ```
@@ -72,7 +72,7 @@ This will retrieve a single category, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/categories/nxd1rk8q**](http://www.speedrun.com/api/v1/categories/nxd1rk8q) retrieves
+* [**GET /api/v1/categories/nxd1rk8q**](https://www.speedrun.com/api/v1/categories/nxd1rk8q) retrieves
   Any% of GTA Vice City.
 
 ##### Example Response
@@ -104,9 +104,9 @@ order by          | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/categories/xd1m7rd8/variables**](http://www.speedrun.com/api/v1/categories/xd1m7rd8/variables)
+* [**GET /api/v1/categories/xd1m7rd8/variables**](https://www.speedrun.com/api/v1/categories/xd1m7rd8/variables)
   retrieves the variables for Mario Kart 8's "32 Tracks" category.
-* [**GET /api/v1/categories/xd1m7rd8/variables?orderby=mandatory&direction=desc**](http://www.speedrun.com/api/v1/categories/xd1m7rd8/variables?orderby=mandatory&direction=desc)
+* [**GET /api/v1/categories/xd1m7rd8/variables?orderby=mandatory&direction=desc**](https://www.speedrun.com/api/v1/categories/xd1m7rd8/variables?orderby=mandatory&direction=desc)
   retrieves the the same variables as above, but puts mandatory variables before optional ones.
 
 ##### Example Response
@@ -141,9 +141,9 @@ The regular [leaderboard embeds](leaderboards.md#embeds) are available here as w
 
 ##### Example Requests
 
-* [**GET /api/v1/categories/wkpjpzjk/records**](http://www.speedrun.com/api/v1/categories/wkpjpzjk/records)
+* [**GET /api/v1/categories/wkpjpzjk/records**](https://www.speedrun.com/api/v1/categories/wkpjpzjk/records)
   retrieves the first three places for Super Mario World's Any% category.
-* [**GET /api/v1/categories/wdmzzqx2/records**](http://www.speedrun.com/api/v1/categories/wdmzzqx2/records)
+* [**GET /api/v1/categories/wdmzzqx2/records**](https://www.speedrun.com/api/v1/categories/wdmzzqx2/records)
   retrieves the leaderboards (each containing the first three places) of the "Small" category of
   Super Mario World for each of the available levels.
 

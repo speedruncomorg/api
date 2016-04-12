@@ -15,10 +15,10 @@ Represented as JSON, a single guest looks like this:
   "name": "Alex",
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/guests/Alex"
+    "uri": "https://www.speedrun.com/api/v1/guests/Alex"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?guest=Alex"
+    "uri": "https://www.speedrun.com/api/v1/runs?guest=Alex"
   }]
 }
 ```
@@ -29,7 +29,7 @@ This will retrieve a guest, identified by their name. The name is case-insensiti
 
 ##### Example Requests
 
-* [**GET /api/v1/guests/Alex**](http://www.speedrun.com/api/v1/guests/Alex) retrieves someone named
+* [**GET /api/v1/guests/Alex**](https://www.speedrun.com/api/v1/guests/Alex) retrieves someone named
   "Alex".
 
 ##### Example Response
