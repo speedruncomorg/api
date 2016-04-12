@@ -34,7 +34,7 @@ Represented as JSON, a game looks like this:
     "japanese": "\u30b9\u30fc\u30d1\u30fc\u30de\u30ea\u30aa\u30b5\u30f3\u30b7\u30e3\u30a4\u30f3"
   },
   "abbreviation": "sms",
-  "weblink": "http://www.speedrun.com/sms",
+  "weblink": "https://www.speedrun.com/sms",
   "released": 2002,
   "ruleset": {
     "show-milliseconds": false,
@@ -54,53 +54,53 @@ Represented as JSON, a game looks like this:
   "created": "2014-12-07T12:50:20Z",
   "assets": {
     "logo": {
-      "uri": "http://www.speedrun.com/themes/mk64/logo.png",
+      "uri": "https://www.speedrun.com/themes/mk64/logo.png",
       "width": 180,
       "height": 34
     },
     "cover-tiny": {
-      "uri": "http://www.speedrun.com/themes/mk64/cover-32.png",
+      "uri": "https://www.speedrun.com/themes/mk64/cover-32.png",
       "width": 32,
       "height": 45
     },
     "cover-small": {
-      "uri": "http://www.speedrun.com/themes/mk64/cover-64.png",
+      "uri": "https://www.speedrun.com/themes/mk64/cover-64.png",
       "width": 64,
       "height": 90
     },
     "cover-medium": {
-      "uri": "http://www.speedrun.com/themes/mk64/cover-128.png",
+      "uri": "https://www.speedrun.com/themes/mk64/cover-128.png",
       "width": 128,
       "height": 180
     },
     "cover-large": {
-      "uri": "http://www.speedrun.com/themes/mk64/cover-256.png",
+      "uri": "https://www.speedrun.com/themes/mk64/cover-256.png",
       "width": 256,
       "height": 360
     },
     "icon": {
-      "uri": "http://www.speedrun.com/themes/mario_kart/favicon.png",
+      "uri": "https://www.speedrun.com/themes/mario_kart/favicon.png",
       "width": 44,
       "height": 44
     },
     "trophy-1st": {
-      "uri": "http://www.speedrun.com/images/icons/goldtrophy.png",
+      "uri": "https://www.speedrun.com/images/icons/goldtrophy.png",
       "width": 16,
       "height": 16
     },
     "trophy-2nd": {
-      "uri": "http://www.speedrun.com/images/icons/silvertrophy.png",
+      "uri": "https://www.speedrun.com/images/icons/silvertrophy.png",
       "width": 16,
       "height": 16
     },
     "trophy-3rd": {
-      "uri": "http://www.speedrun.com/images/icons/bronzetrophy.png",
+      "uri": "https://www.speedrun.com/images/icons/bronzetrophy.png",
       "width": 16,
       "height": 16
     },
     "trophy-4th": null,
     "background": {
-      "uri": "http://www.speedrun.com/themes/mk64/background.png",
+      "uri": "https://www.speedrun.com/themes/mk64/background.png",
       "width": 151,
       "height": 195
     },
@@ -108,25 +108,25 @@ Represented as JSON, a game looks like this:
   },
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4"
+    "uri": "https://www.speedrun.com/api/v1/games/1kgr75w4"
   }, {
     "rel": "series",
-    "uri": "http://www.speedrun.com/api/v1/series/rv7emz49"
+    "uri": "https://www.speedrun.com/api/v1/series/rv7emz49"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?game=1kgr75w4"
+    "uri": "https://www.speedrun.com/api/v1/runs?game=1kgr75w4"
   }, {
     "rel": "levels",
-    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/levels"
+    "uri": "https://www.speedrun.com/api/v1/games/1kgr75w4/levels"
   }, {
     "rel": "categories",
-    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/categories"
+    "uri": "https://www.speedrun.com/api/v1/games/1kgr75w4/categories"
   }, {
     "rel": "variables",
-    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/variables"
+    "uri": "https://www.speedrun.com/api/v1/games/1kgr75w4/variables"
   }, {
     "rel": "romhacks",
-    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/romhacks"
+    "uri": "https://www.speedrun.com/api/v1/games/1kgr75w4/romhacks"
   }]
 }
 ```
@@ -176,7 +176,7 @@ Games fetched in bulk mode look like this:
     "japanese": "\u30b9\u30fc\u30d1\u30fc\u30de\u30ea\u30aa\u30b5\u30f3\u30b7\u30e3\u30a4\u30f3"
   },
   "abbreviation": "sms",
-  "weblink": "http://www.speedrun.com/sms"
+  "weblink": "https://www.speedrun.com/sms"
 }
 ```
 
@@ -230,15 +230,15 @@ order by               | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/games**](http://www.speedrun.com/api/v1/games) gets all games
-* [**GET /api/v1/games?orderby=created&direction=desc**](http://www.speedrun.com/api/v1/games?orderby=created&direction=desc)
+* [**GET /api/v1/games**](https://www.speedrun.com/api/v1/games) gets all games
+* [**GET /api/v1/games?orderby=created&direction=desc**](https://www.speedrun.com/api/v1/games?orderby=created&direction=desc)
   gets all games, newest first.
-* [**GET /api/v1/games?_bulk=yes&max=1000**](http://www.speedrun.com/api/v1/games?_bulk=yes&max=1000)
+* [**GET /api/v1/games?_bulk=yes&max=1000**](https://www.speedrun.com/api/v1/games?_bulk=yes&max=1000)
   gets all games with their smaller JSON representations
-* [**GET /api/v1/games?name=Super%20Mario%20Bros**](http://www.speedrun.com/api/v1/games?name=Super%20Mario%20Bros) searches for
+* [**GET /api/v1/games?name=Super%20Mario%20Bros**](https://www.speedrun.com/api/v1/games?name=Super%20Mario%20Bros) searches for
   games with "Super Mario Bros" in their title; because name searches sort by similarity, the first
   result is "Super Mario Bros." (on the NES).
-* [**GET /api/v1/games?region=mol4z19n&released=1999**](http://www.speedrun.com/api/v1/games?region=mol4z19n&released=1999)
+* [**GET /api/v1/games?region=mol4z19n&released=1999**](https://www.speedrun.com/api/v1/games?region=mol4z19n&released=1999)
   searches for all games on the iQue (region ``mol4z19n``) that have been released in 1999.
 
 ##### Example Response
@@ -265,9 +265,9 @@ Note that abbreviations can change, so API clients should rely on the ID if poss
 
 ##### Example Requests
 
-* [**GET /api/v1/games/v1pxjz68**](http://www.speedrun.com/api/v1/games/v1pxjz68) retrieves Super
+* [**GET /api/v1/games/v1pxjz68**](https://www.speedrun.com/api/v1/games/v1pxjz68) retrieves Super
   Mario Sunshine.
-* [**GET /api/v1/games/sms**](http://www.speedrun.com/api/v1/games/sms) redirects to the URL above.
+* [**GET /api/v1/games/sms**](https://www.speedrun.com/api/v1/games/sms) redirects to the URL above.
 
 ##### Example Response
 
@@ -298,9 +298,9 @@ order by          | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/games/v1pxjz68/categories**](http://www.speedrun.com/api/v1/games/v1pxjz68/categories)
+* [**GET /api/v1/games/v1pxjz68/categories**](https://www.speedrun.com/api/v1/games/v1pxjz68/categories)
   retrieves the categories of Super Mario Sunshine.
-* [**GET /api/v1/games/v1pxjz68/categories?miscellaneous=no**](http://www.speedrun.com/api/v1/games/v1pxjz68/categories?miscellaneous=no)
+* [**GET /api/v1/games/v1pxjz68/categories?miscellaneous=no**](https://www.speedrun.com/api/v1/games/v1pxjz68/categories?miscellaneous=no)
   retrieves only the primary categories of Super Mario Sunshine.
 
 ##### Example Response
@@ -332,7 +332,7 @@ order by          | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/games/v1pxjz68/levels**](http://www.speedrun.com/api/v1/games/v1pxjz68/levels) retrieves
+* [**GET /api/v1/games/v1pxjz68/levels**](https://www.speedrun.com/api/v1/games/v1pxjz68/levels) retrieves
   the levels of Super Mario Sunshine.
 
 ##### Example Response
@@ -367,7 +367,7 @@ order by          | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/games/kyd4pxde/variables**](http://www.speedrun.com/api/v1/games/kyd4pxde/variables)
+* [**GET /api/v1/games/kyd4pxde/variables**](https://www.speedrun.com/api/v1/games/kyd4pxde/variables)
   retrieves all variables defined for Mario Kart 8.
 
 ##### Example Response
@@ -394,7 +394,7 @@ the ``romhack`` parameter, which doesn't make sense here.
 
 ##### Example Requests
 
-* [**GET /api/v1/games/pd0wq31e/romhacks**](http://www.speedrun.com/api/v1/games/pd0wq31e/romhacks)
+* [**GET /api/v1/games/pd0wq31e/romhacks**](https://www.speedrun.com/api/v1/games/pd0wq31e/romhacks)
   retrieves all Super Mario World romhacks.
 
 ##### Example Response
@@ -429,7 +429,7 @@ The regular [leaderboard embeds](leaderboards.md#embeds) are available here as w
 
 ##### Example Requests
 
-* [**GET /api/v1/games/pd0wq31e/records?miscellaneous=no&scope=full-game**](http://www.speedrun.com/api/v1/games/pd0wq31e/records?miscellaneous=no&scope=full-game)
+* [**GET /api/v1/games/pd0wq31e/records?miscellaneous=no&scope=full-game**](https://www.speedrun.com/api/v1/games/pd0wq31e/records?miscellaneous=no&scope=full-game)
   retrieves the leaderboards for all non-misc full-game categories in Super Mario World.
 
 ##### Example Response

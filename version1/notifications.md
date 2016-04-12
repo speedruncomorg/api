@@ -18,14 +18,14 @@ Represented as JSON, a single notification looks like this:
   "text": "Lighnat0r likes your post.",
   "item": {
     "rel": "post",
-    "uri": "http://www.speedrun.com/post/ptv8h"
+    "uri": "https://www.speedrun.com/post/ptv8h"
   },
   "links": [{
     "rel": "run",
-    "uri": "http://www.speedrun.com/api/v1/runs/1wzpqgyq"
+    "uri": "https://www.speedrun.com/api/v1/runs/1wzpqgyq"
   }, {
     "rel": "game",
-    "uri": "http://www.speedrun.com/api/v1/games/nj1ne1p4"
+    "uri": "https://www.speedrun.com/api/v1/games/nj1ne1p4"
   }]
 }
 ```

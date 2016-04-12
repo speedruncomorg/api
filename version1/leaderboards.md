@@ -15,7 +15,7 @@ Represented as JSON, a leaderboard looks like this:
 
 ```json
 {
-  "weblink": "http://www.speedrun.com/.hackInfection#Any",
+  "weblink": "https://www.speedrun.com/.hackInfection#Any",
   "game": "k6qrzm1g",
   "category": "jdr3y0d6",
   "level": null,
@@ -40,10 +40,10 @@ Represented as JSON, a leaderboard looks like this:
   }],
   "links": [{
     "rel": "game",
-    "uri": "http://www.speedrun.com/api/v1/games/k6qrzm1g"
+    "uri": "https://www.speedrun.com/api/v1/games/k6qrzm1g"
   }, {
     "rel": "category",
-    "uri": "http://www.speedrun.com/api/v1/categories/jdr3y0d6"
+    "uri": "https://www.speedrun.com/api/v1/categories/jdr3y0d6"
   }]
 }
 ```
@@ -108,13 +108,13 @@ value ID as the value (for example, ``?var-m5ly6jn4=p12z471x``).
 
 ##### Example Requests
 
-* [**GET /api/v1/leaderboards/xldev513/category/rklg3rdn**](http://www.speedrun.com/api/v1/leaderboards/xldev513/category/rklg3rdn)
+* [**GET /api/v1/leaderboards/xldev513/category/rklg3rdn**](https://www.speedrun.com/api/v1/leaderboards/xldev513/category/rklg3rdn)
   get the "All Campaigns" leaderboard for Age of Empires II.
-* [**GET /api/v1/leaderboards/n4d7jzd7/category/w20p7jkn?timing=realtime**](http://www.speedrun.com/api/v1/leaderboards/n4d7jzd7/category/w20p7jkn?timing=realtime)
+* [**GET /api/v1/leaderboards/n4d7jzd7/category/w20p7jkn?timing=realtime**](https://www.speedrun.com/api/v1/leaderboards/n4d7jzd7/category/w20p7jkn?timing=realtime)
   get the "Any%" leaderboard for Skyrim, with runs sorted by realtime.
-* [**GET /api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv**](http://www.speedrun.com/api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv)
+* [**GET /api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv**](https://www.speedrun.com/api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv)
   get the "Any%" leaderboard for GTA Vice City Chaos%, filtered by Version (1.02) and Difficulty (Easy).
-* [**GET /api/v1/leaderboards/o1y9wo6q/category/7dgrrxk4?top=1&embed=players**](http://www.speedrun.com/api/v1/leaderboards/o1y9wo6q/category/7dgrrxk4?top=1&embed=players)
+* [**GET /api/v1/leaderboards/o1y9wo6q/category/7dgrrxk4?top=1&embed=players**](https://www.speedrun.com/api/v1/leaderboards/o1y9wo6q/category/7dgrrxk4?top=1&embed=players)
   gets the current World Record for 70 Stars in Super Mario 64.
 
 ##### Example Response
@@ -134,7 +134,7 @@ as expected and redirect to the ID-based URLs).
 
 ##### Example Requests
 
-* [**GET /api/v1/leaderboards/xldev513/level/rdqz4kdx/xk9le4k0**](http://www.speedrun.com/api/v1/leaderboards/xldev513/level/rdqz4kdx/xk9le4k0)
+* [**GET /api/v1/leaderboards/xldev513/level/rdqz4kdx/xk9le4k0**](https://www.speedrun.com/api/v1/leaderboards/xldev513/level/rdqz4kdx/xk9le4k0)
   retrieves the leaderboard for the "William Wallace: Marching and Fighting" level of Age of Empires 2,
   done in the "Standard" category.
 

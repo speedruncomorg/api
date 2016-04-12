@@ -18,19 +18,19 @@ Represented as JSON, a single run looks like this:
 ```json
 {
   "id": "90y6pm7e",
-  "weblink": "http://www.speedrun.com/run/90y6pm7e",
+  "weblink": "https://www.speedrun.com/run/90y6pm7e",
   "game": "29d30dlp",
   "level": null,
   "category": "nxd1rk8q",
   "videos": {
-    "text": "Part 1: http://youtube.com/videoidhere -- HYPE!!",
+    "text": "Part 1: https://youtube.com/videoidhere -- HYPE!!",
     "links": [{
-      "uri": "http://youtube.com/videoidhere"
+      "uri": "https://youtube.com/videoidhere"
     }, {
-      "uri": "http://youtube.com/anothervideo"
+      "uri": "https://youtube.com/anothervideo"
     }]
   },
-  "comment": "Lost 35 seconds on bridge swap, plus a bunch of time elsewhere. Part 2 is http://youtube.com/anothervideo",
+  "comment": "Lost 35 seconds on bridge swap, plus a bunch of time elsewhere. Part 2 is https://youtube.com/anothervideo",
   "status": {
     "status": "verified",
     "examiner": "61xymxr9",
@@ -39,11 +39,11 @@ Represented as JSON, a single run looks like this:
   "players": [{
     "rel": "user",
     "id": "61xymxr9",
-    "uri": "http://www.speedrun.com/api/v1/users/61xymxr9"
+    "uri": "https://www.speedrun.com/api/v1/users/61xymxr9"
   }, {
     "rel": "guest",
     "name": "Betsruner",
-    "uri": "http://www.speedrun.com/api/v1/guests/Betsruner"
+    "uri": "https://www.speedrun.com/api/v1/guests/Betsruner"
   }],
   "date": "2014-06-01",
   "submitted": null,
@@ -71,22 +71,22 @@ Represented as JSON, a single run looks like this:
   },
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/runs/90y6pm7e"
+    "uri": "https://www.speedrun.com/api/v1/runs/90y6pm7e"
   }, {
     "rel": "game",
-    "uri": "http://www.speedrun.com/api/v1/games/29d30dlp"
+    "uri": "https://www.speedrun.com/api/v1/games/29d30dlp"
   }, {
     "rel": "category",
-    "uri": "http://www.speedrun.com/api/v1/categories/nxd1rk8q"
+    "uri": "https://www.speedrun.com/api/v1/categories/nxd1rk8q"
   }, {
     "rel": "level",
-    "uri": "http://www.speedrun.com/api/v1/levels/hhzd4bym"
+    "uri": "https://www.speedrun.com/api/v1/levels/hhzd4bym"
   }, {
     "rel": "platform",
-    "uri": "http://www.speedrun.com/api/v1/platforms/rdjq4vwe"
+    "uri": "https://www.speedrun.com/api/v1/platforms/rdjq4vwe"
   }, {
     "rel": "examiner",
-    "uri": "http://www.speedrun.com/api/v1/users/61xymxr9"
+    "uri": "https://www.speedrun.com/api/v1/users/61xymxr9"
   }]
 }
 ```
@@ -202,14 +202,14 @@ order by            | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/runs**](http://www.speedrun.com/api/v1/runs) gets all runs
-* [**GET /api/v1/runs?status=verified&orderby=verify-date&direction=desc**](http://www.speedrun.com/api/v1/runs?status=verified&orderby=verify-date&direction=desc)
+* [**GET /api/v1/runs**](https://www.speedrun.com/api/v1/runs) gets all runs
+* [**GET /api/v1/runs?status=verified&orderby=verify-date&direction=desc**](https://www.speedrun.com/api/v1/runs?status=verified&orderby=verify-date&direction=desc)
   gets all newly verified runs
-* [**GET /api/v1/runs?status=new&orderby=submitted&direction=desc**](http://www.speedrun.com/api/v1/runs?status=new&orderby=submitted&direction=desc)
+* [**GET /api/v1/runs?status=new&orderby=submitted&direction=desc**](https://www.speedrun.com/api/v1/runs?status=new&orderby=submitted&direction=desc)
   gets the newest runs (based on the submit date, not the run date)
-* [**GET /api/v1/runs?guest=Alex**](http://www.speedrun.com/api/v1/runs?guest=Alex) searches for
+* [**GET /api/v1/runs?guest=Alex**](https://www.speedrun.com/api/v1/runs?guest=Alex) searches for
   all runs done by someone named "Alex" that has no speedrun.com account.
-* [**GET /api/v1/runs?emulated=yes&examiner=wzx7q875**](http://www.speedrun.com/api/v1/runs?emulated=yes&examiner=wzx7q875)
+* [**GET /api/v1/runs?emulated=yes&examiner=wzx7q875**](https://www.speedrun.com/api/v1/runs?emulated=yes&examiner=wzx7q875)
   searches for all runs done via emulator that have been examined by Pac.
 
 ##### Example Response
@@ -232,7 +232,7 @@ This will retrieve a single run, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/runs/90y6pm7e**](http://www.speedrun.com/api/v1/runs/90y6pm7e) retrieves m00nchile's
+* [**GET /api/v1/runs/90y6pm7e**](https://www.speedrun.com/api/v1/runs/90y6pm7e) retrieves m00nchile's
   GTA VC run.
 
 ##### Example Response
