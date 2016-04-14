@@ -8,19 +8,16 @@
 * [GET /games/{id}/categories](#get-gamesidcategories)
 * [GET /games/{id}/levels](#get-gamesidlevels)
 * [GET /games/{id}/variables](#get-gamesidvariables)
-* [GET /games/{id}/romhacks](#get-gamesidromhacks)
+* [GET /games/{id}/derived-games](#get-gamesidderived-games)
 * [GET /games/{id}/records](#get-gamesidrecords)
 
 Games are the things [users](users.md) do speedruns in. Games are associated with [regions](regions.md)
-(US, Europe, ...), [platforms](platforms.md) (consoles, handhelds, ...), [categories](categories.md),
-[levels](levels.md) and [custom variables](variables.md) (like speed=50/100/150cc in Mario Kart
-games).
+(US, Europe, ...), [platforms](platforms.md) (consoles, handhelds, ...), [genres](genres.md),
+[engines](engines.md), [developers](developers.md), [game types](gametypes.md), [publishers](publishers.md),
+[categories](categories.md), [levels](levels.md) and [custom variables](variables.md)
+(like speed=50/100/150cc in Mario Kart games).
 
-Each game belongs to a [series](series.md), even though many games technically are not part of
-"their own" series and are therefore categorized in the "Other" series.
-
-Games can have romhacks, which also have runs. Because romhacks and games are so similar, they both
-appear as games within the API, just having a ``romhack`` field with either ``true`` or ``false``.
+Games that are not part of a [series](series.md) are categorized in the "N/A" series for backwards compatibility.
 
 ### Structure
 
@@ -45,8 +42,13 @@ Represented as JSON, a game looks like this:
     "emulators-allowed": false
   },
   "romhack": false,
+  "gametypes": [ ],
   "platforms": ["039or978", "hdzate15"],
   "regions": ["hdz48alk", "hdz1hdwo", "9uhjgcgg"],
+  "genres": [ ],
+  "engines": [ ],
+  "developers": [ ],
+  "publishers": [ ],
   "moderators": {
     "wzx7q875": "moderator",
     "zzb12med": "super-moderator"
@@ -110,9 +112,6 @@ Represented as JSON, a game looks like this:
     "rel": "self",
     "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4"
   }, {
-    "rel": "series",
-    "uri": "http://www.speedrun.com/api/v1/series/rv7emz49"
-  }, {
     "rel": "runs",
     "uri": "http://www.speedrun.com/api/v1/runs?game=1kgr75w4"
   }, {
@@ -125,8 +124,23 @@ Represented as JSON, a game looks like this:
     "rel": "variables",
     "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/variables"
   }, {
+    "rel": "records",
+    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/records"
+  }, {
+    "rel": "series",
+    "uri": "http://www.speedrun.com/api/v1/series/rv7emz49"
+  }, {
+    "rel": "base-game",
+    "uri": "http://www.speedrun.com/api/v1/games/29d30dlp"
+  }, {
+    "rel": "derived-games",
+    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/derived-games"
+  }, {
     "rel": "romhacks",
-    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/romhacks"
+    "uri": "http://www.speedrun.com/api/v1/games/1kgr75w4/derived-games"
+  }, {
+    "rel": "leaderboard",
+    "uri": "http://www.speedrun.com/api/v1/leaderboards/1kgr75w4/category/n2y3r8do"
   }]
 }
 ```
@@ -144,8 +158,14 @@ Things to note:
 * ``ruleset.run-times`` is a list of times that can/should be given for any run of that game and
   can be contain any combination of ``realtime``, ``realtime_noloads`` and ``ingame``. The
   corresponding ``default-time`` determines which is the primary one.
+* ``romhack`` is a legacy value that has been superceded by ``gametypes``.
+* ``gametypes`` is a list of game types IDs set for the game. This list can be empty.
 * ``platforms`` is a list of platform IDs the game can be played on. This list can be empty.
 * ``regions`` is a list of region IDs the game is available in. This list can be empty.
+* ``genres`` is a list of genre IDs set for the game. This list can be empty.
+* ``engines`` is a list of engine IDs set for the game. This list can be empty.
+* ``developers`` is a list of developer IDs set for the game. This list can be empty.
+* ``publishers`` is a list of publisher IDs set for the game. This list can be empty.
 * ``moderators`` is a mapping of user IDs to their roles within the game. Possible roles are
   ``moderator`` and ``super-moderator`` (super moderators can appoint other users as moderators).
 * ``assets`` are links to images that are used for that game on speedrun.com. Except for
@@ -156,6 +176,10 @@ Things to note:
   API. For those games, only the regular images are returned.
 
   ``width`` and ``height`` are pixel values.
+
+* ``links.base-game`` is only returned for games that have a base game set.
+* ``links.romhacks`` is a legacy value. New code should use ``derived-games`` instead.
+* ``links.series`` can appear multiple times, as games can be in multiple series.
 
 ### Bulk Access
 
@@ -191,8 +215,13 @@ You can [embed](embedding.md) the following resources into a game:
 * ``levels`` will embed all levels defined for the game.
 * ``categories`` will embed *all* defined categories for the game.
 * ``moderators`` will embed the moderators as full user resources.
+* ``gametypes`` will embed all assigned game types.
 * ``platforms`` will embed all assigned platforms.
 * ``regions`` will embed all assigned regions.
+* ``genres`` will embed all assigned genres.
+* ``engines`` will embed all assigned engines.
+* ``developers`` will embed all assigned developers.
+* ``publishers`` will embed all assigned publishers.
 * ``variables`` will embed *all* defined variables for the game.
 
 Again, remember: embedding is disabled in bulk mode.
@@ -206,10 +235,15 @@ Query Parameter  | Type   | Description
 ``name``         | string | when given, performs a fuzzy search across game names and abbreviations
 ``abbreviation`` | string | when given, performs an exact-match search for this abbreviation
 ``released``     | int    | when given, restricts to games released in that year
+``gametype``     | string | game type ID; when given, restricts to that game type
 ``platform``     | string | platform ID; when given, restricts to that platform
 ``region``       | string | region ID; when given, restricts to that region
+``genre``        | string | genre ID; when given, restricts to that genre
+``engine``       | string | engine ID; when given, restricts to that engine
+``developer``    | string | developer ID; when given, restricts to that developer
+``publisher``    | string | publisher ID; when given, restricts to that publisher
 ``moderator``    | string | moderator ID; when given, only games moderated by that user will be returned
-``romhack``      | bool   | whether or not to include romhacks (if this parameter is not set, romhacks are included; if it is set to a true value, *only* romhacks will be returned, otherwise only non-romhacks are returned)
+``romhack``      | bool   | legacy parameter, do not use this in new code; whether or not to include games with game types (if this parameter is not set, game types are included; if it is set to a true value, *only* games with game types will be returned, otherwise only games without game types are returned)
 ``_bulk``        | bool   | enable [bulk access](#bulkaccess)
 
 Note that giving invalid values for ``platform``, ``region`` or ``moderator`` will result in an
@@ -384,18 +418,20 @@ order by          | Description
 }
 ```
 
-### GET /games/{id}/romhacks
+### GET /games/{id}/derived-games
 
-This will retrieve all romhacks of a given game (the ``id`` can be either the game ID or its
-abbreviation). Except for belonging to a game instead of a series, romhacks are identical to games.
+This will retrieve all games that have the given game (the ``id`` can be either the game ID or its
+abbreviation) set as their base game.
 
 The same filtering/sorting options as with ``GET /games`` apply to this resource as well, except for
 the ``romhack`` parameter, which doesn't make sense here.
 
+``GET /games/{id}/romhacks`` is an alias for backwards compatibility.
+
 ##### Example Requests
 
-* [**GET /api/v1/games/pd0wq31e/romhacks**](http://www.speedrun.com/api/v1/games/pd0wq31e/romhacks)
-  retrieves all Super Mario World romhacks.
+* [**GET /api/v1/games/pd0wq31e/derived-games**](http://www.speedrun.com/api/v1/games/pd0wq31e/derived-games)
+  retrieves all games derived from Super Mario World.
 
 ##### Example Response
 
