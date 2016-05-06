@@ -1,6 +1,6 @@
 # Throttling
 
-To prevent excessive crawling of the data we make available and to insure a good overall performance,
+To prevent excessive crawling of the data we make available and to ensure a good overall performance,
 requests to the API are subject to rate limits.
 
 Each IP is allowed to perform **100 requests per minute**. We observe the usage and user requirements
