@@ -32,12 +32,25 @@ Represented as JSON, a single variable looks like this:
   "user-defined": false,
   "obsoletes": false,
   "values": {
-    "choices": {
-      "zdbx1h88": "150cc",
-      "k1omees9": "200cc"
+    "values": {
+      "zdbx1h88": {
+        "label": "150cc",
+        "rules": "do not cheat",
+        "flags": {
+          "miscellaneous": false
+        }
+      },
+      "k1omees9": {
+        "label": "200cc",
+        "rules": "do not cheat",
+        "flags": {
+          "miscellaneous": false
+        }
+      }
     },
     "default": "zdbx1h88"
   },
+  "is-subcategory": true,
   "links": [{
     "rel": "self",
     "uri": "http://www.speedrun.com/api/v1/variables/wzx7q875"
@@ -71,10 +84,17 @@ There are quite a few things that need a couple words of explanation.
 * When ``obsoletes`` is ``true``, the variable is taken into consideration when collecting runs for
   the leaderboard.
 
-* ``values`` contains the possible ``choices`` as well as the default choice.
+* ``values`` contains the possible values as well as the default one.
 
-  * ``choices`` is a map from value ID to value.
+  * ``values`` contains the defined values for the variable. Each value has a ``label`` and, if
+    the category is a subcategory, ``rules`` and a set of flags, of which ``miscellaneous`` is the
+    only one defined right now. For non-subcategory values, rules and flags are not defined.
   * ``default`` is the value ID to be used as a default. This field can be ``null``.
+
+* ``is-subcategory`` is primarily a property that controls the user interface for selecting
+  leaderboards on speedrun.com. Even if a variable is displayed as a sub category, you still need
+  a regular [category](categories.md) to define a leaderboard. But you can take this as a hint on
+  how this values should be handled.
 
 ### GET /variables/{id}
 
