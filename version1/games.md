@@ -28,7 +28,8 @@ Represented as JSON, a game looks like this:
   "id": "1kgr75w4",
   "names": {
     "international": "Super Mario Sunshine",
-    "japanese": "\u30b9\u30fc\u30d1\u30fc\u30de\u30ea\u30aa\u30b5\u30f3\u30b7\u30e3\u30a4\u30f3"
+    "japanese": "\u30b9\u30fc\u30d1\u30fc\u30de\u30ea\u30aa\u30b5\u30f3\u30b7\u30e3\u30a4\u30f3",
+    "twitch": "Super Mario Sunshine"
   },
   "abbreviation": "sms",
   "weblink": "http://www.speedrun.com/sms",
