@@ -34,6 +34,7 @@ Represented as JSON, a game looks like this:
   "abbreviation": "sms",
   "weblink": "http://www.speedrun.com/sms",
   "released": 2002,
+  "released": "2002-08-26",
   "ruleset": {
     "show-milliseconds": false,
     "require-verification": true,
@@ -156,6 +157,7 @@ Things to note:
   use the provided ``weblink``. We might change the URL scheme on the frontend at any time without
   prior notice!
 * The japanese title can be ``null``.
+* ``released`` is a legacy value that has been superceded by ``release-date``.
 * ``ruleset.run-times`` is a list of times that can/should be given for any run of that game and
   can be contain any combination of ``realtime``, ``realtime_noloads`` and ``ingame``. The
   corresponding ``default-time`` determines which is the primary one.
@@ -259,7 +261,7 @@ order by               | Description
 ``name.int`` (default) | sorts alphanumerically by the international name
 ``name.jap``           | sorts alphanumerically by the japanese name
 ``abbreviation``       | sorts alphanumerically by the abbreviation
-``released``           | sorts by the year the game was released in
+``released``           | sorts by the release date
 ``created``            | sorts by the date when the game was added on speedrun.com
 ``similarity``         | sorts by string similarity; *only available when searching games by name*; *default when searching by name*
 
