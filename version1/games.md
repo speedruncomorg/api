@@ -34,7 +34,7 @@ Represented as JSON, a game looks like this:
   "abbreviation": "sms",
   "weblink": "http://www.speedrun.com/sms",
   "released": 2002,
-  "released": "2002-08-26",
+  "release-date": "2002-08-26",
   "ruleset": {
     "show-milliseconds": false,
     "require-verification": true,
