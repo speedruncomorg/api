@@ -55,7 +55,7 @@ Represented as JSON, a category looks like this:
 * The ``weblink`` is the URL to the category leaderboard on the website. Note that for ``per-level``
   categories, the ``weblink`` only points to the game page, because the link depends on the chosen
   level. *However*, when fetching categories in the context of a level (e.g. by requesting
-  ``/api/v1/levels/<leve id>/categories``), the ``weblink`` will be set to the category leaderboard
+  ``/api/v1/levels/<level id>/categories``), the ``weblink`` will be set to the category leaderboard
   for that level.
 
 ### Embeds
