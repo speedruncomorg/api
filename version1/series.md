@@ -184,19 +184,12 @@ to the ID-based URL (so ``/api/v1/series/aoe`` will be redirected to ``/api/v1/s
 
 ### GET /series/{id}/games
 
-This will retrieve all games (excluding romhacks) of a given series (the ID can be either the actual
-series ID or its abbreviation). You can filter the result by the same attributes as you can filter
-the [complete game list](games.md#get-games), except that you cannot use the ``romhack`` parameter[1].
+This will retrieve all games of a given series (the ID can be either the actual series ID or its
+abbreviation). You can filter the result by the same attributes as you can filter the [complete game list](games.md#get-games).
 
 You can also use the sorting options as for the complete game list.
 
 As with the complete game list, bulk mode is available on this resource as well.
-
-[1] Why? Because this resource is about representing the *hierarchy* between a series and the games
-that belong to it; from a hierarchy standpoint, romhacks are children of games and so you need to
-ask a game for its children (= romhacks). The complete game list, however, is all about getting a
-flat list of playable things that have runs, which is why romhacks are included in there and can be
-filtered by.
 
 ##### Example Requests
 
