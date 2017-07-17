@@ -33,8 +33,9 @@ name and possibly the version number, like ``my-bot/4.20``.
 
 *The following implementations are not part of the official API. For any bugs etc. please contact their respective creators.*
 
-* [SpeedrunComSharp](https://github.com/LiveSplit/SpeedrunComSharp) - A .NET Library that can be used to interact with the speedrun.com API.
-* [srapi](https://github.com/sgt-kabukiman/srapi) - A relatively bare-bone API client written in Go.
+* [SpeedrunComSharp](https://github.com/LiveSplit/SpeedrunComSharp) — A .NET Library that can be used to interact with the speedrun.com API.
+* [srapi](https://github.com/sgt-kabukiman/srapi) — A relatively bare-bone API client written in Go.
+* [srcomapi](https://github.com/blha303/srcomapi) — A Python library.
 
 ## Content License
 
