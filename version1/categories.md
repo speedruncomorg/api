@@ -48,7 +48,7 @@ Represented as JSON, a category looks like this:
 * ``id`` values can vary in length.
 * As mentioned earlier, ``type`` can be ``per-game`` or ``per-level``.
 * ``rules`` is a freeform text with some basic, undocumented speedrun.com markup.
-* ``players`` is the number of participants for runs in this category. At the moment, there are
+* ``players`` is the number of participants per run in this category. At the moment, there are
   two possible ``type`` values: ``exactly`` and ``up-to``, which should be self-explanatory.
 * ``miscellaneous`` categories are usually not shown directly on the leaderboards, but are otherwise
   nothing special.
