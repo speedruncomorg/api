@@ -53,10 +53,10 @@ Represented as JSON, a single variable looks like this:
   "is-subcategory": true,
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/variables/wzx7q875"
+    "uri": "https://www.speedrun.com/api/v1/variables/wzx7q875"
   }, {
     "rel": "game",
-    "uri": "http://www.speedrun.com/api/v1/games/zate4l10"
+    "uri": "https://www.speedrun.com/api/v1/games/zate4l10"
   }]
 }
 ```
@@ -102,7 +102,7 @@ This will retrieve a single variable, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/variables/ylpm6vlg**](http://www.speedrun.com/api/v1/variables/ylpm6vlg) retrieves the
+* [**GET /api/v1/variables/ylpm6vlg**](https://www.speedrun.com/api/v1/variables/ylpm6vlg) retrieves the
   speed variable for Mario Kart 8.
 
 ##### Example Response

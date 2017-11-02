@@ -24,7 +24,7 @@ Represented as JSON, a series looks like this:
     "japanese": ""
   },
   "abbreviation": "gta",
-  "weblink": "http://www.speedrun.com/gta",
+  "weblink": "https://www.speedrun.com/gta",
   "moderators": {
     "wzx7q875": "moderator",
     "zzb12med": "super-moderator"
@@ -32,53 +32,53 @@ Represented as JSON, a series looks like this:
   "created": "2014-12-07T12:50:20Z",
   "assets": {
     "logo": {
-      "uri": "http://www.speedrun.com/themes/mk64/logo.png",
+      "uri": "https://www.speedrun.com/themes/mk64/logo.png",
       "width": 180,
       "height": 34
     },
     "cover-tiny": {
-      "uri": "http://www.speedrun.com/themes/mk64/cover-32.png",
+      "uri": "https://www.speedrun.com/themes/mk64/cover-32.png",
       "width": 32,
       "height": 45
     },
     "cover-small": {
-      "uri": "http://www.speedrun.com/themes/mk64/cover-64.png",
+      "uri": "https://www.speedrun.com/themes/mk64/cover-64.png",
       "width": 64,
       "height": 90
     },
     "cover-medium": {
-      "uri": "http://www.speedrun.com/themes/mk64/cover-128.png",
+      "uri": "https://www.speedrun.com/themes/mk64/cover-128.png",
       "width": 128,
       "height": 180
     },
     "cover-large": {
-      "uri": "http://www.speedrun.com/themes/mk64/cover-256.png",
+      "uri": "https://www.speedrun.com/themes/mk64/cover-256.png",
       "width": 256,
       "height": 360
     },
     "icon": {
-      "uri": "http://www.speedrun.com/themes/mario_kart/favicon.png",
+      "uri": "https://www.speedrun.com/themes/mario_kart/favicon.png",
       "width": 44,
       "height": 44
     },
     "trophy-1st": {
-      "uri": "http://www.speedrun.com/images/icons/goldtrophy.png",
+      "uri": "https://www.speedrun.com/images/icons/goldtrophy.png",
       "width": 16,
       "height": 16
     },
     "trophy-2nd": {
-      "uri": "http://www.speedrun.com/images/icons/silvertrophy.png",
+      "uri": "https://www.speedrun.com/images/icons/silvertrophy.png",
       "width": 16,
       "height": 16
     },
     "trophy-3rd": {
-      "uri": "http://www.speedrun.com/images/icons/bronzetrophy.png",
+      "uri": "https://www.speedrun.com/images/icons/bronzetrophy.png",
       "width": 16,
       "height": 16
     },
     "trophy-4th": null,
     "background": {
-      "uri": "http://www.speedrun.com/themes/mk64/background.png",
+      "uri": "https://www.speedrun.com/themes/mk64/background.png",
       "width": 151,
       "height": 195
     },
@@ -86,10 +86,10 @@ Represented as JSON, a series looks like this:
   },
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/series/wnlod5vz"
+    "uri": "https://www.speedrun.com/api/v1/series/wnlod5vz"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/series/wnlod5vz/games"
+    "uri": "https://www.speedrun.com/api/v1/series/wnlod5vz/games"
   }]
 }
 ```
@@ -143,10 +143,10 @@ order by               | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/series**](http://www.speedrun.com/api/v1/series) gets all series
-* [**GET /api/v1/series?orderby=created&direction=desc**](http://www.speedrun.com/api/v1/series?orderby=created&direction=desc)
+* [**GET /api/v1/series**](https://www.speedrun.com/api/v1/series) gets all series
+* [**GET /api/v1/series?orderby=created&direction=desc**](https://www.speedrun.com/api/v1/series?orderby=created&direction=desc)
   gets all series, newest first.
-* [**GET /api/v1/series?name=mario**](http://www.speedrun.com/api/v1/series?name=mario) searches for
+* [**GET /api/v1/series?name=mario**](https://www.speedrun.com/api/v1/series?name=mario) searches for
   Mario series
 
 ##### Example Response
@@ -171,7 +171,7 @@ to the ID-based URL (so ``/api/v1/series/aoe`` will be redirected to ``/api/v1/s
 
 ##### Example Requests
 
-* [**GET /api/v1/series/rv7emz49**](http://www.speedrun.com/api/v1/series/rv7emz49) retrieves the
+* [**GET /api/v1/series/rv7emz49**](https://www.speedrun.com/api/v1/series/rv7emz49) retrieves the
   Super Mario series.
 
 ##### Example Response
@@ -193,11 +193,11 @@ As with the complete game list, bulk mode is available on this resource as well.
 
 ##### Example Requests
 
-* [**GET /api/v1/series/rv7emz49/games**](http://www.speedrun.com/api/v1/series/rv7emz49/games)
+* [**GET /api/v1/series/rv7emz49/games**](https://www.speedrun.com/api/v1/series/rv7emz49/games)
   retrieves the games of the Super Mario series.
-* [**GET /api/v1/series/rv7emz49/games?released=2013**](http://www.speedrun.com/api/v1/series/rv7emz49/games?released=2013)
+* [**GET /api/v1/series/rv7emz49/games?released=2013**](https://www.speedrun.com/api/v1/series/rv7emz49/games?released=2013)
   retrieves only those Mario games released in 2013.
-* [**GET /api/v1/series/rv7emz49/games?_bulk=yes**](http://www.speedrun.com/api/v1/series/rv7emz49/games?_bulk=yes)
+* [**GET /api/v1/series/rv7emz49/games?_bulk=yes**](https://www.speedrun.com/api/v1/series/rv7emz49/games?_bulk=yes)
   retrieves the games of the Super Mario series, with less data being returned per game.
 
 ##### Example Response

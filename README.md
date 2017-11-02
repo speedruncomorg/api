@@ -17,7 +17,7 @@ API key to your app). See [authentication](authentication.md) for more informati
 All requests to the API are subject to [rate limits](throttling.md).
 
 The API is versioned, the version is reflected in the URL you use. The API root,
-http://www.speedrun.com/api will redirect you to the current version. We promise to do our best to
+https://www.speedrun.com/api will redirect you to the current version. We promise to do our best to
 never break a once published version of our API (sometimes we extend the current API with new
 information, but we will not change existing fields).
 
@@ -40,8 +40,8 @@ name and possibly the version number, like ``my-bot/4.20``.
 
 ## Content License
 
-As with the [main website](http://www.speedrun.com), all original content provided through the API
+As with the [main website](https://www.speedrun.com), all original content provided through the API
 is licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Images and videos
 are copyright of their respective owners.
 
-If this doesn't work for you, [contact us](http://www.speedrun.com/about) and we can find a solution.
+If this doesn't work for you, [contact us](https://www.speedrun.com/about) and we can find a solution.

@@ -17,13 +17,13 @@ Represented as JSON, a platform looks like this:
   "released": 2002,
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/platforms/rdjq4vwe"
+    "uri": "https://www.speedrun.com/api/v1/platforms/rdjq4vwe"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?platform=rdjq4vwe"
+    "uri": "https://www.speedrun.com/api/v1/games?platform=rdjq4vwe"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?platform=rdjq4vwe"
+    "uri": "https://www.speedrun.com/api/v1/runs?platform=rdjq4vwe"
   }]
 }
 ```
@@ -46,7 +46,7 @@ This will retrieve a single platform, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/platforms/rdjq4vwe**](http://www.speedrun.com/api/v1/platforms/rdjq4vwe) retrieves
+* [**GET /api/v1/platforms/rdjq4vwe**](https://www.speedrun.com/api/v1/platforms/rdjq4vwe) retrieves
   the NES.
 
 ##### Example Response

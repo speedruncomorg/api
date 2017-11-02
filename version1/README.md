@@ -1,6 +1,6 @@
 # Version 1
 
-This version is available at **http://www.speedrun.com/api/v1**.
+This version is available at **https://www.speedrun.com/api/v1**.
 
 ## Basics
 
@@ -47,7 +47,7 @@ This version offers access to the following resources:
 
 This will retrieve the **96 Exit** leaderboard for Super Mario World:
 
-[**GET /api/v1/leaderboards/smw/category/96_Exit**](http://www.speedrun.com/api/v1/leaderboards/smw/category/96_Exit)
+[**GET /api/v1/leaderboards/smw/category/96_Exit**](https://www.speedrun.com/api/v1/leaderboards/smw/category/96_Exit)
 
 Note that you will be redirected, because the API wants you to not use the ephemeral game abbreviations
 (``smw``), but rather their fixed IDs. It is recommended to use IDs whenever possible.
@@ -56,8 +56,8 @@ Note that you will be redirected, because the API wants you to not use the ephem
 
 This will retrieve the **70 Stars** World Record for Super Mario 64:
 
-* [**GET /api/v1/leaderboards/sm64/category/70_Star?top=1**](http://www.speedrun.com/api/v1/leaderboards/sm64/category/70_Star?top=1) or
-* [**GET /api/v1/games/sm64/records?top=1**](http://www.speedrun.com/api/v1/games/sm64/records?top=1) to fetch the records for all
+* [**GET /api/v1/leaderboards/sm64/category/70_Star?top=1**](https://www.speedrun.com/api/v1/leaderboards/sm64/category/70_Star?top=1) or
+* [**GET /api/v1/games/sm64/records?top=1**](https://www.speedrun.com/api/v1/games/sm64/records?top=1) to fetch the records for all
   categories/levels (70 Star, 120 Star, ...) at once.
 
 Note that you will be redirected, because the API wants you to not use the ephemeral game abbreviations
@@ -67,7 +67,7 @@ Note that you will be redirected, because the API wants you to not use the ephem
 
 This will retrieve all PBs by S.:
 
-[**GET /api/v1/users/S./personal-bests**](http://www.speedrun.com/api/v1/users/S./personal-bests)
+[**GET /api/v1/users/S./personal-bests**](https://www.speedrun.com/api/v1/users/S./personal-bests)
 
 Note that you will be redirected, because the API wants you to not use the ephemeral username
 (``S.``), but rather their fixed IDs. It is recommended to use IDs whenever possible.
@@ -77,8 +77,8 @@ Note that you will be redirected, because the API wants you to not use the ephem
 Note that this includes obsolete runs and that you get no ranking information with this resource. If
 you need ranks, request a user's PBs or leaderboards.
 
-[**GET /api/v1/runs?region=mol4z19n**](http://www.speedrun.com/api/v1/runs?region=mol4z19n)
+[**GET /api/v1/runs?region=mol4z19n**](https://www.speedrun.com/api/v1/runs?region=mol4z19n)
 
 ### Find all Games available on the Wii U
 
-[**GET /api/v1/games?platform=8zjw7vo6**](http://www.speedrun.com/api/v1/games?platform=8zjw7vo6)
+[**GET /api/v1/games?platform=8zjw7vo6**](https://www.speedrun.com/api/v1/games?platform=8zjw7vo6)

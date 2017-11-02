@@ -17,10 +17,10 @@ previous and next pages.
     "size": 30,
     "links": [{
       "rel": "next",
-      "uri": "http://www.speedrun.com/api/v1/users?max=30&offset=50"
+      "uri": "https://www.speedrun.com/api/v1/users?max=30&offset=50"
     }, {
       "rel": "prev",
-      "uri": "http://www.speedrun.com/api/v1/users?max=30"
+      "uri": "https://www.speedrun.com/api/v1/users?max=30"
     }]
   }
 }

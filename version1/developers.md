@@ -16,10 +16,10 @@ Represented as JSON, a developer looks like this:
   "name": "Arkane Studios",
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/developers/l4eprzro"
+    "uri": "https://www.speedrun.com/api/v1/developers/l4eprzro"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?developer=l4eprzro"
+    "uri": "https://www.speedrun.com/api/v1/games?developer=l4eprzro"
   }]
 }
 ```
@@ -43,7 +43,7 @@ This will retrieve a single developer, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/developers/l4eprzro**](http://www.speedrun.com/api/v1/developers/l4eprzro) retrieves
+* [**GET /api/v1/developers/l4eprzro**](https://www.speedrun.com/api/v1/developers/l4eprzro) retrieves
   Arkane Studios.
 
 ##### Example Response

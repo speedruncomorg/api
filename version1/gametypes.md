@@ -16,10 +16,10 @@ Represented as JSON, a game type looks like this:
   "name": "Fangame",
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/gametypes/d91jd1ex"
+    "uri": "https://www.speedrun.com/api/v1/gametypes/d91jd1ex"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?gametype=d91jd1ex"
+    "uri": "https://www.speedrun.com/api/v1/games?gametype=d91jd1ex"
   }]
 }
 ```
@@ -43,7 +43,7 @@ This will retrieve a single game type, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/gametypes/d91jd1ex**](http://www.speedrun.com/api/v1/gametypes/d91jd1ex) retrieves
+* [**GET /api/v1/gametypes/d91jd1ex**](https://www.speedrun.com/api/v1/gametypes/d91jd1ex) retrieves
   Fangame.
 
 ##### Example Response

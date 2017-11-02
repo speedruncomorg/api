@@ -16,10 +16,10 @@ Represented as JSON, a publisher looks like this:
   "name": "Codemasters",
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/publishers/1z6qgr9p"
+    "uri": "https://www.speedrun.com/api/v1/publishers/1z6qgr9p"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?publisher=1z6qgr9p"
+    "uri": "https://www.speedrun.com/api/v1/games?publisher=1z6qgr9p"
   }]
 }
 ```
@@ -43,7 +43,7 @@ This will retrieve a single publisher, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/publishers/1z6qgr9p**](http://www.speedrun.com/api/v1/publishers/1z6qgr9p) retrieves
+* [**GET /api/v1/publishers/1z6qgr9p**](https://www.speedrun.com/api/v1/publishers/1z6qgr9p) retrieves
   Codemasters.
 
 ##### Example Response

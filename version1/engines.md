@@ -16,10 +16,10 @@ Represented as JSON, an engine looks like this:
   "name": "Build",
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/engines/p85eo036"
+    "uri": "https://www.speedrun.com/api/v1/engines/p85eo036"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?engine=p85eo036"
+    "uri": "https://www.speedrun.com/api/v1/games?engine=p85eo036"
   }]
 }
 ```
@@ -43,7 +43,7 @@ This will retrieve a single engine, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/engines/p85eo036**](http://www.speedrun.com/api/v1/engines/p85eo036) retrieves
+* [**GET /api/v1/engines/p85eo036**](https://www.speedrun.com/api/v1/engines/p85eo036) retrieves
   the Build engine.
 
 ##### Example Response

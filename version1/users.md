@@ -23,7 +23,7 @@ Represented as JSON, a single user looks like this:
     "international": "chewdiggy",
     "japanese": null
   },
-  "weblink": "http://www.speedrun.com/user/chewdiggy",
+  "weblink": "https://www.speedrun.com/user/chewdiggy",
   "name-style": {
     "style": "solid",
     "color": {
@@ -50,32 +50,32 @@ Represented as JSON, a single user looks like this:
     }
   },
   "twitch": {
-    "uri": "http://www.twitch.tv/username"
+    "uri": "https://www.twitch.tv/username"
   },
   "hitbox": {
-    "uri": "http://www.hitbox.tv/username"
+    "uri": "https://www.hitbox.tv/username"
   },
   "youtube": {
-    "uri": "http://www.youtube.com/oih2grfwezf782zroufiw"
+    "uri": "https://www.youtube.com/oih2grfwezf782zroufiw"
   },
   "twitter": {
-    "uri": "http://www.twitter.com/username"
+    "uri": "https://www.twitter.com/username"
   },
   "speedrunslive": {
     "uri": "http://www.speedrunslive.com/profiles/#!/username"
   },
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/users/kjpdr4jq"
+    "uri": "https://www.speedrun.com/api/v1/users/kjpdr4jq"
   }, {
     "rel": "runs",
-    "uri": "http://www.speedrun.com/api/v1/runs?user=kjpdr4jq"
+    "uri": "https://www.speedrun.com/api/v1/runs?user=kjpdr4jq"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?moderator=kjpdr4jq"
+    "uri": "https://www.speedrun.com/api/v1/games?moderator=kjpdr4jq"
   }, {
     "rel": "personal-bests",
-    "uri": "http://www.speedrun.com/api/v1/users/kjpdr4jq/personal-bests"
+    "uri": "https://www.speedrun.com/api/v1/users/kjpdr4jq/personal-bests"
   }]
 }
 ```
@@ -132,10 +132,10 @@ order by               | Description
 
 ##### Example Requests
 
-* [**GET /api/v1/users**](http://www.speedrun.com/api/v1/users) gets all users
-* [**GET /api/v1/users?name=abc**](http://www.speedrun.com/api/v1/users?name=abc) searches for
+* [**GET /api/v1/users**](https://www.speedrun.com/api/v1/users) gets all users
+* [**GET /api/v1/users?name=abc**](https://www.speedrun.com/api/v1/users?name=abc) searches for
   all users whose name or URL contains ``abc``
-* [**GET /api/v1/users?lookup=pac____**](http://www.speedrun.com/api/v1/users?lookup=pac____) finds
+* [**GET /api/v1/users?lookup=pac____**](https://www.speedrun.com/api/v1/users?lookup=pac____) finds
   Pac based on his Twitter account.
 
 ##### Example Response
@@ -160,7 +160,7 @@ used as well (but this is only recommended for quick lookups, as usernames can c
 
 ##### Example Requests
 
-* [**GET /api/v1/users/wzx7q875**](http://www.speedrun.com/api/v1/users/wzx7q875) retrieves Pac's
+* [**GET /api/v1/users/wzx7q875**](https://www.speedrun.com/api/v1/users/wzx7q875) retrieves Pac's
   public user information.
 
 ##### Example Response
@@ -223,9 +223,9 @@ in a structure like this:
 
 ##### Example Requests
 
-* [**GET /api/v1/users/wzx7q875/personal-bests**](http://www.speedrun.com/api/v1/users/wzx7q875/personal-bests)
+* [**GET /api/v1/users/wzx7q875/personal-bests**](https://www.speedrun.com/api/v1/users/wzx7q875/personal-bests)
   retrieves Pac's Personal Bests.
-* [**GET /api/v1/users/wzx7q875/personal-bests?embed=game,category**](http://www.speedrun.com/api/v1/users/wzx7q875/personal-bests?embed=game,category)
+* [**GET /api/v1/users/wzx7q875/personal-bests?embed=game,category**](https://www.speedrun.com/api/v1/users/wzx7q875/personal-bests?embed=game,category)
   makes Pac's PBs much more useful to actually work with by embedding the game and category for each
   run.
 

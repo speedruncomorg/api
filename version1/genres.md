@@ -16,10 +16,10 @@ Represented as JSON, a genre looks like this:
   "name": "Metroidvania",
   "links": [{
     "rel": "self",
-    "uri": "http://www.speedrun.com/api/v1/genres/qdnqyk28"
+    "uri": "https://www.speedrun.com/api/v1/genres/qdnqyk28"
   }, {
     "rel": "games",
-    "uri": "http://www.speedrun.com/api/v1/games?genre=qdnqyk28"
+    "uri": "https://www.speedrun.com/api/v1/games?genre=qdnqyk28"
   }]
 }
 ```
@@ -43,7 +43,7 @@ This will retrieve a single genre, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/genres/qdnqyk28**](http://www.speedrun.com/api/v1/genres/qdnqyk28) retrieves
+* [**GET /api/v1/genres/qdnqyk28**](https://www.speedrun.com/api/v1/genres/qdnqyk28) retrieves
   Metroidvania.
 
 ##### Example Response

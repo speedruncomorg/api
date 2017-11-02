@@ -43,7 +43,7 @@ dedicated login workflow that is designed to only access the key.
 **Note:** No, this is not OAuth in any way. This is not a fully-automated mechanism to get the key,
 the user still has to manually copy&paste it.
 
-Redirect the user to [www.speedrun.com/api/auth](http://www.speedrun.com/api/auth).
+Redirect the user to [www.speedrun.com/api/auth](https://www.speedrun.com/api/auth).
 
 ![Login Screen](https://raw.githubusercontent.com/speedruncom/api/master/images/api-auth-login.png)
 
