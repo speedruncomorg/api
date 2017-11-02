@@ -5,6 +5,7 @@
 * [GET /runs](#get-runs)
 * [GET /runs/{id}](#get-runsid)
 * [POST /runs](#post-runs)
+* [PUT /runs/{id}/status](#put-runsidstatus)
 
 Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a
 [game](games.md), adhering to that game's ruleset. Invalid attempts (use of cheats etc) or obsolete
@@ -341,5 +342,47 @@ If something goes wrong, the response will contain a list of problems:
       "uri": "https://github.com/speedruncom/api/issues"
     }
   ]
+}
+```
+
+### PUT /runs/{id}/status
+
+*This method requires [authentication](../authentication.md).*
+
+By PUTing to this endpoint, a user with sufficient permissions (i.e. a global moderator or a game
+moderator) can change the verification status of the run identified by its ``id``.
+
+The HTTP body must be a JSON document with a ``status`` element at its top, containing at least
+a ``status`` sub element that's either ``verified`` or ``rejected``. When rejecting a run,
+a ``reason`` must also be given.
+
+To verify a run, send this:
+
+```json
+{
+  "status": {
+    "status": "verified"
+  }
+}
+```
+
+To reject a run, send this:
+
+```json
+{
+  "status": {
+    "status": "rejected",
+    "reason": "Spliced footage from older runs together, obvious fake."
+  }
+}
+```
+
+##### Example Response
+
+When successful, the API will respond with the updated run structure:
+
+```json
+{
+  "data": <run>
 }
 ```
