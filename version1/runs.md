@@ -7,6 +7,7 @@
 * [POST /runs](#post-runs)
 * [PUT /runs/{id}/status](#put-runsidstatus)
 * [PUT /runs/{id}/players](#put-runsidplayers)
+* [DELETE /runs/{id}](#delete-runsid)
 
 Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a
 [game](games.md), adhering to that game's ruleset. Invalid attempts (use of cheats etc) or obsolete
@@ -411,6 +412,26 @@ To specify two users and a guest, this could be your JSON body:
 ##### Example Response
 
 When successful, the API will respond with the updated run structure:
+
+```json
+{
+  "data": <run>
+}
+```
+
+### DELETE /runs/{id}
+
+*This method requires [authentication](../authentication.md).*
+
+This method allows an authenticated user to delete a run. Regular users can only
+delete their own runs, whereas [global] mods can delete runs by other users as
+well.
+
+There is no request body required for this endpoint.
+
+##### Example Response
+
+When successful, the API will respond with the details of the just deleted run.
 
 ```json
 {
