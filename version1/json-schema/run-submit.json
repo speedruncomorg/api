@@ -2,86 +2,75 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
 
   "type": "object",
+  "required": ["category", "platform", "times"],
   "properties": {
     "category": {
-      "$ref": "definitions.json#/resource-id",
-      "required": true
+      "$ref": "definitions.json#/encoded-id"
     },
     "level": {
-      "$ref": "definitions.json#/resource-id",
-      "required": false
+      "$ref": "definitions.json#/encoded-id"
     },
     "date": {
       "type": "string",
-      "format": "date",
-      "required": false
+      "format": "date"
     },
     "region": {
-      "$ref": "definitions.json#/resource-id",
-      "required": false
+      "$ref": "definitions.json#/encoded-id"
     },
     "platform": {
-      "$ref": "definitions.json#/resource-id",
-      "required": true
+      "$ref": "definitions.json#/encoded-id"
     },
     "verified": {
       "type": "boolean",
-      "required": false,
       "default": false
     },
     "times": {
       "type": "object",
+      "minItems": 1,
       "properties": {
         "realtime": {
-          "type": "number",
-          "required": false
+          "type": "number"
         },
         "realtime_noloads": {
-          "type": "number",
-          "required": false
+          "type": "number"
         },
         "ingame": {
-          "type": "number",
-          "required": false
+          "type": "number"
         }
-      },
-      "required": true
+      }
+    },
+    "players": {
+      "$ref": "definitions.json#/player-list"
     },
     "emulated": {
       "type": "boolean",
-      "required": false,
       "default": false
     },
     "video": {
       "type": "string",
-      "required": false,
       "maxLength": 255
     },
     "comment": {
       "type": "string",
-      "required": false,
       "maxLength": 2000
     },
     "splitsio": {
       "type": "string",
-      "required": false,
       "maxLength": 50
     },
     "variables": {
       "type": "object",
-      "required": false,
       "properties": {},
       "additionalProperties": {
         "type": "object",
+        "required": ["type", "value"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["pre-defined", "user-defined"],
-            "required": true
+            "enum": ["pre-defined", "user-defined"]
           },
           "value": {
-            "type": "string",
-            "required": true
+            "type": "string"
           }
         }
       }

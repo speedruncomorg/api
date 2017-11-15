@@ -6,6 +6,7 @@
 * [GET /runs/{id}](#get-runsid)
 * [POST /runs](#post-runs)
 * [PUT /runs/{id}/status](#put-runsidstatus)
+* [PUT /runs/{id}/players](#put-runsidplayers)
 
 Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a
 [game](games.md), adhering to that game's ruleset. Invalid attempts (use of cheats etc) or obsolete
@@ -249,11 +250,8 @@ This will retrieve a single run, identified by its ID.
 *This method requires [authentication](../authentication.md).*
 
 By POSTing to the runs collection, you can submit a new run to speedrun.com. The same rules as for
-submitting via the website apply, meaning that for example moderators can auto-verify their runs
+submitting via the website apply, meaning that for example moderators can auto-verify runs
 immediately.
-
-**Note:** Not all features are yet implemented. Runs for example can only be done by one player, the
-user that is submitting the run.
 
 The request body must be a JSON object describing the run. This should look like this:
 
@@ -271,6 +269,10 @@ The request body must be a JSON object describing the run. This should look like
       "realtime_noloads": 1200.10,
       "ingame": 1150
     },
+    "players": [
+      {"rel": "user", "id": "<user ID>"},
+      {"rel": "guest", "name": "unregistered username"},
+    ],
     "emulated": false,
     "video": "https://youtube.com/watch?v=mumblefoo",
     "comment": "Most awesome run ever!",
@@ -299,6 +301,9 @@ A few things worth noting:
 * ``times`` must contain at least one time (of the times that the game allows, obviously). This
   value is given as the number of seconds as a int/float, optionally (when the games allows it,
   otherwise the value will be rounded automatically) including milliseconds.
+* When ``players`` is not set, the run is assumed to be performed by the user submitting the
+  request. Regular users (i.e. non-game mods and non-global mods) cannot set this element.
+  Otherwise, you can specify a list of users and/or "guests" that participated in the run.
 * ``video`` must be a valid URL using HTTP or HTTPS as its protocol. Note that some games require
   a video to be included.
 * ``comment`` is optional, but highly encouraged. You can put additional video links in here, if you
@@ -374,6 +379,32 @@ To reject a run, send this:
     "status": "rejected",
     "reason": "Spliced footage from older runs together, obvious fake."
   }
+}
+```
+
+### PUT /runs/{id}/players
+
+*This method requires [authentication](../authentication.md).*
+
+By PUTing to this endpoint, a user with sufficient permissions (i.e. a global moderator or a game
+moderator) can change list of players that participated in a run.
+
+The HTTP body must be a JSON document with a ``players`` element at its top, containing at least
+one user or guest. A user is represented as a JSON object with the keys ``"rel":"user"`` and an
+``"id"`` property, whereas guests are identified by ``"rel":"guest"`` and their ``"name"``.
+
+The submitted list of players will replace the old list completely, i.e. you cannot simply add a
+player without also submitting the existing ones.
+
+To specify two users and a guest, this could be your JSON body:
+
+```json
+{
+  "players": [
+    {"rel": "user", "id": "<user ID here>"},
+    {"rel": "user", "id": "<other user ID here>"},
+    {"rel": "guest", "name": "someone with no sr.com account"}
+  ]
 }
 ```
 
