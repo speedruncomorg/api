@@ -35,18 +35,12 @@ Represented as JSON, a single user looks like this:
   "signup": "2014-10-02T12:34:23Z",
   "location": {
     "country": {
-      "code": "GB",
-      "names": {
-        "international": "United Kingdom",
-        "japanese": "\u30a4\u30ae\u30ea\u30b9"
-      }
+      "code": "es",
+      "names": "Spain"
     },
     "region": {
-      "code": "ENGLAND",
-      "names": {
-        "international": "England",
-        "japanese": "\u30a4\u30f3\u30b0\u30e9\u30f3\u30c9"
-      }
+      "code": "es/md",
+      "names": "Madrid, Spain"
     }
   },
   "twitch": {
@@ -102,7 +96,11 @@ There are quite a few things that need a couple words of explanation.
   and possibly region where the user lives. The ``country`` is always set, ``region`` (more specific
   than the country) is not available for all countries and therefore not always set. Each of the two
   contain a ``code`` (which, for the country is the ISO Alpha-2 code, and for the region is
-  something custom) and the names (as with users, not all countries/regions have a japanese name).
+  something custom) and the name.
+  
+  For some regions (such as Scotland or Catalonia), a user can choose to be represented by that flag on 
+  the leaderboard, in which case it will be used shown here as the country, rather than the root country 
+  (in this case, UK or Spain).
 
 * Any of the ``twitch``, ``hitbox``, ``youtube``, ``twitter`` and ``speedrunslive`` links can be
   ``null``.
