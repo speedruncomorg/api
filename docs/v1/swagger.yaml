@@ -1,0 +1,1510 @@
+openapi: '3.0.0'
+info:
+    description: >
+      As with the [main website](https://www.speedrun.com), all original content provided through the API
+      is licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Images and videos
+      are copyright of their respective owners.
+
+      If this doesn't work for you, [contact us](https://www.speedrun.com/about) and we can find a solution.
+        
+      Collections like runs, games or users do not return all elements at once, but are limited to a certain
+      number per request. By default, you get 20 elements per request, but you can increase this limit up to 200.
+      [More Info](https://github.com/speedruncomorg/api/blob/master/version1/pagination.md)
+        
+      The speedrun.com API offers a way to reduce the amount of requests by embedding related resources right
+      in the representation of others. This is done via the query string parameter embed, which is a
+      comma separated list of resources that should be embedded. Each resource documents what embeds are
+      available for it.  [Example](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md)
+        
+      Some endpoints require Authentication in the form of an API-Key passed on a `X-API-Key` header, for information on how to generate this key [see the docs](https://github.com/speedruncomorg/api/blob/master/authentication.md).
+    version: 1.0.0
+    title: Speedrun.com REST API
+    contact:
+      name: Contact Us
+      url: https://www.speedrun.com/about
+# v This should not have to be here, it should be in the 'info:' section. Blocked by - https://github.com/swagger-api/swagger-ui/issues/1545
+externalDocs:
+  description: Github Documentation
+  url: 'https://github.com/speedruncomorg/api/blob/master/version1'
+host: speedrun.com/api
+basePath: /v1
+schemes:
+  - https
+securityDefinitions:
+  api_key:
+    type: apiKey
+    in: header
+    name: X-API-Key
+tags:
+  - name: Categories
+    description: >
+      Categories are the different rulesets for speedruns. Categories are either `per-game` or `per-level`
+      (if the game uses individual levels), both can be accessed via this resource.
+
+
+      This resource is meant to perform ID-based lookups. That's why there is no `GET /categories` to
+      get a flat list of all categories across all games. If you want to get the categories for a game,
+      use `GET /v1/games/{gameid}/categories`.
+
+
+      You can [embed](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md) the following resources into a category:
+
+      * `game` will include the game the category belongs to.
+
+      * `variables` will embed the applicable variables for this category.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/categories.md
+  - name: Developers
+    description: >
+      Developers are the persons and/of studios responsible for developing [games](#/Games), for example Acclaim Entertainment,
+      Bethesda Softworks, Edmund McMillen etc.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/developers.md
+  - name: Engines
+    description: >
+      Engines are software frameworks used in the creation of [games](#/Games), for example the DOOM engine, Unreal Engine, Geo-Mod etc.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/engines.md
+  - name: Games
+    description: >
+      Games are the things [users](#/Games) do speedruns in. Games are associated with [regions](#/Regions)
+      (US, Europe, ...), [platforms](#/Platforms) (consoles, handhelds, ...), [genres](#/Genres),
+      [engines](#/Engines), [developers](#/Developers), [game types](#/Game Types), [publishers](#/Publishers),
+      [categories](#/Categories), [levels](#/Levels) and [custom variables](#/Variables)
+      (like speed=50/100/150cc in Mario Kart games).
+
+      Games that are not part of a [series](#/Series) are categorized in the "N/A" series for backwards compatibility.
+
+
+      To make creating a list of all available games easier, games can be requested in a ["bulk mode"](https://github.com/speedruncomorg/api/blob/master/version1/games.md#bulk-access). This
+      will: 
+
+      * increase the maximum allowed [elements per page](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md) to 1000,
+
+      * disable [embedding](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md) of related resources and
+
+      * return a smaller representation for each game, described below.
+
+
+      You can [embed](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md) the following resources into a game:
+
+      * `levels` will embed all levels defined for the game.
+
+      * `categories` will embed *all* defined categories for the game.
+
+      * `moderators` will embed the moderators as full user resources.
+
+      * `gametypes` will embed all assigned game types.
+
+      * `platforms` will embed all assigned platforms.
+
+      * `regions` will embed all assigned regions.
+
+      * `genres` will embed all assigned genres.
+
+      * `engines` will embed all assigned engines.
+
+      * `developers` will embed all assigned developers.
+
+      * `publishers` will embed all assigned publishers.
+
+      * `variables` will embed *all* defined variables for the game.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/games.md
+  - name: Game Types
+    description: >
+      Game types are classifications for unofficial [games](#/Games), for example ROM Hack, Fangame, Modification etc.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/gametypes.md
+  - name: Genres
+    description: >
+      Genres are classifications for games, for example Action, JRPG, Rogue-like etc.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/genres.md
+  - name: Guests
+    description: >
+      Sometimes, speedrun.com has runs done by players that have no account on the site yet.
+      These runners are called "guests" in the API. Except for a name, there is nothing we know about them.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/guests.md
+  - name: Leaderboards
+    description: >
+      Leaderboards contain non-obsolete [runs](#/Runs), sorted by time descending. In contrast to raw runs,
+      leaderboards are automatically grouped according to the game/category/level rules that the moderators
+      have defined.
+
+
+      You can [embed](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md) the following resources into a leaderboard:
+
+      * `game` will embed the full game resource.
+
+      * `category` will embed the category used for the leaderboard.
+
+      * `level` will embed the category used for the leaderboard.
+
+      * `players` will add a new `players` element to the leaderboard, containing a flat list of
+
+        all players of all runs on the leaderboard.
+
+      * `regions` will add all used regions.
+
+      * `platforms` will add all used platforms.
+
+      * `variables` will add all *applicable* variables for the chosen level/category. This is mainly
+        useful to figure out by what values the leaderboard can be filtered and is much easier to use than
+        fetching the variables for game, category and level independently and extracting those that are
+        applicable.
+
+      Attention: Even though a leaderboard contains runs, you cannot embed stuff in them. When embedding
+      the `players`, you will get one flat list of players instead of each run being extended. This is
+      due to limitations in our code and something that might change in a future version. Please just
+      experiment a bit to see how embedding works for leaderboards.
+
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/leaderboards.md
+  - name: Levels
+    description: >
+      Levels are the stages/worlds/maps within a game. Not all [games](#/Games) have levels.
+
+      This resource is meant to perform ID-based lookups. That's why there is no `GET /levels` to
+      get a flat list of all levels across all games. To only get the levels for one game, use the
+      `/levels` collection on the game itself.
+
+
+      You can [embed](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md) the following resources into a level:
+
+      * `categories` will embed the ``per-level`` [categories](https://github.com/speedruncomorg/api/blob/master/version1/categories.md)
+       applicable for the requested
+        level.
+
+      * `variables` will embed the [variables](https://github.com/speedruncomorg/api/blob/master/version1/variables.md)
+      applicable for the requested level.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/levels.md
+  - name: Notifications
+    description: >
+      Notifications are system-generated messages sent to [users](#/Users) when certain events concerning
+      them happen on the site, like somebody liking a post or a [run](#/Runs) being verified.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/notifications.md
+  - name: Platforms
+    description: >
+      Platforms are hardware devices that run [games](#/Games), for example PC, NES, PS2 etc.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/platforms.md
+  - name: Publishers
+    description: >
+      Publishers are companies that publish [games](#/Games), for example Capcom, SEGA, Midway Games etc.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/publishers.md
+  - name: Regions
+    description: >
+      Regions represent the different distribution zones in which [games](#/Games) are published,
+      for example the US, Europe or Japan.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/regions.md
+  - name: Runs
+    description: >
+      Runs are the meat of our business at speedrun.com. A run is a finished attempt to play a
+      [game](#/Games), adhering to that game's ruleset. Invalid attempts (use of cheats etc) or obsolete
+      runs (the ones superseded by a better time by the same player(s) in the same ruleset) still count as
+      runs and are available via API.
+
+
+      You can [embed](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md) the following resources into a run:
+
+      * `game` will embed the full game resource.
+
+      * `category` will embed the category in which the run was done.
+
+      * `level` will embed the level in which the run was done. This can be empty if it's a full-game
+        run.
+
+      * `players` will replace the `players` field with the full [user](https://github.com/speedruncomorg/api/blob/master/version1/users.md)
+      /[guest](https://github.com/speedruncomorg/api/blob/master/version1/guests.md)
+        resources of the participating players. Each of those players will have the `rel` field just as
+        if there was no embedding at all, so you can easily distinguish between users and guests (without
+        resorting to logic like "if there's an ID, it must be a user").
+
+      * `region` will embed the full region resource. This can be empty if no region was set for the run.
+
+      * `platform` will embed the full platform resource. This can be empty if no platform was set for
+        the run.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/runs.md
+  - name: Series
+    description: >
+      Series are collections of [games](#/Games) that have been released in context to each other, for
+      example the "GTA" series contains all the games of this franchise. As a series is most often formed
+      *after* a number of games have been published, many games do not belong to a specific series and are
+      therefore categorized in the "Other" series. As time progresses, games can be moved in their own
+      series, so be prepared for the series-game relationship to change.
+
+
+      You can [embed](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md) 
+      the following resources into a series:
+
+      * `moderators` will embed the moderators as full user resources.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/series.md
+  - name: Users
+    description: >
+      Users are the individuals who have registered an account on speedrun.com. Users submit (their)
+      [runs](#/Runs) and moderate [games](#/Games), besides other things that are not covered by this
+      API (like writing posts in the forums).
+
+      The API only returns public user information, so things like the e-mail address, site settings etc.
+      are not accessible.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/users.md
+  - name: Variables
+    description: >
+      Variables are custom criteria to distinguish between [runs](#/Runs) done in the same
+      [category](#/Categories) or [level](#/Levels). The speed in Mario Kart games (which can be
+      50cc, 100cc or 150cc) is an example for a variable that has 3 possible values.
+
+      Variables are defined per-game and can be applicable to either all runs for this game or just
+      full-game or individual-level (IL) runs. Variables can also be restricted to a category. It is
+      therefore important to understand how to get the correct set of variables:
+
+      * Use `GET /game/<id>/variables` to get **all** defined variables of that game, no matter how they
+        are configured.
+
+      * Use `GET /categories/<id>/variables` to only get the variables that apply to the given category.
+
+      * Use `GET /levels/<id>/variables` to only get the variables that apply to the given level.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/variables.md
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        weblink:
+          type: string
+          format: uri
+        type:
+          type: string
+          enum:
+            - per-game
+            - per-level
+        rules:
+          type: string
+        players:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - exactly
+                - up-to
+            value:
+              type: integer
+        miscellaneous:
+          type: boolean
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - game
+                  - variables
+                  - runs
+              uri:
+                type: string
+                format: uri
+    Developer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - game
+              uri:
+                type: string
+                format: uri
+    Engine:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - games
+              uri:
+                type: string
+                format: uri
+    Game:
+      type: object
+      properties:
+        id:
+          type: string
+        names:
+          type: object
+          properties:
+            international:
+              type: string
+            japanese:
+              type: string
+              nullable: true
+            twitch:
+              type: string
+        abbreviation:
+          type: string
+        weblink:
+          type: string
+          format: uri
+        released:
+          type: integer
+          deprecated: true
+        release-date:
+          type: string
+          format: date
+        ruleset:
+          type: object
+          properties:
+            show-milliseconds:
+              type: boolean
+            require-verification:
+              type: boolean
+            require-video:
+              type: boolean
+            run-times:
+              type: array
+              items:
+                type: string
+                enum:
+                  - realtime
+                  - realtime_noloads
+                  - ingame
+            default-time:
+              type: string
+            emulators-allowed:
+              type: boolean
+        romhack:
+          type: boolean
+          deprecated: true
+        gametypes:
+          type: array
+          minItems: 0
+          items:
+            type: string
+        platforms:
+          type: array
+          minItems: 0
+          items:
+            type: string
+        regions:
+          type: array
+          minItems: 0
+          items:
+            type: string
+        genres:
+          type: array
+          minItems: 0
+          items:
+            type: string
+        developers:
+          type: array
+          minItems: 0
+          items:
+            type: string
+        publishers:
+          type: array
+          minItems: 0
+          items:
+            type: string
+        moderators:
+          type: object
+          minProperties: 0
+        created:
+          type: string
+          nullable: true
+          format: date-time
+        assets:
+          type: object
+          properties:
+            logo:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            cover-tiny:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            cover-small:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            cover-large:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            icon:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            trophy-1st:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            trophy-2nd:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            trophy-3rd:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            trophy-4th:
+              type: object
+              nullable: true
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            background:
+              type: object
+              nullable: true
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            foreground:
+              type: object
+              nullable: true
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - variables
+                  - runs
+                  - levels
+                  - categories
+                  - records
+                  - series
+                  - base-game
+                  - derived-games
+                  - romhacks
+                  - leaderboard
+              uri:
+                type: string
+                format: uri
+    Gametype:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - games
+              uri:
+                type: string
+                format: uri
+    Genre:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - games
+              uri:
+                type: string
+                format: uri
+    Guest:
+      type: object
+      properties:
+        name:
+          type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - runs
+              uri:
+                type: string
+                format: uri
+    Leaderboard:
+      type: object
+      properties:
+        weblink:
+          type: string
+          format: uri
+        game:
+          type: string
+        category:
+          type: string
+        level:
+          type: string
+          nullable: true
+        platform:
+          type: string
+          nullable: true
+        region:
+          type: string
+          nullable: true
+        emulators:
+          type: boolean
+          nullable: true
+        video-only:
+          type: boolean
+        timing:
+          type: string
+          enum:
+            - realtime
+            - realtime_noloads
+            - ingame
+        values:
+          type: object
+          minProperties: 0
+        runs:
+          type: array
+          minItems: 0
+          items:
+            type: object
+            properties:
+              place:
+                type: integer
+              run:
+                $ref: '#/components/schemas/Run'
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+              uri:
+                type: string
+                format: uri
+    Level:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        weblink:
+          type: string
+          format: uri
+        rules:
+          type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - game
+                  - categories
+                  - variables
+                  - runs
+              uri:
+                type: string
+                format: uri
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - read
+            - unread
+        text:
+          type: string
+        item:
+          type: object
+          rel:
+            type: string
+            enum:
+              - post
+              - run
+              - game
+              - guide
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+              uri:
+                type: string
+                format: uri
+    Platform:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        released:
+          type: integer
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - games
+                  - runs
+              uri:
+                type: string
+                format: uri
+    Profile:
+      type: object
+      properties:
+        id:
+          type: string
+        names:
+          type: object
+          properties:
+            international:
+              type: string
+            japanese:
+              type: string
+              nullable: true
+        weblink:
+          type: string
+          format: uri
+        name-style:
+          type: object
+          properties:
+            style:
+              type: string
+              enum:
+                - solid
+                - gradient
+            color:
+              type: object
+              required:
+                - light
+                - dark
+              properties:
+                light:
+                  type: string
+                dark:
+                  type: string
+            color-from:
+              type: object
+              required:
+                - light
+                - dark
+              properties:
+                light:
+                  type: string
+                dark:
+                  type: string
+            color-to:
+              type: object
+              required:
+                - light
+                - dark
+              properties:
+                light:
+                  type: string
+                dark:
+                  type: string
+        role:
+          type: string
+          enum:
+            - banned
+            - user
+            - trusted
+            - moderator
+            - admin
+            - programmer
+        signup:
+          type: string
+          format: date-time
+          nullable: true
+        location:
+          type: object
+          properties:
+            country:
+              type: object
+              properties:
+                code:
+                  type: string
+                names:
+                  type: object
+                  properties:
+                    international:
+                      type: string
+                    japanese:
+                      type: string
+                      nullable: true
+            region:
+              type: object
+              nullable: true
+              properties:
+                code:
+                  type: string
+                names:
+                  type: object
+                  properties:
+                    international:
+                      type: string
+                    japanese:
+                      type: string
+                      nullable: true
+        twitch:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        hitbox:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        youtube:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        twitter:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        speedrunslive:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - user
+                  - games
+                  - personal-bests
+                  - runss
+              uri:
+                type: string
+                format: uri
+    Publisher:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - games
+              uri:
+                type: string
+                format: uri
+    Region:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - games
+                  - runs
+              uri:
+                type: string
+                format: uri
+    Run:
+      type: object
+      properties:
+        id:
+          type: string
+        weblink:
+          type: string
+          format: uri
+        game:
+          type: string
+        level:
+          type: string
+          nullable: true
+        category:
+          type: string
+        videos:
+          type: object
+          nullable: true
+          properties:
+            text:
+              type: string
+              nullable: true
+            links:
+              type: array
+              items:
+                type: object
+                properties:
+                  uri:
+                    type: string
+                    format: uri
+        comment:
+          type: string
+        status:
+          type: object
+          required:
+            - status
+            - verify-date
+          properties:
+            status:
+              type: string
+              enum:
+                - new
+                - verified
+                - rejected
+            examiner:
+              type: string
+            verify-date:
+              type: string
+              nullable: true
+              format: date-time
+            reason:
+              type: string
+        players:
+          type: array
+          items:
+            type: object
+            required:
+              - rel
+              - uri
+            properties:
+              rel:
+                type: string
+                enum:
+                  - user
+                  - guest
+              id:
+                type: string
+              name:
+                type: string
+              uri:
+                type: string
+                format: uri
+        date:
+          type: string
+          format: date
+          nullable: true
+        submitted:
+          type: string
+          format: date-time
+          nullable: true
+        times:
+          type: object
+          required:
+            - primary
+            - primary_t
+            - realtime
+            - realtime_t
+            - realtime_noloads
+            - realtime_noloads_t
+            - ingame
+            - ingame_t
+          properties:
+            primary:
+              type: string
+            primary_t:
+              type: integer
+            realtime:
+              type: string
+              nullable: true
+            realtime_t:
+              type: integer
+              nullable: true
+            realtime_noloads:
+              type: string
+              nullable: true
+            realtime_noloads_t:
+              type: integer
+              nullable: true
+            ingame:
+              type: string
+              nullable: true
+            ingame_t:
+              type: integer
+              nullable: true
+        system:
+          type: object
+          required:
+            - platform
+            - emulated
+            - region
+          properties:
+            platform:
+              type: string
+            emulated:
+              type: boolean
+            region:
+              type: string
+              nullable: true
+        splits:
+          type: object
+          required:
+            - rel
+            - uri
+          nullable: true
+          properties:
+            rel:
+              type: string
+            uri:
+              type: string
+              format: uri
+        values:
+          type: object
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - game
+                  - category
+                  - level
+                  - platform
+                  - examiner
+              uri:
+                type: string
+                format: uri
+    Series:
+      type: object
+      properties:
+        id:
+          type: string
+        names:
+          type: object
+          properties:
+            international:
+              type: string
+            japanese:
+              type: string
+              nullable: true
+        abbreviation:
+          type: string
+        weblink:
+          type: string
+          format: uri
+        moderators:
+          type: object
+          minProperties: 0
+        created:
+          type: string
+          format: date-time
+          nullable: true
+        assets:
+          type: object
+          properties:
+            logo:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            cover-tiny:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            cover-small:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            cover-large:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            icon:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            trophy-1st:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            trophy-2nd:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            trophy-3rd:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            trophy-4th:
+              type: object
+              nullable: true
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            background:
+              type: object
+              nullable: true
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            foreground:
+              type: object
+              nullable: true
+              properties:
+                uri:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - games
+              uri:
+                type: string
+                format: uri
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        names:
+          type: object
+          properties:
+            international:
+              type: string
+            japanese:
+              type: string
+              nullable: true
+        weblink:
+          type: string
+          format: uri
+        name-style:
+          type: object
+          properties:
+            style:
+              type: string
+              enum:
+                - solid
+                - gradient
+            color:
+              type: object
+              required:
+                - light
+                - dark
+              properties:
+                light:
+                  type: string
+                dark:
+                  type: string
+            color-from:
+              type: object
+              required:
+                - light
+                - dark
+              properties:
+                light:
+                  type: string
+                dark:
+                  type: string
+            color-to:
+              type: object
+              required:
+                - light
+                - dark
+              properties:
+                light:
+                  type: string
+                dark:
+                  type: string
+        role:
+          type: string
+          enum:
+            - banned
+            - user
+            - trusted
+            - moderator
+            - admin
+            - programmer
+        signup:
+          type: string
+          format: date-time
+          nullable: true
+        location:
+          type: object
+          properties:
+            country:
+              type: object
+              properties:
+                code:
+                  type: string
+                names:
+                  type: object
+                  properties:
+                    international:
+                      type: string
+                    japanese:
+                      type: string
+                      nullable: true
+            region:
+              type: object
+              nullable: true
+              properties:
+                code:
+                  type: string
+                names:
+                  type: object
+                  properties:
+                    international:
+                      type: string
+                    japanese:
+                      type: string
+                      nullable: true
+        twitch:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        hitbox:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        youtube:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        twitter:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        speedrunslive:
+          type: object
+          nullable: true
+          properties:
+            uri:
+              type: string
+              format: uri
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - games
+                  - personal-bests
+                  - runss
+              uri:
+                type: string
+                format: uri
+    Variable:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        category:
+          type: string
+          nullable: true
+        scope:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - global
+                - full-game
+                - all-levels
+                - single-level
+        mandatory:
+          type: boolean
+        user-defined:
+          type: boolean
+        obsoletes:
+          type: boolean
+        values:
+          type: object
+          properties:
+            values:
+              type: object
+            default:
+              type: string
+              nullable: true
+        is-subcategory:
+          type: boolean
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                enum:
+                  - self
+                  - game
+              uri:
+                type: string
+                format: uri
+
+
+
+
+
+
+
+
+
+
+
