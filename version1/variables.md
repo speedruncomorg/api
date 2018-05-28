@@ -11,10 +11,10 @@ Variables are defined per-game and can be applicable to either all runs for this
 full-game or individual-level (IL) runs. Variables can also be restricted to a category. It is
 therefore important to understand how to get the correct set of variables:
 
-* Use ``GET /game/<id>/variables`` to get **all** defined variables of that game, no matter how they
+* Use ``GET /api/v1/games/<game id>/variables`` to get **all** defined variables of that game, no matter how they
   are configured.
-* Use ``GET /categories/<id>/variables`` to only get the variables that apply to the given category.
-* Use ``GET /levels/<id>/variables`` to only get the variables that apply to the given level.
+* Use ``GET /api/v1/categories/<category id>/variables`` to only get the variables that apply to the given category.
+* Use ``GET /api/v1/levels/<level id>/variables`` to only get the variables that apply to the given level.
 
 ### Structure
 
