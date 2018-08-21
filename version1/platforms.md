@@ -12,7 +12,7 @@ Represented as JSON, a platform looks like this:
 
 ```json
 {
-  "id": "rdjq4vwe",
+  "id": "jm95z9ol",
   "name": "Nintendo Entertainment System",
   "released": 2002,
   "links": [{
@@ -46,7 +46,7 @@ This will retrieve a single platform, identified by its ID.
 
 ##### Example Requests
 
-* [**GET /api/v1/platforms/rdjq4vwe**](https://www.speedrun.com/api/v1/platforms/rdjq4vwe) retrieves
+* [**GET /api/v1/platforms/jm95z9ol**](https://www.speedrun.com/api/v1/platforms/jm95z9ol) retrieves
   the NES.
 
 ##### Example Response
