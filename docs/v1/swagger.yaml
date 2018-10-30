@@ -26,10 +26,9 @@ info:
 externalDocs:
   description: Github Documentation
   url: 'https://github.com/speedruncomorg/api/blob/master/version1'
-host: speedrun.com/api
-basePath: /v1
-schemes:
-  - https
+servers:
+  - url: https://www.speedrun.com/api/v1
+    description: v1 Speedrun.com Endpoint
 securityDefinitions:
   api_key:
     type: apiKey
@@ -292,6 +291,38 @@ tags:
     externalDocs:
       description: Github Docs
       url: https://github.com/speedruncomorg/api/blob/master/version1/variables.md
+paths:
+  /engines:
+    get:
+      tags:
+        - Engines
+      summary:
+        This will return all engines.
+      parameters:
+        - name: orderby
+          in: query
+          description: OrderBy defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+        - name: direction
+          in: query
+          description: Order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
 components:
   schemas:
     Category:
@@ -1909,14 +1940,3 @@ components:
               uri:
                 type: string
                 format: uri
-
-
-
-
-
-
-
-
-
-
-
