@@ -296,6 +296,15 @@ components:
   schemas:
     Category:
       type: object
+      required:
+        - id
+        - name
+        - weblink
+        - type
+        - rules
+        - players
+        - miscellaneous
+        - links
       properties:
         id:
           type: string
@@ -313,6 +322,9 @@ components:
           type: string
         players:
           type: object
+          required:
+            - type
+            - value
           properties:
             type:
               type: string
@@ -327,6 +339,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -340,6 +355,10 @@ components:
                 format: uri
     Developer:
       type: object
+      required:
+        - id
+        - name
+        - links
       properties:
         id:
           type: string
@@ -349,6 +368,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -360,6 +382,10 @@ components:
                 format: uri
     Engine:
       type: object
+      required:
+        - id
+        - name
+        - links
       properties:
         id:
           type: string
@@ -369,6 +395,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -380,11 +409,34 @@ components:
                 format: uri
     Game:
       type: object
+      required:
+        - id
+        - names
+        - abreviation
+        - weblink
+        - released
+        - release-date
+        - ruleset
+        - romhack
+        - gametypes
+        - platforms
+        - regions
+        - genres
+        - developers
+        - publishers
+        - moderators
+        - created
+        - assets
+        - links
       properties:
         id:
           type: string
         names:
           type: object
+          required:
+            - international
+            - japanese
+            - twitch
           properties:
             international:
               type: string
@@ -393,6 +445,7 @@ components:
               nullable: true
             twitch:
               type: string
+              nullable: true
         abbreviation:
           type: string
         weblink:
@@ -406,6 +459,13 @@ components:
           format: date
         ruleset:
           type: object
+          required:
+            - show-milliseconds
+            - require-verification
+            - require-video
+            - run-times
+            - default-time
+            - emulators-allowed
           properties:
             show-milliseconds:
               type: boolean
@@ -467,9 +527,25 @@ components:
           format: date-time
         assets:
           type: object
+          required:
+            - logo
+            - cover-tiny
+            - cover-small
+            - cover-large
+            - icon
+            - trophy-1st
+            - trophy-2nd
+            - trophy-3rd
+            - trophy-4th
+            - background
+            - foreground
           properties:
             logo:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -480,6 +556,10 @@ components:
                   type: integer
             cover-tiny:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -490,6 +570,10 @@ components:
                   type: integer
             cover-small:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -500,6 +584,10 @@ components:
                   type: integer
             cover-large:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -510,6 +598,10 @@ components:
                   type: integer
             icon:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -520,6 +612,10 @@ components:
                   type: integer
             trophy-1st:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -530,6 +626,10 @@ components:
                   type: integer
             trophy-2nd:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -540,6 +640,10 @@ components:
                   type: integer
             trophy-3rd:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -550,6 +654,10 @@ components:
                   type: integer
             trophy-4th:
               type: object
+              required:
+                - uri
+                - width
+                - height
               nullable: true
               properties:
                 uri:
@@ -561,6 +669,10 @@ components:
                   type: integer
             background:
               type: object
+              required:
+                - uri
+                - width
+                - height
               nullable: true
               properties:
                 uri:
@@ -572,6 +684,10 @@ components:
                   type: integer
             foreground:
               type: object
+              required:
+                - uri
+                - width
+                - height
               nullable: true
               properties:
                 uri:
@@ -585,6 +701,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -605,6 +724,10 @@ components:
                 format: uri
     Gametype:
       type: object
+      required:
+        - id
+        - name
+        - links
       properties:
         id:
           type: string
@@ -614,6 +737,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -625,6 +751,10 @@ components:
                 format: uri
     Genre:
       type: object
+      required:
+        - id
+        - name
+        - links
       properties:
         id:
           type: string
@@ -634,6 +764,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -645,6 +778,9 @@ components:
                 format: uri
     Guest:
       type: object
+      required:
+        - name
+        - links
       properties:
         name:
           type: string
@@ -652,6 +788,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -663,6 +802,19 @@ components:
                 format: uri
     Leaderboard:
       type: object
+      required:
+        - weblink
+        - game
+        - category
+        - level
+        - platform
+        - region
+        - emulators
+        - video-only
+        - timing
+        - values
+        - runs
+        - links
       properties:
         weblink:
           type: string
@@ -699,6 +851,9 @@ components:
           minItems: 0
           items:
             type: object
+            required:
+              - place
+              - run
             properties:
               place:
                 type: integer
@@ -708,6 +863,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -716,6 +874,12 @@ components:
                 format: uri
     Level:
       type: object
+      required:
+        - id
+        - name
+        - weblink
+        - rules
+        - links
       properties:
         id:
           type: string
@@ -730,6 +894,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -744,6 +911,13 @@ components:
                 format: uri
     Notification:
       type: object
+      required:
+        - id
+        - created
+        - status
+        - text
+        - item
+        - links
       properties:
         id:
           type: string
@@ -759,6 +933,9 @@ components:
           type: string
         item:
           type: object
+          required:
+            - rel
+            - uri
           rel:
             type: string
             enum:
@@ -766,10 +943,16 @@ components:
               - run
               - game
               - guide
+          uri:
+            type: string
+            format: uri
         links:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -778,6 +961,11 @@ components:
                 format: uri
     Platform:
       type: object
+      required:
+        - id
+        - name
+        - released
+        - links
       properties:
         id:
           type: string
@@ -789,6 +977,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -801,11 +992,28 @@ components:
                 format: uri
     Profile:
       type: object
+      required:
+        - id
+        - names
+        - weblink
+        - name-style
+        - role
+        - signup
+        - location
+        - twitch
+        - hitbox
+        - youtube
+        - twitter
+        - speedrunslive
+        - links
       properties:
         id:
           type: string
         names:
           type: object
+          required:
+            - international
+            - japanese
           properties:
             international:
               type: string
@@ -817,6 +1025,8 @@ components:
           format: uri
         name-style:
           type: object
+          required:
+            - style
           properties:
             style:
               type: string
@@ -868,14 +1078,22 @@ components:
           nullable: true
         location:
           type: object
+          required:
+            - country
           properties:
             country:
               type: object
+              required:
+                - code
+                - names
               properties:
                 code:
                   type: string
                 names:
                   type: object
+                  required:
+                    - international
+                    - japanese
                   properties:
                     international:
                       type: string
@@ -884,12 +1102,18 @@ components:
                       nullable: true
             region:
               type: object
+              required:
+                - code
+                - names
               nullable: true
               properties:
                 code:
                   type: string
                 names:
                   type: object
+                  required:
+                    - international
+                    - japanese
                   properties:
                     international:
                       type: string
@@ -898,6 +1122,8 @@ components:
                       nullable: true
         twitch:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -905,6 +1131,8 @@ components:
               format: uri
         hitbox:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -912,6 +1140,8 @@ components:
               format: uri
         youtube:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -919,6 +1149,8 @@ components:
               format: uri
         twitter:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -926,6 +1158,8 @@ components:
               format: uri
         speedrunslive:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -935,6 +1169,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -949,6 +1186,10 @@ components:
                 format: uri
     Publisher:
       type: object
+      required:
+        - id
+        - name
+        - links
       properties:
         id:
           type: string
@@ -958,6 +1199,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -969,6 +1213,10 @@ components:
                 format: uri
     Region:
       type: object
+      required:
+        - id
+        - name
+        - links
       properties:
         id:
           type: string
@@ -978,6 +1226,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -990,6 +1241,23 @@ components:
                 format: uri
     Run:
       type: object
+      required:
+        - id
+        - weblink
+        - game
+        - level
+        - category
+        - videos
+        - comment
+        - status
+        - players
+        - date
+        - submitted
+        - times
+        - system
+        - splits
+        - values
+        - links
       properties:
         id:
           type: string
@@ -1005,6 +1273,9 @@ components:
           type: string
         videos:
           type: object
+          required:
+            - text
+            - links
           nullable: true
           properties:
             text:
@@ -1014,6 +1285,8 @@ components:
               type: array
               items:
                 type: object
+                required:
+                  - uri
                 properties:
                   uri:
                     type: string
@@ -1134,6 +1407,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -1149,11 +1425,23 @@ components:
                 format: uri
     Series:
       type: object
+      required:
+        - id
+        - names
+        - abbreviation
+        - weblink
+        - moderators
+        - created
+        - assets
+        - links
       properties:
         id:
           type: string
         names:
           type: object
+          required:
+            - international
+            - japanese
           properties:
             international:
               type: string
@@ -1174,9 +1462,25 @@ components:
           nullable: true
         assets:
           type: object
+          required:
+            - logo
+            - cover-tiny
+            - cover-small
+            - cover-large
+            - icon
+            - trophy-1st
+            - trophy-2nd
+            - trophy-3rd
+            - trophy-4th
+            - background
+            - foreground
           properties:
             logo:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -1187,6 +1491,10 @@ components:
                   type: integer
             cover-tiny:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -1197,6 +1505,10 @@ components:
                   type: integer
             cover-small:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -1207,6 +1519,10 @@ components:
                   type: integer
             cover-large:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -1217,6 +1533,10 @@ components:
                   type: integer
             icon:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -1227,6 +1547,10 @@ components:
                   type: integer
             trophy-1st:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -1237,6 +1561,10 @@ components:
                   type: integer
             trophy-2nd:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -1247,6 +1575,10 @@ components:
                   type: integer
             trophy-3rd:
               type: object
+              required:
+                - uri
+                - width
+                - height
               properties:
                 uri:
                   type: string
@@ -1257,6 +1589,10 @@ components:
                   type: integer
             trophy-4th:
               type: object
+              required:
+                - uri
+                - width
+                - height
               nullable: true
               properties:
                 uri:
@@ -1268,6 +1604,10 @@ components:
                   type: integer
             background:
               type: object
+              required:
+                - uri
+                - width
+                - height
               nullable: true
               properties:
                 uri:
@@ -1279,6 +1619,10 @@ components:
                   type: integer
             foreground:
               type: object
+              required:
+                - uri
+                - width
+                - height
               nullable: true
               properties:
                 uri:
@@ -1292,6 +1636,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -1303,11 +1650,28 @@ components:
                 format: uri
     User:
       type: object
+      required:
+        - id
+        - names
+        - weblink
+        - name-style
+        - role
+        - signup
+        - location
+        - twitch
+        - hitbox
+        - youtube
+        - twitter
+        - speedrunslive
+        - links
       properties:
         id:
           type: string
         names:
           type: object
+          required:
+            - international
+            - japanese
           properties:
             international:
               type: string
@@ -1319,6 +1683,8 @@ components:
           format: uri
         name-style:
           type: object
+          required:
+            - style
           properties:
             style:
               type: string
@@ -1370,14 +1736,22 @@ components:
           nullable: true
         location:
           type: object
+          required:
+            - country
           properties:
             country:
               type: object
+              required:
+                - code
+                - names
               properties:
                 code:
                   type: string
                 names:
                   type: object
+                  required:
+                    - international
+                    - japanese
                   properties:
                     international:
                       type: string
@@ -1386,12 +1760,18 @@ components:
                       nullable: true
             region:
               type: object
+              required:
+                - code
+                - names
               nullable: true
               properties:
                 code:
                   type: string
                 names:
                   type: object
+                  required:
+                    - international
+                    - japanese
                   properties:
                     international:
                       type: string
@@ -1400,6 +1780,8 @@ components:
                       nullable: true
         twitch:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -1407,6 +1789,8 @@ components:
               format: uri
         hitbox:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -1414,6 +1798,8 @@ components:
               format: uri
         youtube:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -1421,6 +1807,8 @@ components:
               format: uri
         twitter:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -1428,6 +1816,8 @@ components:
               format: uri
         speedrunslive:
           type: object
+          required:
+            - uri
           nullable: true
           properties:
             uri:
@@ -1437,6 +1827,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
@@ -1450,6 +1843,17 @@ components:
                 format: uri
     Variable:
       type: object
+      required:
+        - id
+        - name
+        - category
+        - scope
+        - mandatory
+        - user-defined
+        - obsoletes
+        - values
+        - is-subcategory
+        - links
       properties:
         id:
           type: string
@@ -1460,6 +1864,8 @@ components:
           nullable: true
         scope:
           type: object
+          required:
+            - type
           properties:
             type:
               type: string
@@ -1476,6 +1882,9 @@ components:
           type: boolean
         values:
           type: object
+          required:
+            - values
+            - default
           properties:
             values:
               type: object
@@ -1488,6 +1897,9 @@ components:
           type: array
           items:
             type: object
+            required:
+              - rel
+              - uri
             properties:
               rel:
                 type: string
