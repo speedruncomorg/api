@@ -1,27 +1,27 @@
 openapi: '3.0.0'
 info:
-    description: >
-      As with the [main website](https://www.speedrun.com), all original content provided through the API
-      is licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Images and videos
-      are copyright of their respective owners.
+  description: >
+    As with the [main website](https://www.speedrun.com), all original content provided through the API
+    is licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Images and videos
+    are copyright of their respective owners.
 
-      If this doesn't work for you, [contact us](https://www.speedrun.com/about) and we can find a solution.
-        
-      Collections like runs, games or users do not return all elements at once, but are limited to a certain
-      number per request. By default, you get 20 elements per request, but you can increase this limit up to 200.
-      [More Info](https://github.com/speedruncomorg/api/blob/master/version1/pagination.md)
-        
-      The speedrun.com API offers a way to reduce the amount of requests by embedding related resources right
-      in the representation of others. This is done via the query string parameter embed, which is a
-      comma separated list of resources that should be embedded. Each resource documents what embeds are
-      available for it.  [Example](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md)
-        
-      Some endpoints require Authentication in the form of an API-Key passed on a `X-API-Key` header, for information on how to generate this key [see the docs](https://github.com/speedruncomorg/api/blob/master/authentication.md).
-    version: 1.0.0
-    title: Speedrun.com REST API
-    contact:
-      name: Contact Us
-      url: https://www.speedrun.com/about
+    If this doesn't work for you, [contact us](https://www.speedrun.com/about) and we can find a solution.
+      
+    Collections like runs, games or users do not return all elements at once, but are limited to a certain
+    number per request. By default, you get 20 elements per request, but you can increase this limit up to 200.
+    [More Info](https://github.com/speedruncomorg/api/blob/master/version1/pagination.md)
+      
+    The speedrun.com API offers a way to reduce the amount of requests by embedding related resources right
+    in the representation of others. This is done via the query string parameter embed, which is a
+    comma separated list of resources that should be embedded. Each resource documents what embeds are
+    available for it.  [Example](https://github.com/speedruncomorg/api/blob/master/version1/embedding.md)
+      
+    Some endpoints require Authentication in the form of an API-Key passed on a `X-API-Key` header, for information on how to generate this key [see the docs](https://github.com/speedruncomorg/api/blob/master/authentication.md).
+  version: 1.0.0
+  title: Speedrun.com REST API
+  contact:
+    name: Contact Us
+    url: https://www.speedrun.com/about
 # v This should not have to be here, it should be in the 'info:' section. Blocked by - https://github.com/swagger-api/swagger-ui/issues/1545
 externalDocs:
   description: Github Documentation
@@ -29,11 +29,6 @@ externalDocs:
 servers:
   - url: https://www.speedrun.com/api/v1
     description: v1 Speedrun.com Endpoint
-securityDefinitions:
-  api_key:
-    type: apiKey
-    in: header
-    name: X-API-Key
 tags:
   - name: Categories
     description: >
@@ -202,6 +197,13 @@ tags:
     externalDocs:
       description: Github Docs
       url: https://github.com/speedruncomorg/api/blob/master/version1/platforms.md
+  - name: Profiles
+    description: >
+      The profile is the user resource of the currently authenticated user.
+      This is useful to see what user a given API key belongs to.
+    externalDocs:
+      description: Github Docs
+      url: https://github.com/speedruncomorg/api/blob/master/version1/profile.md
   - name: Publishers
     description: >
       Publishers are companies that publish [games](#/Games), for example Capcom, SEGA, Midway Games etc.
@@ -292,30 +294,204 @@ tags:
       description: Github Docs
       url: https://github.com/speedruncomorg/api/blob/master/version1/variables.md
 paths:
-  /engines:
+  /categories/{id}:
     get:
       tags:
-        - Engines
+        - Categories
       summary:
-        This will return all engines.
+        This will retrieve a single category, identified by its ID.
+      operationId: getCategoryById
       parameters:
+        - name: id
+          in: path
+          description: id of the category
+          required: true
+          schema:
+            type: string
+            example: nxd1rk8q
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+  /categories/{id}/variables:
+    get:
+      tags:
+        - Categories
+      summary:
+        This will retrieve all variables that are applicable to the given category.
+      description: >
+        * `per-level` categories will not show the variables for runs completing the entire game.
+
+        * `per-game` categories will not show the variables for individual level runs.
+
+
+        To get *all* variables defined for a game, see the
+        [games](https://github.com/speedruncomorg/api/blob/master/version1/games.md) documentation.
+      operationId: getCategoryVariablesById
+      parameters:
+        - name: id
+          in: path
+          description: id of the category
+          required: true
+          schema:
+            type: string
+            example: xd1m7rd8
         - name: orderby
           in: query
-          description: OrderBy defined options
+          description: order by options
           required: false
           schema:
             type: string
             enum:
               - name
+              - mandatory
+              - user-defined
+              - pos
+            default: pos
+            example: pos
         - name: direction
           in: query
-          description: Order in ascending or descending order
+          description: order in ascending or descending order
           required: false
           schema:
             type: string
             enum:
               - asc
               - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+  /categories/{id}/records:
+    get:
+      tags:
+        - Categories
+      summary:
+        This will retrieve the records (first three places) of the given category.
+      description: >
+        Paginated.
+        The regular leaderboard embeds are available here as well.
+      operationId: getCategoryRecordsById
+      parameters:
+        - name: id
+          in: path
+          description: id of the category
+          required: true
+          schema:
+            type: string
+            example: wkpjpzjk
+        - name: top
+          in: query
+          description: only return the top N places (this can result in more than N runs!); this is set to 3 by default
+          required: false
+          schema:
+            type: integer
+            default: 3
+        - name: skip-empty
+          in: query
+          description: when set to a true value, empty leaderboards will not show up in the result
+          required: false
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Leaderboard'
+  /developers:
+    get:
+      tags:
+        - Developers
+      summary:
+        This will return all developers.
+      operationId: getDevelopers
+      parameters:
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+            default: name
+            example: name
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Developer'
+  /developers/{id}:
+    get:
+      tags:
+        - Developers
+      summary:
+        This will retrieve a single developer, identified by its ID.
+      operationId: getDeveloperById
+      parameters:
+        - name: id
+          in: path
+          description: id of the developer
+          required: true
+          schema:
+            type: string
+            example: l4eprzro
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Developer'
+  /engines:
+    get:
+      tags:
+        - Engines
+      summary:
+        This will return all engines.
+      operationId: getEngines
+      parameters:
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+            default: name
+            example: name
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
       responses:
         200:
           description: Success
@@ -323,7 +499,639 @@ paths:
             applicaton/json:
               schema:
                 $ref: '#/components/schemas/Engine'
+  /engines/{id}:
+    get:
+      tags:
+        - Engines
+      summary:
+        This will retrieve a single engine, identified by its ID.
+      operationId: getEngineById
+      parameters:
+        - name: id
+          in: path
+          description: id of the engine
+          required: true
+          schema:
+            type: string
+            example: p85eo036
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
+  /gametypes:
+    get:
+      tags:
+        - Game Types
+      summary:
+        This will return all game types.
+      operationId: getGametypes
+      parameters:
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+            default: name
+            example: name
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Gametype'
+  /gametypes/{id}:
+    get:
+      tags:
+        - Game Types
+      summary:
+        This will retrieve a single gametype, identified by its ID.
+      operationId: getGametypeById
+      parameters:
+        - name: id
+          in: path
+          description: id of the gametype
+          required: true
+          schema:
+            type: string
+            example: d91jd1ex
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Gametype'
+  /genres:
+    get:
+      tags:
+        - Genres
+      summary:
+        This will return all genres.
+      operationId: getGenres
+      parameters:
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+            default: name
+            example: name
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Genre'
+  /genres/{id}:
+    get:
+      tags:
+        - Genres
+      summary:
+        This will retrieve a single genre, identified by its ID.
+      operationId: getGenreById
+      parameters:
+        - name: id
+          in: path
+          description: id of the genre
+          required: true
+          schema:
+            type: string
+            example: qdnqyk28
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Genre'
+  /guests/{name}:
+    get:
+      tags:
+        - Guests
+      summary:
+        This will retrieve a guest, identified by their name. The name is case-insensitive.
+      operationId: getGuestByName
+      parameters:
+        - name: name
+          in: path
+          description: id of the genre
+          required: true
+          schema:
+            type: string
+            example: Alex
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Guest'
+  /notifications:
+    get:
+      tags:
+        - Notifications
+      summary:
+        This will retrieve the notifications for the currently authenticated user.
+      operationId: getNotifications
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - created
+            default: created
+            example: created
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+  /platforms:
+    get:
+      tags:
+        - Platforms
+      summary:
+        This will return all platforms.
+      operationId: getPlatforms
+      parameters:
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - released
+            default: name
+            example: name
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Platform'
+  /platforms/{id}:
+    get:
+      tags:
+        - Platforms
+      summary:
+        This will retrieve a single platform, identified by its ID.
+      operationId: getPlatformById
+      parameters:
+        - name: id
+          in: path
+          description: id of the platform
+          required: true
+          schema:
+            type: string
+            example: rdjq4vwe
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Platform'
+  /profile:
+    get:
+      tags:
+        - Profiles
+      summary:
+        This will retrieve the current user.
+      security:
+        - ApiKeyAuth: []
+      operationId: getProfile
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+  /publishers:
+    get:
+      tags:
+        - Publishers
+      summary:
+        This will return all publishers.
+      operationId: getPublishers
+      parameters:
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - released
+            default: name
+            example: name
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Publisher'
+  /publishers/{id}:
+    get:
+      tags:
+        - Publishers
+      summary:
+        This will retrieve a single publisher, identified by its ID.
+      operationId: getPublisherById
+      parameters:
+        - name: id
+          in: path
+          description: id of the publisher
+          required: true
+          schema:
+            type: string
+            example: 1z6qgr9p
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Publisher'
+  /regions:
+    get:
+      tags:
+        - Regions
+      summary:
+        This will return all regions.
+      operationId: getRegions
+      parameters:
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - released
+            default: name
+            example: name
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Region'
+  /regions/{id}:
+    get:
+      tags:
+        - Regions
+      summary:
+        This will retrieve a single region, identified by its ID.
+      operationId: getRegionById
+      parameters:
+        - name: id
+          in: path
+          description: id of the region
+          required: true
+          schema:
+            type: string
+            example: pr184lqn
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Region'
+  /series:
+    get:
+      tags:
+        - Series
+      summary:
+        This will return a list of all series
+      operationId: getSeries
+      parameters:
+        - name: name
+          in: query
+          description: performs a fuzzy search across series names and abbreviations
+          required: false
+          schema:
+            type: string
+            example: mario
+        - name: abbreviation
+          in: query
+          description: performs an exact-match search for this abbreviation
+          required: false
+          schema:
+            type: string
+        - name: moderator
+          in: query
+          description: moderator ID; only series moderated by that user will be returned
+          required: false
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          description: order by options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name.int
+              - name.jap
+              - abbreviation
+              - created
+            default: name.int
+            example: name.int
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+  /series/{id}:
+    get:
+      tags:
+        - Series
+      summary:
+        This will retrieve a single series, identified by its ID.
+      description: >
+        Instead of the series' ID, you can also specify the series' abbreviation.
+        When an abbreviation was found, the API will respond with a redirect to the
+        ID-based URL (so `/api/v1/series/aoe` will be redirected to `/api/v1/series/yr4gy141`).
+      operationId: getSeriesById
+      parameters:
+        - name: id
+          in: path
+          description: id of the series
+          required: true
+          schema:
+            type: string
+            example: rv7emz49
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+  /series/{id}/games:
+    get:
+      tags:
+        - Series
+      summary:
+        This will retrieve all games of a given series.
+      description: >
+        The ID can be either the actual series ID or its abbreviation.
+
+        As with the complete game list, bulk mode is available on this resource as well.
+
+        Note that giving invalid values for platform, region or moderator will result in an HTTP 404 error instead of an empty lis
+        This is on purpose, because asking to filter by non-existing elements should be something an API client should notice.
+      operationId: getSeriesGamesById
+      parameters:
+        - name: id
+          in: path
+          description: id of the series
+          required: true
+          schema:
+            type: string
+            example: rv7emz49
+        - name: name
+          in: query
+          description: performs a fuzzy search across series names and abbreviations
+          required: false
+          schema:
+            type: string
+        - name: abbreviation
+          in: query
+          description: performs an exact-match search for this abbreviation
+          required: false
+          schema:
+            type: string
+        - name: released
+          in: query
+          description: restricts to series that began in that year
+          required: false
+          schema:
+            type: integer
+        - name: gametype
+          in: query
+          description: game type ID; restricts to that game type
+          required: false
+          schema:
+            type: string
+        - name: platform
+          in: query
+          description: platform ID; restricts to that platform
+          required: false
+          schema:
+            type: string
+        - name: region
+          in: query
+          description: region ID; restricts to that region
+          required: false
+          schema:
+            type: string
+        - name: genre
+          in: query
+          description: genre ID; restricts to that genre
+          required: false
+          schema:
+            type: string
+        - name: engine
+          in: query
+          description: engine ID; restricts to that engine
+          required: false
+          schema:
+            type: string
+        - name: developer
+          in: query
+          description: developer ID; restricts to that developer
+          required: false
+          schema:
+            type: string
+        - name: publisher
+          in: query
+          description: publisher ID; restricts to that publisher
+          required: false
+          schema:
+            type: string
+        - name: moderator
+          in: query
+          description: moderator ID; only series moderated by that user will be returned
+          required: false
+          schema:
+            type: string
+        - name: romhack
+          in: query
+          description: >
+            legacy parameter, do not use this in new code; whether or not to include games
+            with game types (if this parameter is not set, game types are included; if it is
+            set to a true value, only games with game types will be returned, otherwise only
+            games without game types are returned)
+          deprecated: true
+          required: false
+          schema:
+            type: boolean
+        - name: _bulk
+          in: query
+          description: enable bulk access
+          required: false
+          schema:
+            type: boolean
+        - name: orderby
+          in: query
+          description: order by options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name.int
+              - name.jap
+              - abbreviation
+              - released
+              - created
+              - similarity
+            default: name.int
+            example: name.int
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+  /variables/{id}:
+    get:
+      tags:
+        - Variables
+      summary:
+        This will retrieve a single variable, identified by its ID.
+      operationId: getVariableById
+      parameters:
+        - name: id
+          in: path
+          description: id of the variable
+          required: true
+          schema:
+            type: string
+            example: ylpm6vlg
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
 components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
   schemas:
     Category:
       type: object
