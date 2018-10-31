@@ -578,6 +578,398 @@ paths:
             applicaton/json:
               schema:
                 $ref: '#/components/schemas/Gametype'
+  /games:
+    get:
+      tags:
+        - Games
+      summary:
+        This will return a list of all games.
+      description: >
+        Note that giving invalid values for platform, region or moderator will result in an HTTP 404 error instead of an empty list
+        This is on purpose, because asking to filter by non-existing elements should be something an API client should notice.
+      operationId: getGames
+      parameters:
+        - name: id
+          in: path
+          description: id of the games
+          required: true
+          schema:
+            type: string
+            example: rv7emz49
+        - name: name
+          in: query
+          description: performs a fuzzy search across games names and abbreviations
+          required: false
+          schema:
+            type: string
+        - name: abbreviation
+          in: query
+          description: performs an exact-match search for this abbreviation
+          required: false
+          schema:
+            type: string
+        - name: released
+          in: query
+          description: restricts to games that released in that year
+          required: false
+          schema:
+            type: integer
+        - name: gametype
+          in: query
+          description: game type ID; restricts to that game type
+          required: false
+          schema:
+            type: string
+        - name: platform
+          in: query
+          description: platform ID; restricts to that platform
+          required: false
+          schema:
+            type: string
+        - name: region
+          in: query
+          description: region ID; restricts to that region
+          required: false
+          schema:
+            type: string
+        - name: genre
+          in: query
+          description: genre ID; restricts to that genre
+          required: false
+          schema:
+            type: string
+        - name: engine
+          in: query
+          description: engine ID; restricts to that engine
+          required: false
+          schema:
+            type: string
+        - name: developer
+          in: query
+          description: developer ID; restricts to that developer
+          required: false
+          schema:
+            type: string
+        - name: publisher
+          in: query
+          description: publisher ID; restricts to that publisher
+          required: false
+          schema:
+            type: string
+        - name: moderator
+          in: query
+          description: moderator ID; only games moderated by that user will be returned
+          required: false
+          schema:
+            type: string
+        - name: romhack
+          in: query
+          description: >
+            legacy parameter, do not use this in new code; whether or not to include games
+            with game types (if this parameter is not set, game types are included; if it is
+            set to a true value, only games with game types will be returned, otherwise only
+            games without game types are returned)
+          deprecated: true
+          required: false
+          schema:
+            type: boolean
+        - name: _bulk
+          in: query
+          description: enable bulk access
+          required: false
+          schema:
+            type: boolean
+        - name: orderby
+          in: query
+          description: order by options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name.int
+              - name.jap
+              - abbreviation
+              - released
+              - created
+              - similarity
+            default: name.int
+            example: name.int
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /games/{id}:
+    get:
+      tags:
+        - Games
+      summary:
+        This will retrieve a single game, identified by its ID.
+      description: >
+        Instead of the game's ID, you can also specify the game's abbreviation.
+        When an abbreviation was found, the API will respond with a redirect the the ID-based URL
+        (so `/api/v1/games/aoe1` will be redirected to `/api/v1/games/nj1nowdp`).
+
+        Note that abbreviations can change, so API clients should rely on the ID if possible.
+      operationId: getGameById
+      parameters:
+        - name: id
+          in: path
+          description: id of the genre
+          required: true
+          schema:
+            type: string
+            example: v1pxjz68
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /games/{id}/categories:
+    get:
+      tags:
+        - Games
+      summary:
+        This will retrieve all categories of a given game
+      description: >
+        The id can be either the game ID or its abbreviation
+        
+        If you need only those applicable to certain levels, look there. You can filter the result by a few things
+      operationId: getGamesCategoriesById
+      parameters:
+        - name: id
+          in: path
+          description: id of the genre
+          required: true
+          schema:
+            type: string
+            example: v1pxjz68
+        - name: miscellaneous
+          in: query
+          description: filters (out) misc categories
+          required: false
+          schema:
+            type: boolean
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - miscellaneous
+              - pos
+            default: pos
+            example: pos
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+  /games/{id}/levels:
+    get:
+      tags:
+        - Games
+      summary:
+        This will retrieve all levels of a given game
+      description: >
+        The id can be either the game ID or its abbreviation
+      operationId: getGamesLevelsById
+      parameters:
+        - name: id
+          in: path
+          description: id of the genre
+          required: true
+          schema:
+            type: string
+            example: v1pxjz68
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - pos
+            default: pos
+            example: pos
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Level'
+  /games/{id}/variables:
+    get:
+      tags:
+        - Games
+      summary:
+        This will retrieve all variables of a given game
+      description: >
+        The id can be either the game ID or its abbreviation.
+        If you need only those applicable to certain categories or levels, look there.
+      operationId: getGamesVariablesById
+      parameters:
+        - name: id
+          in: path
+          description: id of the genre
+          required: true
+          schema:
+            type: string
+            example: v1pxjz68
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - mandatory
+              - user-defined
+              - pos
+            default: pos
+            example: pos
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+  /games/{id}/derived-games:
+    get:
+      tags:
+        - Games
+      summary:
+        This will retrieve all games that have the given game set as their base game.
+      description: >
+        The same filtering/sorting options as with `GET /games` apply to this resource as well,
+        except for the romhack parameter, which doesn't make sense here.
+
+        `GET /games/{id}/romhacks` is an alias for backwards compatibility.
+      operationId: getDerivedGamesById
+      parameters:
+        - name: id
+          in: path
+          description: id of the genre
+          required: true
+          schema:
+            type: string
+            example: pd0wq31e
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+  /games/{id}/records:
+    get:
+      tags:
+        - Games
+      summary:
+        This will retrieve the records (first three places) for every (category,level) combination of the given game.
+      description: >
+        The id can be either the game ID or its abbreviation
+        
+        If you need only those applicable to certain levels, look there. You can filter the result by a few things
+
+        This resource is paginated.
+
+        The regular leaderboard embeds are available here as well.
+      operationId: getGamesRecordsById
+      parameters:
+        - name: id
+          in: path
+          description: id of the genre
+          required: true
+          schema:
+            type: string
+            example: pd0wq31e
+        - name: top
+          in: query
+          description: only return the top N places (this can result in more than N runs!)
+          required: false
+          schema:
+            type: integer
+            default: 3
+        - name: scope
+          in: query
+          description: >
+            when set to `full-game`, only full-game categories will be included; when set to `levels`,
+            only individual levels are returned; default is `all`
+          required: false
+          schema:
+            type: string
+        - name: miscellaneous
+          in: query
+          description: filters (out) misc categories
+          required: false
+          schema:
+            type: boolean
+        - name: miscellaneous
+          in: query
+          description: when set to a true value, empty leaderboards will not show up in the result
+          required: false
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Leaderboard'
   /genres:
     get:
       tags:
@@ -657,6 +1049,366 @@ paths:
             applicaton/json:
               schema:
                 $ref: '#/components/schemas/Guest'
+  /leaderboards/{game}/category/{category}:
+    get:
+      tags:
+        - Leaderboards
+      summary:
+        This will return a full-game leaderboard.
+      description: >
+        The game and category can be either IDs (e.g. `xldev513`) or the respective
+        abbreviations (e.g., `/leaderboards/smw/category/Any1` will work as expected and redirect to the ID-based URLs).
+      operationId: getGuestByName
+      parameters:
+        - name: game
+          in: path
+          description: id of the game
+          required: true
+          schema:
+            type: string
+            example: 4pdv9k1w
+        - name: category
+          in: path
+          description: id of the category
+          required: true
+          schema:
+            type: string
+            example: rklx4wkn
+        - name: top
+          in: query
+          description: only return the top N places (this can result in more than N runs!)
+          required: false
+          schema:
+            type: integer
+        - name: platform
+          in: query
+          description: platform ID; only returns runs done on that particular platform
+          required: false
+          schema:
+            type: string
+        - name: region
+          in: query
+          description: region ID; only returns runs done on that particular region
+          required: false
+          schema:
+            type: string
+        - name: emulators
+          in: query
+          description: >
+            when false, real devices and emulators are shown.
+            When set to a true value, only emulators are shown, else only real devices are shown
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: video-only
+          in: query
+          description: when set to a true value, only runs with a video will be returned
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: timing
+          in: query
+          description: controls the sorting
+          required: false
+          schema:
+            type: string
+            enum:
+              - realtime
+              - realtime_noloads
+              - ingame
+        - name: date
+          in: query
+          description: ISO 8601 date string; when given, only returns runs done before or on this date
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: var-
+          in: query
+          description: >
+            additional custom variable values
+            
+            To filter by custom variables, name the query string parameter `var-[variable ID here]`
+            and use the value ID as the value (for example, `?var-m5ly6jn4=p12z471x`).
+          required: false
+          schema:
+            type: object
+            additonalProperties:
+              type: string
+            style: form
+            example: { "var-6wl339l1": "45lmxy1v", "var-32lgg3lp": "45lmdylv" }
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Leaderboard'
+  /leaderboards/{game}/level/{level}/{category}:
+    get:
+      tags:
+        - Leaderboards
+      summary:
+        This will return a individual-level leaderboard.
+      description: >
+        The same filtering options as with full-game leaderboards apply.
+        
+        The game, category and level can be either IDs (e.g. `xldev513`) or the
+        respective abbreviations (e.g., `/leaderboards/smw/level/Yoshis_Island_1/Small` will work
+        as expected and redirect to the ID-based URLs).
+      operationId: getGuestByName
+      parameters:
+        - name: game
+          in: path
+          description: id of the game
+          required: true
+          schema:
+            type: string
+            example: xldev513
+        - name: level
+          in: path
+          description: id of the level
+          required: true
+          schema:
+            type: string
+            example: rdqz4kdx
+        - name: category
+          in: path
+          description: id of the category
+          required: true
+          schema:
+            type: string
+            example: xk9le4k0
+        - name: top
+          in: query
+          description: only return the top N places (this can result in more than N runs!)
+          required: false
+          schema:
+            type: integer
+        - name: platform
+          in: query
+          description: platform ID; only returns runs done on that particular platform
+          required: false
+          schema:
+            type: string
+        - name: region
+          in: query
+          description: region ID; only returns runs done on that particular region
+          required: false
+          schema:
+            type: string
+        - name: emulators
+          in: query
+          description: >
+            when false, real devices and emulators are shown.
+            When set to a true value, only emulators are shown, else only real devices are shown
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: video-only
+          in: query
+          description: when set to a true value, only runs with a video will be returned
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: timing
+          in: query
+          description: controls the sorting
+          required: false
+          schema:
+            type: string
+            enum:
+              - realtime
+              - realtime_noloads
+              - ingame
+        - name: date
+          in: query
+          description: ISO 8601 date string; when given, only returns runs done before or on this date
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: var-
+          in: query
+          description: >
+            additional custom variable values
+            
+            To filter by custom variables, name the query string parameter `var-[variable ID here]`
+            and use the value ID as the value (for example, `?var-m5ly6jn4=p12z471x`).
+          required: false
+          schema:
+            type: object
+            additonalProperties:
+              type: string
+            style: form
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Leaderboard'
+  /levels/{id}:
+    get:
+      tags:
+        - Levels
+      summary:
+        This will retrieve a single level, identified by its ID.
+      operationId: getLevelById
+      parameters:
+        - name: id
+          in: path
+          description: id of the level
+          required: true
+          schema:
+            type: string
+            example: 329vpn9v
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Level'
+  /levels/{id}/categories:
+    get:
+      tags:
+        - Levels
+      summary:
+        This will retrieve the applicable categories for the given level.
+      operationId: getLevelCategoriesById
+      parameters:
+        - name: id
+          in: path
+          description: id of the level
+          required: true
+          schema:
+            type: string
+            example: 329vpn9v
+        - name: miscellaneous
+          in: query
+          description: filters (out) misc categories
+          required: false
+          schema:
+            type: boolean
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - miscellaneous
+              - pos
+            default: pos
+            example: pos
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+  /levels/{id}/variables:
+    get:
+      tags:
+        - Levels
+      summary:
+        This will retrieve the applicable variables for the given level.
+      operationId: getLevelVariablesById
+      parameters:
+        - name: id
+          in: path
+          description: id of the level
+          required: true
+          schema:
+            type: string
+            example: 495ggmwp
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - miscellaneous
+              - user-defined
+              - pos
+            default: pos
+            example: pos
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+  /levels/{id}/records:
+    get:
+      tags:
+        - Levels
+      summary:
+        This will retrieve the records (first three places) of the given level for all available categories.
+      description: >
+        This resource is paginated.
+
+        The regular leaderboard embeds are available here as well.
+      operationId: getLevelRecordsById
+      parameters:
+        - name: id
+          in: path
+          description: id of the level
+          required: true
+          schema:
+            type: string
+            example: rdnyx79m
+        - name: top
+          in: query
+          description: only return the top N places (this can result in more than N runs!)
+          required: false
+          schema:
+            type: boolean
+            default: 3
+        - name: skip-empty
+          in: query
+          description: when set to a true value, empty leaderboards will not show up in the result
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Leaderboard'
   /notifications:
     get:
       tags:
@@ -884,6 +1636,264 @@ paths:
             applicaton/json:
               schema:
                 $ref: '#/components/schemas/Region'
+  /runs:
+    get:
+      tags:
+        - Runs
+      summary:
+        This will return a list of all runs.
+      description: >
+        Note that giving invalid values for any ID parameter will result in an HTTP 404 error instead of an empty list
+        This is on purpose, because asking to filter by non-existing elements should be something an API client should notice.
+      operationId: getRuns
+      parameters:
+        - name: user
+          in: query
+          description: user ID; only returns runs played by that user
+          required: false
+          schema:
+            type: string
+        - name: guest
+          in: query
+          description: only returns runs done by that guest
+          required: false
+          schema:
+            type: string
+        - name: examiner
+          in: query
+          description: user ID; only returns runs examined by that user
+          required: false
+          schema:
+            type: string
+        - name: game
+          in: query
+          description: game ID; restricts to that game
+          required: false
+          schema:
+            type: string
+        - name: level
+          in: query
+          description: level ID; restricts to that level
+          required: false
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: category ID; restricts to that category
+          required: false
+          schema:
+            type: string
+        - name: platform
+          in: query
+          description: platform ID; restricts to that platform
+          required: false
+          schema:
+            type: string
+        - name: region
+          in: query
+          description: region ID; restricts to that region
+          required: false
+          schema:
+            type: string
+        - name: emulated
+          in: query
+          description: when `1`, `yes` or `true`, only games run on emulator will be returned
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: status
+          in: query
+          description: filters by run status
+          required: false
+          schema:
+            type: string
+            enum:
+              - new
+              - verified
+              - rejected
+        - name: orderby
+          in: query
+          description: order by options
+          required: false
+          schema:
+            type: string
+            enum:
+              - game
+              - category
+              - level
+              - platform
+              - region
+              - emulated
+              - date
+              - submitted
+              - status
+              - verify-date
+            default: game
+            example: game
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Run'
+    post:
+      tags:
+        - Runs
+      summary:
+        Submit a new run to speedrun.com
+      description: >
+        This method requires authentication.
+
+        The same rules as for submitting via the website apply, meaning that for example moderators can
+        auto-verify runs immediately.
+
+        The request body must be a JSON object describing the run. See the
+        [github documentation](https://github.com/speedruncomorg/api/blob/master/version1/runs.md#post-runs)
+        for a more in-depth description.
+      operationId: postRun
+      security:
+        - ApiKeyAuth: []
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Run'
+      responses:
+        201:
+          description: Success
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Link to new run
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Run'
+  /runs/{id}:
+    get:
+      tags:
+        - Runs
+      summary:
+        This will retrieve a single run, identified by its ID.
+      operationId: getRunById
+      parameters:
+        - name: id
+          in: path
+          description: id of the series
+          required: true
+          schema:
+            type: string
+            example: 90y6pm7e
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Run'
+    delete:
+      tags:
+        - Runs
+      summary:
+        This method allows an authenticated user to delete a run.
+      description: >
+        This method requires authentication.
+
+        Regular users can only delete their own runs, whereas [global] mods can delete runs by other users as well.
+
+        There is no request body required for this endpoint. When successful, the API will respond with the details of the just deleted run.
+      operationId: deleteRunById
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: id of the series
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Run'
+  /runs/{id}/status:
+    put:
+      tags:
+        - Runs
+      summary:
+        A user with sufficient permissions (i.e. a global moderator or a game moderator) can change the verification status of the run identified by its `id`.
+      description: >
+        This method requires authentication.
+
+        The HTTP body must be a JSON document with a status element at its top, containing at least a `status` sub
+        element that's either `verified` or `rejected`. When rejecting a run, a `reason` must also be given.
+
+        The request body must be a JSON object describing the run. See the
+        [github documentation](https://github.com/speedruncomorg/api/blob/master/version1/runs.md#post-runs)
+        for a more in-depth description.
+      operationId: putRunStatusById
+      security:
+        - ApiKeyAuth: []
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: '#/components/schemas/AcceptRun'
+              - $ref: '#/components/schemas/RejectRun'
+      responses:
+        201:
+          description: Success
+  /runs/{id}/players:
+    put:
+      tags:
+        - Runs
+      summary:
+        A user with sufficient permissions (i.e. a global moderator or a game moderator) can change list of players that participated in a run.
+      description: >
+        This method requires authentication.
+
+        The HTTP body must be a JSON document with a `players` element at its top, containing
+        at least one user or guest. A user is represented as a JSON object with the keys `"rel":"user"`
+        and an `"id"` property, whereas guests are identified by `"rel":"guest"` and their `"name"`.
+
+        The submitted list of players will replace the old list completely, i.e. you cannot simply
+        add a player without also submitting the existing ones.
+      operationId: putRunPlayersById
+      security:
+        - ApiKeyAuth: []
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdatePlayersInRun'
+      responses:
+        201:
+          description: Success
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Link to new run
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Run'
   /series:
     get:
       tags:
@@ -978,20 +1988,20 @@ paths:
 
         As with the complete game list, bulk mode is available on this resource as well.
 
-        Note that giving invalid values for platform, region or moderator will result in an HTTP 404 error instead of an empty lis
+        Note that giving invalid values for platform, region or moderator will result in an HTTP 404 error instead of an empty list
         This is on purpose, because asking to filter by non-existing elements should be something an API client should notice.
       operationId: getSeriesGamesById
       parameters:
         - name: id
           in: path
-          description: id of the series
+          description: id of the games
           required: true
           schema:
             type: string
             example: rv7emz49
         - name: name
           in: query
-          description: performs a fuzzy search across series names and abbreviations
+          description: performs a fuzzy search across games names and abbreviations
           required: false
           schema:
             type: string
@@ -1003,7 +2013,7 @@ paths:
             type: string
         - name: released
           in: query
-          description: restricts to series that began in that year
+          description: restricts to games that began in that year
           required: false
           schema:
             type: integer
@@ -1051,7 +2061,7 @@ paths:
             type: string
         - name: moderator
           in: query
-          description: moderator ID; only series moderated by that user will be returned
+          description: moderator ID; only games moderated by that user will be returned
           required: false
           schema:
             type: string
@@ -1103,7 +2113,158 @@ paths:
           content:
             applicaton/json:
               schema:
-                $ref: '#/components/schemas/Series'
+                $ref: '#/components/schemas/Game'
+  /users:
+    get:
+      tags:
+        - Users
+      summary:
+        This will return a list of users.
+      operationId: getUsers
+      parameters:
+        - name: lookup
+          in: query
+          description: >
+            searches the value (case-insensitive exact-string match) across user names,
+            URLs and social profiles; **all other query string filters are disabled when this is given**
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: only returns users whose name/URL contains the given value; the comparision is case-insensitive
+          required: false
+          schema:
+            type: string
+        - name: twitch
+          in: query
+          description: searches for Twitch usernames
+          required: false
+          schema:
+            type: string
+        - name: hitbox
+          in: query
+          description: searches for Hitbox usernames
+          required: false
+          schema:
+            type: string
+        - name: twitter
+          in: query
+          description: searches for Twitter usernames
+          required: false
+          schema:
+            type: string
+        - name: speedrunslive
+          in: query
+          description: searches for SpeedRunsLive usernames
+          required: false
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          description: order by defined options
+          required: false
+          schema:
+            type: string
+            enum:
+              - name.int
+              - name.jap
+              - signup
+              - role
+            default: name.int
+            example: name.int
+        - name: direction
+          in: query
+          description: order in ascending or descending order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: desc
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      summary:
+        This will retrieve a single user, identified by their ID.
+      description: >
+        Instead of the ID, the username can be used as well (but this is only recommended for quick lookups,
+        as usernames can change over time), so `GET /users/Pa`c is possible and will redirect to `/users/wzx7q875`.
+
+        The returned structure is a flat list of ranked runs, similar to the leaderboards
+
+        All embeds that are available for runs are available here as well (`game`, `category` etc.).
+        Note that they are not embedded in the run, but placed beside it.
+      operationId: getUsersById
+      parameters:
+        - name: id
+          in: path
+          description: id of the user
+          required: true
+          schema:
+            type: string
+            example: wzx7q875
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /users/{id}/personal-bests:
+    get:
+      tags:
+        - Users
+      summary:
+        This will retrieve a list of runs, representing the Personal Bests of the given user.
+      description: >
+        This will not include obsolete runs. If you want those as well, filter the global run list by user,
+        for example `GET /runs?user=....`
+
+        Instead of the ID, the username can be used as well (for example, `/users/Pac/personal-bests`).
+      operationId: getUsersPersonalBestsById
+      parameters:
+        - name: id
+          in: path
+          description: id of the user
+          required: true
+          schema:
+            type: string
+            example: wzx7q875
+        - name: top
+          in: query
+          description: only PBs with a place equal or better than this value (e.g. `top=1` returns all World Records of the given user)
+          required: false
+          schema:
+            type: integer
+        - name: series
+          in: query
+          description: restricts the result to games and romhacks in that series; can be either a series ID or abbreviation
+          required: false
+          schema:
+            type: string
+        - name: game
+          in: query
+          description: restricts the result to that game; can be either a game ID or abbreviation
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Run'
   /variables/{id}:
     get:
       tags:
@@ -2748,3 +3909,53 @@ components:
               uri:
                 type: string
                 format: uri
+    AcceptRun:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: object
+          required:
+            - status
+          properties:
+            status:
+              type: string
+              value: verified
+    RejectRun:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: object
+          required:
+            - status
+            - reason
+          properties:
+            status:
+              type: string
+              value: rejected
+            reason:
+              type: string
+    UpdatePlayersInRun:
+      type: object
+      required:
+        - players
+      properties:
+        status:
+          type: array
+          items:
+            type: object
+            required:
+              - rel
+            properties:
+              rel:
+                type: string
+                enum:
+                  - user
+                  - guest
+              id:
+                type: string
+              name:
+                type: string
