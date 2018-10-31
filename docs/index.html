@@ -76,6 +76,13 @@ window.onload = function() {
     dom_id: '#swagger-ui',
     deepLinking: true,
     defaultModelRendering: "model",
+    requestInterceptor: (req) => {
+      if (! req.loadSpec) {
+          // Add the header to "try it out" calls but not spec fetches
+          req.headers["User-Agent"] = "API-Documentation";
+      }
+      return req;
+    },
     presets: [
       SwaggerUIBundle.presets.apis
     ],
