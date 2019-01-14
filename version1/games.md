@@ -1,7 +1,7 @@
 # Games
 
 * [Structure](#structure)
-* [Bulk Access](#bulkaccess)
+* [Bulk Access](#bulk-access)
 * [Embeds](#embeds)
 * [GET /games](#get-games)
 * [GET /games/{id}](#get-gamesid)
@@ -247,7 +247,7 @@ Query Parameter  | Type   | Description
 ``publisher``    | string | publisher ID; when given, restricts to that publisher
 ``moderator``    | string | moderator ID; when given, only games moderated by that user will be returned
 ``romhack``      | bool   | legacy parameter, do not use this in new code; whether or not to include games with game types (if this parameter is not set, game types are included; if it is set to a true value, *only* games with game types will be returned, otherwise only games without game types are returned)
-``_bulk``        | bool   | enable [bulk access](#bulkaccess)
+``_bulk``        | bool   | enable [bulk access](#bulk-access)
 
 Note that giving invalid values for ``platform``, ``region`` or ``moderator`` will result in an
 HTTP 404 error instead of an empty list. This is on purpose, because asking to filter by non-existing
