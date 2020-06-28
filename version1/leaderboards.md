@@ -103,9 +103,6 @@ Query Parameter  | Type   | Description
 ``date``         | string | [ISO 8601 date string](https://en.wikipedia.org/wiki/ISO_8601#Dates); when given, only returns runs done before or on this date
 ``var-___``      | string | additional custom variable values (see below)
 
-To filter by custom variables, name the query string parameter ``var-[variable ID here]`` and use the
-value ID as the value (for example, ``?var-m5ly6jn4=p12z471x``).
-
 ##### Example Requests
 
 * [**GET /api/v1/leaderboards/xldev513/category/rklg3rdn**](https://www.speedrun.com/api/v1/leaderboards/xldev513/category/rklg3rdn)
@@ -145,3 +142,16 @@ as expected and redirect to the ID-based URLs).
   "data": <leaderboard>
 }
 ```
+
+### Specifying custom variables
+
+Subcategories will return the fastest times only within parameters of the request. This means that if the subcategory is **not** specified as a variable in the request, only fastest time for the player across **all** variable options will be returned.
+
+To filter by custom variables, name the query string parameter ``var-[variable ID here]`` and use the
+value ID as the value (for example, ``?var-m5ly6jn4=p12z471x``, where ``m5ly6jn4`` is the variable ID and ``p12z471x`` is the variable value).
+
+##### Example Requests
+
+* [**GET /api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv**](https://www.speedrun.com/api/v1/leaderboards/4pdv9k1w/category/rklx4wkn?var-6wl339l1=45lmxy1v&var-32lgg3lp=45lmdylv)
+  will return the "Any%" leaderboard for GTA Vice City Chaos%, filtered by Version (1.02) and Difficulty (Easy).
+  
