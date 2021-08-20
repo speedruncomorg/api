@@ -23,6 +23,7 @@ Represented as JSON, a single user looks like this:
     "international": "chewdiggy",
     "japanese": null
   },
+  "pronouns": null
   "weblink": "https://www.speedrun.com/user/chewdiggy",
   "name-style": {
     "style": "solid",
@@ -64,6 +65,14 @@ Represented as JSON, a single user looks like this:
   "speedrunslive": {
     "uri": "http://www.speedrunslive.com/profiles/#!/username"
   },
+  "assets": {
+    "icon": {
+      "uri": null
+    },
+    "image": {
+      "uri": "https://www.speedrun.com/userasset/48gr0rxp/image?v=cbb14df"
+    }
+  },
   "links": [{
     "rel": "self",
     "uri": "https://www.speedrun.com/api/v1/users/kjpdr4jq"
@@ -83,6 +92,8 @@ Represented as JSON, a single user looks like this:
 There are quite a few things that need a couple words of explanation.
 
 * Most users don't have a ``japanese`` name.
+
+* ``pronouns`` can either be null or a single string that contains all of a user's set pronouns.
 
 * The ``name-style`` determines how the username is shown on the website and can be one of two things:
 
@@ -106,6 +117,8 @@ There are quite a few things that need a couple words of explanation.
 
 * Any of the ``twitch``, ``hitbox``, ``youtube``, ``twitter`` and ``speedrunslive`` links can be
   ``null``.
+  
+* ``assets`` are links to images set by the user on speedrun.com. The links for both ``icon`` and ``image`` can be null.
 
 ### GET /users
 
