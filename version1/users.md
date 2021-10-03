@@ -23,7 +23,7 @@ Represented as JSON, a single user looks like this:
     "international": "chewdiggy",
     "japanese": null
   },
-  "pronouns": null
+  "pronouns": null,
   "weblink": "https://www.speedrun.com/user/chewdiggy",
   "name-style": {
     "style": "solid",
