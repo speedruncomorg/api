@@ -48,7 +48,8 @@ Represented as JSON, a single run looks like this:
     "name": "Betsruner",
     "uri": "https://www.speedrun.com/api/v1/guests/Betsruner"
   }],
-  "date": "2014-06-01",
+  "date": "2014-02-25",
+  "date-time": "2014-02-25T11:00:00Z",
   "submitted": null,
   "times": {
     "primary": "PT31M22S",
@@ -108,9 +109,16 @@ There are quite a few things that need a couple words of explanation.
   guest of whom we only have a name, but no user account (in that case, ``rel`` is ``guest`` and
   the ``name`` is present). In both cases, a ``uri`` is present that links to the player resource.
 
-* ``date`` is when the run happened. Not all runs have a known date, so unfortunately this sometimes
-  is ``null``. ``submitted`` is the date and time when the run was added on speedrun.com and can
-  also be ``null`` for old runs.
+* ``date`` is the day the run happened, in UTC. Not all runs have a known date, so unfortunately
+  this sometimes is ``null``.
+
+* ``date-time`` is the date and time when the run happened, as an ISO 8601 timestamp in UTC with
+  second precision. ``date`` is the date part of ``date-time``, and both are ``null`` when the run
+  has no known date. Many runs - especially older ones - only recorded the day, so their time (often
+  `12:00:00Z`) should be considered a placeholder.
+
+* ``submitted`` is the date and time when the run was added on speedrun.com and can also be ``null``
+  for old runs.
 
 * ``times`` is a structure that contains a lot of information and a lot of redundant stuff.
 
