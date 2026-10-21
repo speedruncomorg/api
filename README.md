@@ -17,7 +17,7 @@ API key to your app). See [authentication](authentication.md) for more informati
 All requests to the API are subject to [rate limits](throttling.md).
 
 The API is versioned, the version is reflected in the URL you use. The API root,
-https://www.speedrun.com/api will redirect you to the current version. We promise to do our best to
+https://www.speedrun.com/api/v1 will redirect you to the current version. We promise to do our best to
 never break a once published version of our API (sometimes we extend the current API with new
 information, but we will not change existing fields).
 
