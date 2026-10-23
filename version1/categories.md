@@ -107,7 +107,7 @@ order by          | Description
 * [**GET /api/v1/categories/xd1m7rd8/variables**](https://www.speedrun.com/api/v1/categories/xd1m7rd8/variables)
   retrieves the variables for Mario Kart 8's "32 Tracks" category.
 * [**GET /api/v1/categories/xd1m7rd8/variables?orderby=mandatory&direction=desc**](https://www.speedrun.com/api/v1/categories/xd1m7rd8/variables?orderby=mandatory&direction=desc)
-  retrieves the the same variables as above, but puts mandatory variables before optional ones.
+  retrieves the same variables as above, but puts mandatory variables before optional ones.
 
 ##### Example Response
 
